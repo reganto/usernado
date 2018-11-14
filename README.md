@@ -6,13 +6,11 @@ Tornado with extra tools
 Tools : 
 
 * [tornado-boilerplate](https://github.com/reganto/tornado-boilerplate)
-* [post redirection](https://github.com/paratorn)
+* [post redirection](https://github.com/regantoparatorn)
 
 ### Related Projects
 
 [tornado](https://github.com/reganto/tornado)
-[paratorn](https://github.com/reganto/paratorn)
-[tornado-boilerplate](https://github.com/reganto/tornado-boilerplate)
 
 ## Directory Structure
 
