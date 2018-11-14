@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tornado{% block title %}{% end %}</title>
+    <link rel="icon" href="{{ static_url("images/favicon.ico") }}" type="image/icon" />
+    <link rel="stylesheet" href="{{ static_url("css/style.css") }}" type="text/css" />  
+    {% block head %}{% end %}
+</head>
+<body style="background-color: #dddddd">
+    <div id="content">
+        <div id="header">
+            {% block header %}{% end %}
+        </div>
+        <div id="body">
+            {% block body %}{% end %}
+        </div>
+    </div>
+    <div id="bottom">
+        {% block bottom %}{% end %}
+    </div>
+</body>
+</html>
