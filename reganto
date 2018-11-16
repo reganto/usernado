@@ -1,0 +1,12 @@
+#! /bin/bash
+
+mv ../tornado-boilerplate ~/Public
+
+touch tornado
+echo "#!/bin/bash \n cp -r ~/Public/tornado-boilerplate $1">tornado  
+chmod 777 tornado
+
+sudo mv tornado /bin
+
+rm ~/Public/tornado-boilerplate/reganto
+
