@@ -14,11 +14,10 @@ Tools :
 
 ## Directory Structure
 
-    tornado-boilerplate/
+    tornado/
         handlers/
             home.py
             base.py
-        lib/
         logconfig/
         media/
             css/
@@ -36,31 +35,18 @@ Tools :
                 hide.html
             home/
                 index.html
-        vendor/
         utilities/
             redirect.py
+        vendor/
         environment.py
         fabfile.py
         app.py
         settings.py
 
 
-#### Who to
-install tornado
-```sh
-    pip install tornado
-```
-for run server 
-```sh
-    python app.py --port=8888
-```
-if you want to use post redirection 
-```python
-    from utilities import redirect
-```
-then your class must inherite from `redirect.RequestHandler`
+#### Requirements
 
-in class method use `self.redirect_with_input()`
+go to requirements directory 
 
 ## Contributing
 
