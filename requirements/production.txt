@@ -1,0 +1,8 @@
+# for run server
+python app.py --port=8888
+
+# if you want to use post redirection
+from utilities import redirect
+then your class must inherite from `redirect.RequestHandler`
+in class method use `self.redirect_with_input()`
+
