@@ -1,7 +1,8 @@
+import os
 import logging
 import tornado
 import tornado.template
-import os
+
 from tornado.options import define, options
 
 import environment
