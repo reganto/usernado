@@ -12,8 +12,8 @@ class BaseHandler(base.BaseHandler):
         """
         if self._headers_written:
             raise Exception("Cannot redirect after headers have been written")
-        # if status is None:
-        #     status = 301 if permanent else 302
-        # else:
-        #     assert isinstance(status, int) and 300 <= status <= 399
+        if status is None:
+            status = 301 if permanent else 302
+        else:
+            assert isinstance(status, int) and 300 <= status <= 399
         self.render('assets/hide.html', kwargs=kwargs, url=url)
