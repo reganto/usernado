@@ -6,3 +6,6 @@ sudo mv ./tornado /bin
 
 rm ~/Public/tornado-boilerplate/reganto
 
+git add .
+git commit -m  ':)'
+
