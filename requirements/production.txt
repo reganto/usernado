@@ -14,6 +14,6 @@ For run server type this command in bash:
 
 If you want to use post redirection:
     `from utilities import redirect`  
-    then your class must inherite from `redirect.RequestHandler`
+    then your class must inherite from `redirect.BaseHandler`
     in class method use `self.redirect_with_input()`
 
