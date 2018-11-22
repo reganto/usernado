@@ -52,5 +52,9 @@ docs/_build/
 # PyBuilder
 target/
 
-# Pycharm folder
-.idea/  
+# Pycharm files 
+.idea/ 
+
+# VSCode files
+.vscode/ 
+ 
