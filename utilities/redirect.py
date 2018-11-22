@@ -16,4 +16,5 @@ class BaseHandler(base.BaseHandler):
             status = 301 if permanent else 302
         else:
             assert isinstance(status, int) and 300 <= status <= 399
-        self.render('assets/hide.html', kwargs=kwargs, url=url)
+        self.render('assets/hide.html', url=url, kwargs=kwargs)
+
