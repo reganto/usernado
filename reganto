@@ -9,5 +9,3 @@ rm ~/Public/tornado-boilerplate/reganto
 git add .
 git commit -m  ':)'
 
-cd / 
-
