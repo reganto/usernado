@@ -1,5 +1,7 @@
 Tornado with extra tools
-===============================================================================
+
+[![Python Version][https://img.shields.io/badge/python-3.6-brightgreen.svg]][https://www.python.org/]
+[![Tornado Version][https://img.shields.io/badge/version-5.1.1-brightgreen.svg]][https://www.tornadoweb.org/en/stable/]
 
 ## Description
 
