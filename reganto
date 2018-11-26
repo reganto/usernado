@@ -1,10 +1,10 @@
 #! /bin/bash
 
-mv ../tornado-boilerplate ~/Public
+mv ../tornado ~/Public
 
 sudo mv ./tornado /bin
 
-rm ~/Public/tornado-boilerplate/reganto
+rm ~/Public/tornado/reganto
 
 git add .
 git commit -m  ':)'
