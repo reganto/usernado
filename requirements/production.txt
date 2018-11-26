@@ -1,7 +1,7 @@
 * You should already install git
 
-Copy tornado-boilerplate to your local disk.
-Go to tornado-boilerplate directory
+Copy tornado directory to your local disk.
+Go to tornado directory
 Run this command in bash:
     sudo ./reganto
 
@@ -13,7 +13,7 @@ For run server type this command in bash:
     python app.py --port=favorite-port  
 
 If you want to use post redirection:
-    `from utilities import redirect`  
+    `from vendor import redirect`  
     then your class must inherite from `redirect.BaseHandler`
     in class method use `self.redirect_with_input()`
 
