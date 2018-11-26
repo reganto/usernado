@@ -1,3 +1,4 @@
-[submodule "vendor/comrade"]
-	path = vendor/comrade
-	url = https://github.com/bueda/django-comrade.git
+[submodule "vendor/redirect"]
+	path = vendor/redirect 
+	url = https://github.com/reganto/paratorn.git
+
