@@ -6,7 +6,7 @@ Tornado with extra tools
 Tools : 
 
 * [tornado-boilerplate](https://github.com/reganto/tornado-boilerplate)
-* [post redirection](https://github.com/regantoparatorn)
+* [post redirection](https://github.com/reganto/paratorn)
 
 ### Related Projects
 
