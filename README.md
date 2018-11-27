@@ -35,9 +35,8 @@ Tools :
                 hide.html
             home/
                 index.html
-        utilities/
-            redirect.py
         vendor/
+            redirect.py
         environment.py
         fabfile.py
         app.py
