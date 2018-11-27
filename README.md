@@ -62,6 +62,6 @@ If you have improvements or bug fixes:
 
 ## Authors
 
-* [Reganto](http://www.reganto.blog.ir)
-* [gitlab](https://gitlab.com/reganto/)
-* [github](https://github.com/reganto/)
+* [Reganto Blog](http://www.reganto.blog.ir)
+* [Reganto Gitlab](https://gitlab.com/reganto/)
+* [Reganto Github](https://github.com/reganto/)
