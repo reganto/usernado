@@ -76,7 +76,7 @@ Go to project directory.
 For run server type this command in bash:
 ```bash
     python app.py --port=favorite-port  
-```bash
+```
 
 * If you want to use post redirection:
 ```python
