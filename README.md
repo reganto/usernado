@@ -6,6 +6,7 @@ Tornado with extra tools
 
 ## Description
 
+
 Tools : 
 
 * [tornado-boilerplate](https://github.com/reganto/tornado-boilerplate)
@@ -46,9 +47,46 @@ Tools :
         settings.py
 
 
-#### Requirements
+#### How to
 
-Go to requirements directory 
+First install Tornado
+```bash
+    pip install tornado
+```
+* It it better to install Tornado in virtualenv
+
+* You should already install git
+
+Copy tornado directory to your local disk.
+
+Go to tornado directory.
+
+Run this command in bash:
+```bash
+    sudo ./reganto
+```
+
+Now you can create a new project with this command:
+```bash
+    tornado project-name
+```
+
+Go to project directory.
+
+For run server type this command in bash:
+```bash
+    python app.py --port=favorite-port  
+```bash
+
+* If you want to use post redirection:
+```python
+    from vendor import redirect  
+```
+
+then your class must inherite from `redirect.BaseHandler`
+
+in class method use `self.redirect_with_input()`
+
 
 ## Contributing
 
