@@ -60,7 +60,7 @@ Go to tornado directory.
 
 Run this command in bash:
 ```bash
-    sudo ./reganto
+    sudo ./configure.sh
 ```
 
 Now you can create a new project with this command:
