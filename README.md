@@ -13,10 +13,6 @@ Tools :
 * [tornado-boilerplate](https://github.com/reganto/tornado-boilerplate)
 * [post redirection](https://github.com/reganto/paratorn)
 
-### Related Projects
-
-[tornado](https://github.com/tornadoweb/tornado)
-
 ## Directory Structure
 
     tornado/
