@@ -6,6 +6,7 @@ Tornado with extra tools
 
 ## Description
 
+Tornado is a powefull and light weight python framework.BUT tornado haven't any boilerplate so you must start your project from scratch also tornado haven't post redirection(redirection with parameter(s) in post method).now these features are available.
 
 Tools : 
 
