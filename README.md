@@ -13,7 +13,7 @@ Tools :
 
 ### Related Projects
 
-[tornado](https://github.com/reganto/tornado)
+[tornado](https://github.com/tornadoweb/tornado)
 
 ## Directory Structure
 
@@ -48,7 +48,7 @@ Tools :
 
 #### Requirements
 
-go to requirements directory 
+Go to requirements directory 
 
 ## Contributing
 
@@ -64,4 +64,3 @@ If you have improvements or bug fixes:
 
 * [Reganto Blog](http://www.reganto.blog.ir)
 * [Reganto Gitlab](https://gitlab.com/reganto/)
-* [Reganto Github](https://github.com/reganto/)
