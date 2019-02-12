@@ -1,6 +1,6 @@
 import json
 import tornado.web
-
+import tornado.escape
 import logging
 logger = logging.getLogger('boilerplate.' + __name__)
 
@@ -43,3 +43,11 @@ class BaseHandler(tornado.web.RequestHandler):
         arg = self.request.arguments[name]
         logger.debug("Found '%s': %s in JSON arguments" % (name, arg))
         return arg
+
+    def get_current_user(self):
+        user_json = self.get_secure_cookie('user')
+        if user_json:
+            return tornado.escape.json_decode(user_json)
+        else:
+            return None
+
