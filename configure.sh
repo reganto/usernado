@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if [ -d "~/.tornado/tornado" ]
+if [ -d "~/.tornado" ]
 then 
-    rm -r ~/.tornado/tornado
+    rm -r ~/.tornado/
 else
     mv ../tornado/ ~/.tornado/
 fi
