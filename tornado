@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cp -r ~/.tornado/tornado ./$1
+cp -r ~/.tornado ./$1
 
