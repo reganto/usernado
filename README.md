@@ -95,5 +95,3 @@ If you have improvements or bug fixes:
 * [Reganto Blog](http://www.reganto.blog.ir)
 * [Reganto GitLab](https://gitlab.com/reganto/)
 
-
-> Everything Should Be Made as Simple as Possible, But Not Simpler
