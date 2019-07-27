@@ -4,7 +4,7 @@
 
 ## Description
 
-[Tornado](https://github.com/tornadoweb/tornado) is a powefull and lightweight python framework. BUT tornado haven't any template so you must start your project from scratch also tornado haven't post redirection(redirection with parameter(s) in post method). now these features are available!
+[Tornado](http://www.tornadoweb.org/en/stable/) is a powerfull and lightweight python framework. But tornado haven't any template so you must start your project from scratch also tornado haven't post redirection(redirection with parameter(s) in post method). now these features are available!
 
 
 - See also [Tornado-utilities](https://gitlab.com/reganto/tornado-utilities)
