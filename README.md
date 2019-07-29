@@ -27,12 +27,12 @@
             dev.txt
             production.txt
         templates/
-            assets/
-                base.html
-                hide.html
+            base.html
+            hide.html
             home/
                 index.html
         vendor/
+            snippets
         environment.py
         fabfile.py
         app.py
