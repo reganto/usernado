@@ -1,4 +1,4 @@
-# Tornado + Template + Improved Redirect
+# Tornado
 [![Python Version](https://img.shields.io/badge/python-3.7.4-green)](https://www.python.org/)
 [![Tornado Version](https://img.shields.io/badge/tornado-6.0.3-green)](https://www.tornadoweb.org/en/stable/)
 
@@ -83,7 +83,7 @@ in class method use `self.redirect_with_input()`
 
 - [x] Update jquery
 - [x] Add w3.css
-- [ ] Create project utility should support other OS (now support *\*nix*)
+- [ ] Tornado  utility should support other OS (now support *\*nix*)
 - [ ] Add paginatoin snippet
 - [ ] Add upload snippet
 
@@ -91,8 +91,8 @@ in class method use `self.redirect_with_input()`
 
 If you have improvements or bug fixes:
 
-* Fork the repository on ~~GitHub~~ GitLab
-* File an issue for the bug fix/feature request in ~~GitHub~~ GitLab
+* Fork the repository on GitHub or GitLab
+* File an issue for the bug fix/feature request in GitHub GitLab
 * Create a topic branch
 * Push your modifications to that branch
 * Send a pull request
@@ -101,4 +101,5 @@ If you have improvements or bug fixes:
 
 * [Reganto Blog](http://www.reganto.blog.ir)
 * [Reganto GitLab](https://gitlab.com/reganto/)
+* [Reganto GitHub](https://github.com/reganto/)
 
