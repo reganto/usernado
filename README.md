@@ -79,6 +79,13 @@ For run server type this command in bash:
 
 in class method use `self.redirect_with_input()`
 
+## TODO
+
+- [x] Update jquery
+- [x] Add w3.css
+- [ ] Create project utility should support other OS (now support *\*nix*)
+- [ ] Add paginatoin snippet
+- [ ] Add upload snippet
 
 ## Contributing
 
@@ -90,7 +97,7 @@ If you have improvements or bug fixes:
 * Push your modifications to that branch
 * Send a pull request
 
-## Authors
+## Author
 
 * [Reganto Blog](http://www.reganto.blog.ir)
 * [Reganto GitLab](https://gitlab.com/reganto/)
