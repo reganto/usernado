@@ -85,7 +85,8 @@ in class method use `self.redirect_with_input()`
 - [x] Add w3.css
 - [x] Remove requirements directory and add single requirements file
 - [x] Add settings to choose template engine
-- [ ] Error orgnization
+- [x] Add error page for tornado template
+- [ ] Add error page for jinja2 template
 - [ ] Edit explanations
 - [ ] Tornado  utility should support other OS (now support *\*nix*)
 - [ ] Add paginatoin snippet
