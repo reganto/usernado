@@ -15,6 +15,11 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 define("port", default=8888, help="run on the given port", type=int)
 define("config", default=None, help="tornado config file")
 define("debug", default=False, help="debug mode")
+define("template", default="tornado", 
+        help="select template engine", 
+        type=str
+      )
+
 tornado.options.parse_command_line()
 
 MEDIA_ROOT = path(ROOT, 'media')
@@ -46,7 +51,18 @@ settings['debug'] = DEPLOYMENT != DeploymentType.PRODUCTION or options.debug
 settings['static_path'] = MEDIA_ROOT
 settings['cookie_secret'] = "your-cookie-secret"
 settings['xsrf_cookies'] = True
-settings['template_loader'] = tornado.template.Loader(TEMPLATE_ROOT)
+
+# Select template engine
+if options.template == 'tornado':
+    settings['template_loader'] = tornado.template.Loader(TEMPLATE_ROOT)
+elif options.template == 'jinja2':
+    from tornado_jinja2 import Jinja2Loader
+    import jinja2
+
+    jinja2_env = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATE_ROOT), autoescape=False)
+    jinja2_loader = Jinja2Loader(jinja2_env)
+
+    settings['template_loader'] = jinja2_loader
 
 SYSLOG_TAG = "boilerplate"
 SYSLOG_FACILITY = logging.handlers.SysLogHandler.LOG_LOCAL2
