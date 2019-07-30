@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %} - Error{% end %}
+
+{% block body %}
+    <div class="w3-red w3-panel w3-card-2 w3-animate-zoom w3-display-container">
+        <a href="https://duckduckgo.com/?q={{ status['exc_info'][1] }}" 
+            target="_blank" class="w3-display-topright">
+            <img src="{{ static_url('images/duck.png') }}" alt="google" width="50" height="50" />
+        </a>
+        <p><b>{{ code }}</b></p>
+        <p>{{ status['exc_info'][1] }}</p>
+        <details>
+            <summary>details</summary>
+            <p>{{ status['exc_info'][0] }}</p>
+            <p>{{ status['exc_info'][2] }}</p>
+        </details>
+    </div>
+
+    <div class="w3-panel w3-animate-opacity">
+        <h2>Request</h2>
+        <table class="w3-table-all">
+                <tr>
+                    <td class="w3-border-right">Protocol</td>
+                    <td>{{ req.protocol }}</td>
+                </tr>
+                <tr>
+                    <td class="w3-border-right">Host</td>
+                    <td>{{ req.host }}</td>
+                </tr>
+                <tr>
+                    <td class="w3-border-right">Method</td>
+                    <td>{{ req.method }}</td>
+                </tr>
+                <tr>
+                    <td class="w3-border-right">Uri</td>
+                    <td>{{ req.uri }}</td>
+                </tr>
+                <tr>
+                    <td class="w3-border-right">Version</td>
+                    <td>{{ req.version }}</td>
+                </tr>
+                <tr>
+                    <td class="w3-border-right">Remote IP</td>
+                    <td>{{ req.remote_ip }}</td>
+                </tr>
+        </table>
+    </div>
+
+    <div class="w3-container w3-animate-opacity">
+        <h2>Headers</h2>
+        <table class="w3-table-all">
+            {% for key, value in headers.items() %}
+                <tr>
+                    <td class="w3-border-right">{{ key }}</td>
+                    <td class="w3-small">{{ value }}</td>
+                </tr>
+            {% end %}
+        </table>
+    </div>
+{% end %}
+
+{% block bottom %}
+    <div class="w3-panel w3-center w3-text-teal">
+        {% import tornado %}
+        <a href="https://github.com/reganto/tornado">Tornado {{ tornado.version }}</a>
+    </div>
+{% end %}
