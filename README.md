@@ -84,7 +84,7 @@ in class method use `self.redirect_with_input()`
 - [x] Update jquery
 - [x] Add w3.css
 - [x] Remove requirements directory and add single requirements file
-- [ ] Add settings to choose template engine
+- [x] Add settings to choose template engine
 - [ ] Error orgnization
 - [ ] Edit explanations
 - [ ] Tornado  utility should support other OS (now support *\*nix*)
