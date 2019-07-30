@@ -66,3 +66,11 @@ class BaseHandler(tornado.web.RequestHandler):
         else:
             assert isinstance(status, int) and 300 <= status <= 399
         self.render('hide.html', url=url, kwargs=kwargs)
+
+    def write_error(self, code, **kwargs):
+        self.render('error.html', 
+            code=code, 
+            status=kwargs, 
+            req=self.request,
+            headers=dict(self.request.headers)
+        )
