@@ -12,17 +12,20 @@
 
 ## How to
 
-First install Tornado
+First install dependencies from requirements.txt 
 
-    pip install tornado
+    pip install -r requirements.txt
 
-* It it better to install Tornado in virtualenv
+* It it better to install dependencies in virtualenv
 
 * You should already install git
 
 Clone repository to your local disk.
 
     git clone https://gitlab.com/reganto/tornado
+    or
+    git clone https://github.com/reganto/tornado
+
 
 Go to tornado directory.
 
@@ -36,9 +39,9 @@ Now you can create a new project with this command:
 
 Go to project directory.
 
-For run server type this command in bash:
+To show help
 
-    python app.py --port=favorite-port  
+    python app.py --help
 
 * If you want to use post redirection:
 
