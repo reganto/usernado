@@ -9,35 +9,6 @@
 
 - See also [Tornado-utilities](https://gitlab.com/reganto/tornado-utilities)
 
-## Directory Structure
-
-    tornado/
-        handlers/
-            home.py
-            base.py
-        logconfig/
-        media/
-            css/
-                vendor/
-            js/
-                vendor/
-            images/
-        requirements/
-            common.txt
-            dev.txt
-            production.txt
-        templates/
-            base.html
-            hide.html
-            home/
-                index.html
-        vendor/
-            snippets
-        environment.py
-        fabfile.py
-        app.py
-        settings.py
-
 
 ## How to
 
