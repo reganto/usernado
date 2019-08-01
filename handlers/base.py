@@ -68,7 +68,8 @@ class BaseHandler(tornado.web.RequestHandler):
         self.render('hide.html', url=url, kwargs=kwargs)
 
     def write_error(self, code, **kwargs):
-        self.render('error.html', 
+        self.render('error.html',
+            page_title='Error',
             code=code, 
             status=kwargs, 
             req=self.request,
