@@ -1,4 +1,6 @@
 import os
+import uuid
+import base64
 import logging
 import tornado
 import tornado.template
@@ -49,7 +51,7 @@ else:
 settings = dict()
 settings['debug'] = DEPLOYMENT != DeploymentType.PRODUCTION or options.debug
 settings['static_path'] = MEDIA_ROOT
-settings['cookie_secret'] = "your-cookie-secret"
+settings['cookie_secret'] = base64.b64encode(uuid.uuid4().bytes+uuid.uuid4().bytes)
 settings['xsrf_cookies'] = True
 
 # Select template engine
