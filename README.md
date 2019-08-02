@@ -1,14 +1,24 @@
-# Tornado
+# Improved Tornado
 [![Python Version](https://img.shields.io/badge/python-3.7.4-green)](https://www.python.org/)
 [![Tornado Version](https://img.shields.io/badge/tornado-6.0.3-green)](https://www.tornadoweb.org/en/stable/)
 
 ## Description
 
-[Tornado](http://www.tornadoweb.org/en/stable/) is a powerfull and lightweight python framework. But tornado haven't any template so you must start your project from scratch also tornado haven't post redirection(redirection with parameter(s) in post method). now these features are available!
+<center>
+![Improves Tornado](http://bayanbox.ir/download/8623574961338096813/tornado.png)
+</center>
 
+### Features
 
-- See also [Tornado-utilities](https://gitlab.com/reganto/tornado-utilities)
-
+- Send  arguments to other request without session(special thanks to *Ehsan Azizi Khadem*)
+- Tornado-boilerplate -- a standard layout for Tornado apps(thanks to [Bueda](https://github.com/bueda/tornado-boilerplate))
+- Add Jinja2 template engine(thanks to [mr-ping](https://github.com/mr-ping/tornado_jinja2))
+- A better error page
+- Default support for *W3.CSS* and *Jquery*
+- Add a startup configuration bash script
+- Add a utility to create new project
+- Add Tornado code snippets
+- Add [Tornado-utilities](https://gitlab.com/reganto/tornado-utilities)
 
 ## How to
 
@@ -61,8 +71,10 @@ in class method use `self.redirect_with_input()`
 - [x] Add settings to choose template engine
 - [x] Add error page for tornado template
 - [ ] Add error page for jinja2 template
+- [ ] colorize error lines
 - [ ] Edit explanations
 - [ ] Tornado  utility should support other OS (now support *\*nix*)
+- [ ] Add csrf protection for jinja2
 - [ ] Add paginatoin snippet
 - [ ] Add upload snippet
 - [ ] Add register snippet
