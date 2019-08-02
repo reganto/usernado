@@ -4,11 +4,10 @@
 
 ## Description
 
-<center>
-    <p>
-        <img src="https://user-images.githubusercontent.com/29402115/62376423-d4e2ed00-b555-11e9-88d3-11ca3ed43d07.png" width="200" height="200" />
-    </p>
-</center>
+<p>
+    <img src="https://user-images.githubusercontent.com/29402115/62376423-d4e2ed00-b555-11e9-88d3-11ca3ed43d07.png" 
+         width="200" height="200" />
+</p>
 
 ### Features
 
