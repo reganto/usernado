@@ -71,6 +71,7 @@ in class method use `self.redirect_with_input()`
 - [x] Remove requirements directory and add single requirements file
 - [x] Add settings to choose template engine
 - [x] Add error page for tornado template
+- [x] Edit title
 - [ ] Add error page for jinja2 template
 - [ ] colorize error lines
 - [ ] Tornado  utility should support other OS (now support *\*nix*)
