@@ -5,7 +5,7 @@
 ## Description
 
 <center>
-![Improves Tornado](http://bayanbox.ir/download/8623574961338096813/tornado.png)
+![Improved Tornado](https://user-images.githubusercontent.com/29402115/62376423-d4e2ed00-b555-11e9-88d3-11ca3ed43d07.png)
 </center>
 
 ### Features
