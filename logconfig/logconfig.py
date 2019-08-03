@@ -101,4 +101,5 @@ def initialize_logging(syslog_tag, syslog_facility, loggers,
         if 'propagate' not in logger:
             logger['propagate'] = False
 
-    dictconfig.dictConfig(cfg)
+    dictconfig.dictConfig(cfg
+)
