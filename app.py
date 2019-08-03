@@ -9,14 +9,14 @@ from settings import settings
 from urls import url_patterns
 
 
-class TornadoBoilerplate(tornado.web.Application):
+class Application(tornado.web.Application):
     def __init__(self):
         tornado.web.Application.__init__(self, url_patterns, **settings)
 
 
 def main():
     print(' ==> Server Started on port ' + str(options.port))
-    app = TornadoBoilerplate()
+    app = Application()
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(options.port)
     tornado.ioloop.IOLoop.instance().start()
