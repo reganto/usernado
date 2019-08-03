@@ -64,6 +64,17 @@ To show help
 
 in class method use `self.redirect_with_input()`
 
+## Related Projects
+
+- **[Motor](https://github.com/mongodb/motor)**  -> the async Python driver for MongoDB and Tornado or asyncio by *A. Jesse Jiryu Davis*
+- **[Tornado-Jinja2](https://github.com/mr-ping/tornado_jinja2)** -> Integrate Jinja2 template engine with Tornado web-framwork
+- **[Pycket](https://github.com/diogobaeder/pycket)** -> Redis/Memcached sessions for Tornado 
+- **[Introduction to Tornado](https://github.com/Introduction-to-Tornado/Introduction-to-Tornado)** -> 
+This is the sample code for the Introduction to Tornado book, published by O'Reilly Media.
+- **[Tornado-Boilerplate](https://github.com/bueda/tornado-boilerplate)** -> A standard layout for Tornado apps
+
+
+
 ## TODO
 
 - [x] Update jquery
@@ -72,14 +83,18 @@ in class method use `self.redirect_with_input()`
 - [x] Add settings to choose template engine
 - [x] Add error page for tornado template
 - [x] Edit title
+- [x] Add send email utility
+- [x] Add email validation utility
+- [x] Add check captcha utility
+- [ ] Add register snippet
+- [ ] Add login snippet
+- [ ] Add upload snippet
+- [ ] Add paginatoin snippet
 - [ ] Add error page for jinja2 template
 - [ ] colorize error lines
 - [ ] Tornado  utility should support other OS (now support *\*nix*)
 - [ ] Add csrf protection for jinja2
-- [ ] Add paginatoin snippet
-- [ ] Add upload snippet
-- [ ] Add register snippet
-- [ ] Add login snippet
+
 
 ## Contributing
 
