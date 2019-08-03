@@ -19,7 +19,7 @@
 - Add a startup configuration bash script
 - Add a utility to create new project
 - Add Tornado code snippets
-- Add [Tornado-utilities](https://gitlab.com/reganto/tornado-utilities)
+- Add Tornado-utilities(vendor/utils)
 
 ## How to
 
