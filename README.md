@@ -66,7 +66,7 @@ in class method use `self.redirect_with_input()`
 
 ## Related Projects
 
-- **[Motor](https://github.com/mongodb/motor)**  -> the async Python driver for MongoDB and Tornado or asyncio 
+- **[Motor](https://github.com/mongodb/motor)**  -> The async Python driver for MongoDB and Tornado or asyncio 
 - **[Tornado-Jinja2](https://github.com/mr-ping/tornado_jinja2)** -> Integrate Jinja2 template engine with Tornado web-framwork
 - **[Pycket](https://github.com/diogobaeder/pycket)** -> Redis/Memcached sessions for Tornado 
 - **[Introduction to Tornado](https://github.com/Introduction-to-Tornado/Introduction-to-Tornado)** -> 
