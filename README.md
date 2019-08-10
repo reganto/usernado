@@ -86,9 +86,9 @@ This is the sample code for the Introduction to Tornado book, published by O'Rei
 - [x] Add send email utility
 - [x] Add email validation utility
 - [x] Add check captcha utility
-- [ ] Add register snippet
-- [ ] Add login snippet
-- [ ] Add upload snippet
+- [x] Add register snippet
+- [x] Add login snippet
+- [x] Add upload snippet
 - [ ] Add paginatoin snippet
 - [ ] Add error page for jinja2 template
 - [ ] colorize error lines
