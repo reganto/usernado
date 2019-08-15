@@ -33,16 +33,13 @@ First install dependencies from requirements.txt
 
 * It it better to install dependencies in virtualenv
 
-* You should already install git
 
 Clone repository to your local disk.
 
-    git clone https://gitlab.com/reganto/tornado
-    or
-    git clone https://github.com/reganto/tornado
+    git clone https://github.com/reganto/usernado.git
 
 
-Go to tornado directory.
+Go to Usernado directory.
 
 Run this command in bash:
 
@@ -50,7 +47,7 @@ Run this command in bash:
 
 Now you can create a new project with this command:
 
-    tornado project-name
+    usernado project-name
 
 Go to project directory.
 
@@ -94,6 +91,7 @@ This is the sample code for the Introduction to Tornado book, published by O'Rei
 - [x] Add login snippet
 - [x] Add upload snippet
 - [ ] Add paginatoin snippet
+- [ ] Move related projects to wiki
 - [ ] Add error page for jinja2 template
 - [ ] colorize error lines
 - [ ] Tornado  utility should support other OS (now support *\*nix*)
@@ -104,15 +102,14 @@ This is the sample code for the Introduction to Tornado book, published by O'Rei
 
 If you have improvements or bug fixes:
 
-* Fork the repository on GitHub or GitLab
-* File an issue for the bug fix/feature request in GitHub GitLab
+* Fork the repository
+* File an issue for the bug fix/feature request
 * Create a topic branch
 * Push your modifications to that branch
 * Send a pull request
 
 ## Author
 
-* [Reganto Blog](http://www.reganto.blog.ir)
-* [Reganto GitLab](https://gitlab.com/reganto/)
-* [Reganto GitHub](https://github.com/reganto/)
-
+* [Blog](http://www.reganto.ir)
+* [GitLab](https://gitlab.com/reganto/)
+* [GitHub](https://github.com/reganto/)
