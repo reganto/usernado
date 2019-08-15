@@ -96,4 +96,3 @@ if options.config:
 # vendor/utils/send_email
 EMAIL_SENDER = 'SENDER'
 EMAIL_PASSWORD = 'PASSOWRD'
-

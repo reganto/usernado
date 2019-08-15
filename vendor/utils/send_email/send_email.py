@@ -5,7 +5,11 @@ from settings import EMAIL_PASSWORD, EMAIL_SENDER
 
 # send email
 def send_email(email, token):
-    """Send email function(SMTP)"""
+    """Send email function(SMTP)
+    :param email: email recipient
+    :param token: token for verify user
+    :return: True or False
+    """
     sender = EMAIL_SENDER
     recipient = email
     msg = MIMEMultipart()
