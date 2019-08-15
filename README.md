@@ -4,8 +4,8 @@
 
 ## Description
 
-<p>
-    <img src="https://user-images.githubusercontent.com/29402115/62376423-d4e2ed00-b555-11e9-88d3-11ca3ed43d07.png" 
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/29402115/63076666-38541e00-bf4b-11e9-9b19-9e25c9b268cb.png" 
          width="200" height="200" />
 </p>
 
