@@ -1,10 +1,7 @@
 #!/bin/bash
 
 mkdir -p ~/.usernado
-if [ -d "~/.usernado" ]; then
-    rm -r ~/.usernado/*
-fi
-mv ../usernado ~/.usernado/
+cp -rf ../usernado ~/.usernado/
 
-mv usernado /bin/
-rm configure.sh
+mv ~/.usernado/usernado/usernado /bin/
+rm ~/.usernado/usernado/configure.sh
