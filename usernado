@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cp -r ~/.usernado ./$1
+cp -r ~/.usernado/usernado ./$1
 
