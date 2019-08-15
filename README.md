@@ -1,17 +1,16 @@
-# Improved Tornado
-[![Python Version](https://img.shields.io/badge/python-3.7.4-green)](https://www.python.org/)
-[![Tornado Version](https://img.shields.io/badge/tornado-6.0.3-green)](https://www.tornadoweb.org/en/stable/)
-
-## Description
-
 <p align="center">
     <img src="https://user-images.githubusercontent.com/29402115/63076666-38541e00-bf4b-11e9-9b19-9e25c9b268cb.png" 
-         width="200" height="200" />
+         width="300" height="300" />
 </p>
+
+
+---
+![Usernado](https://img.shields.io/badge/usernado-1.0.1-green)
+![Tornado](https://img.shields.io/badge/tornado-6.0.3-green)
 
 ### Features
 
-- Send  arguments to other request without session(special thanks to *Ehsan Azizi Khadem*)
+- Send  arguments to other request without session(special thanks to Ehsan Azizi Khadem and [Ben Darnell](https://github.com/bdarnell))
 - Tornado-boilerplate -- a standard layout for Tornado apps(thanks to [Bueda](https://github.com/bueda/tornado-boilerplate))
 - Add Jinja2 template engine(thanks to [mr-ping](https://github.com/mr-ping/tornado_jinja2))
 - A better error page
