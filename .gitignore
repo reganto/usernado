@@ -55,4 +55,4 @@ docs/_build/
 target/
 
 # API Keys
-vendor/key/secret.py
+vendor/keys/secret.py
