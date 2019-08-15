@@ -1,7 +1,9 @@
 #!/bin/bash
 
 mkdir -p ~/.usernado
-rm -r ~/.usernado/*
+if [ -d "~/.usernado" ]; then
+    rm -r ~/.usernado/*
+fi
 mv ../usernado ~/.usernado/
 
 mv usernado /bin/
