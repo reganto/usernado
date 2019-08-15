@@ -1,12 +1,12 @@
 #!/bin/bash
 
-if [ -d "~/.usernado/" ]
+if [ ! -d "~/.usernado" ]
 then 
-    rm -rf ~/.usernado/*
-    mv ../usernado/ ~/.usernado/
-else
     mkdir ~/.usernado
-    mv ../usernado/ ~/.usernado/
+    mv ../usernado/ ~/.usernado/usernado
+else
+    rm -rf ~/.usernado/*
+    mv ../usernado/ ~/.usernado/usernado
 fi
 
 mv usernado /bin/
