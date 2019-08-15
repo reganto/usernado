@@ -22,6 +22,11 @@
 
 ## How to
 
+
+![whoto](https://user-images.githubusercontent.com/29402115/63086512-431bac80-bf65-11e9-98a9-8c9b8bf10d1e.gif)
+
+
+
 First install dependencies from requirements.txt 
 
     pip install -r requirements.txt
