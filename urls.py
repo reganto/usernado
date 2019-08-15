@@ -1,5 +1,6 @@
+from tornado.web import url
 from handlers.home import HomeHandler
 
 url_patterns = [
-    (r"/", HomeHandler),
+    url(r"/", HomeHandler, name='home'),
 ]
