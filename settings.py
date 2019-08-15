@@ -91,3 +91,9 @@ logconfig.initialize_logging(SYSLOG_TAG, SYSLOG_FACILITY, LOGGERS,
 
 if options.config:
     tornado.options.parse_config_file(options.config)
+
+# EMAIL
+# vendor/utils/send_email
+EMAIL_SENDER = 'SENDER'
+EMAIL_PASSWORD = 'PASSOWRD'
+

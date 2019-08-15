@@ -1,12 +1,12 @@
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-
+from settings import EMAIL_PASSWORD, EMAIL_SENDER
 
 # send email
 def send_email(email, token):
     """Send email function(SMTP)"""
-    sender = 'Sender'
+    sender = EMAIL_SENDER
     recipient = email
     msg = MIMEMultipart()
     msg['From'] = sender
@@ -23,7 +23,7 @@ def send_email(email, token):
     # start tls
     server.starttls()
     # login
-    server.login(sender, 'password')
+    server.login(sender, EMAIL_PASSWORD)
     # message
     text = msg.as_string()
     # send mail
