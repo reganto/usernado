@@ -1,11 +1,11 @@
 #!/bin/bash
 
-if [ -d "~/.tornado" ]
+if [ -d "~/.usernado" ]
 then 
-    rm -r ~/.tornado/
+    rm -rf ~/.usernado/
 else
-    mv ../tornado/ ~/.tornado/
+    mv ../usernado/ ~/.usernado/
 fi
 
-mv tornado /bin/
+mv usernado /bin/
 rm configure.sh
