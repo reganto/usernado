@@ -80,6 +80,7 @@ This is the sample code for the Introduction to Tornado book, published by O'Rei
 
 - [x] Add login snippet
 - [x] Add upload snippet
+- [ ] Manage send email utility and integrate it with settings
 - [ ] Add paginatoin snippet
 - [ ] Move related projects to wiki
 - [ ] Add error page for jinja2 template
