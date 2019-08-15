@@ -2,7 +2,7 @@
 
 if [ ! -d "~/.usernado" ]
 then 
-    mkdir ~/.usernado
+    mkdir -p ~/.usernado
     mv ../usernado/ ~/.usernado/usernado
 else
     rm -rf ~/.usernado/*
