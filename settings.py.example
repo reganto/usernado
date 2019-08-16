@@ -4,14 +4,12 @@ import base64
 import logging
 import tornado
 import tornado.template
-
 from tornado.options import define, options
-
-import environment
 import logconfig
 
+
 # Make filepaths relative to settings.
-path = lambda root,*a: os.path.join(root, *a)
+path = lambda root, *a: os.path.join(root, *a)
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
 
@@ -19,10 +17,12 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 define("port", default=8888, help="run on the given port", type=int)
 define("config", default=None, help="tornado config file")
 define("debug", default=False, help="debug mode")
-define("template", default="tornado", 
-        help="select template engine", 
-        type=str
-      )
+define(
+    "template",
+    default="tornado",
+    help="select template engine",
+    type=str
+)
 
 tornado.options.parse_command_line()
 
@@ -71,10 +71,11 @@ if options.template == 'tornado':
 elif options.template == 'jinja2':
     from tornado_jinja2 import Jinja2Loader
     import jinja2
-
-    jinja2_env = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATE_ROOT), autoescape=False)
+    jinja2_env = jinja2.Environment(
+        loader=jinja2.FileSystemLoader(TEMPLATE_ROOT),
+        autoescape=False
+    )
     jinja2_loader = Jinja2Loader(jinja2_env)
-
     settings['template_loader'] = jinja2_loader
 
 SYSLOG_TAG = "boilerplate"
@@ -86,7 +87,7 @@ SYSLOG_FACILITY = logging.handlers.SysLogHandler.LOG_LOCAL2
 # unless you set them here.  Messages will not propagate through a logger
 # unless propagate: True is set.
 LOGGERS = {
-   'loggers': {
+    'loggers': {
         'boilerplate': {},
     },
 }
@@ -97,8 +98,13 @@ else:
     LOG_LEVEL = logging.INFO
 USE_SYSLOG = DEPLOYMENT != DeploymentType.SOLO
 
-logconfig.initialize_logging(SYSLOG_TAG, SYSLOG_FACILITY, LOGGERS,
-                             LOG_LEVEL, USE_SYSLOG)
+# logconfig.initialize_logging(
+#     SYSLOG_TAG,
+#     SYSLOG_FACILITY,
+#     LOGGERS,
+#     LOG_LEVEL, 
+#     USE_SYSLOG
+# )
 
 if options.config:
     tornado.options.parse_config_file(options.config)
