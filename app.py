@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import tornado.httpserver
 import tornado.ioloop
 import tornado.web
@@ -15,7 +13,6 @@ class Application(tornado.web.Application):
 
 
 def main():
-    print(' ==> Server Started on port ' + str(options.port))
     app = Application()
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(options.port)
