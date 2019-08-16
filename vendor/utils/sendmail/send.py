@@ -4,7 +4,7 @@
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from settings import EMAIL_PASSWORD, EMAIL_SENDER
+from settings import settings
 
 # send email
 def send_email(email, token):
@@ -13,7 +13,7 @@ def send_email(email, token):
     :param token: token for verify user
     :return: True or False
     """
-    sender = EMAIL_SENDER
+    sender = settings.get('email_sender')
     recipient = email
     msg = MIMEMultipart()
     msg['From'] = sender
@@ -30,7 +30,7 @@ def send_email(email, token):
     # start tls
     server.starttls()
     # login
-    server.login(sender, EMAIL_PASSWORD)
+    server.login(sender, settings.get('email_password'))
     # message
     text = msg.as_string()
     # send mail
