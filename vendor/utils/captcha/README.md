@@ -2,7 +2,7 @@
 
 
 ## Related projects
-[Improved Tornado](https://github.com/reganto/tornado)
+[usernado](https://github.com/reganto/usernado)
 
 
 ## Usage
