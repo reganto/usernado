@@ -1,3 +1,6 @@
+# Before use this utility you MUST allow less secure apps
+# In your gmail account https://myaccount.google.com/u/4/lesssecureapps
+
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -16,9 +19,9 @@ def send_email(email, token):
     msg['From'] = sender
     msg['To'] = recipient
     msg['Subject'] = 'Subject'
-        
-    body = 'Click to below link to verify your email' + \
-           '<br />http://localhost:8888/register/checkmail?email={0}&token={1}'.format(recipient, token)
+    body = '''Click to below link to verify your email
+           <br />http://localhost:8888/register/checkmail
+           ?email={0}&token={1}'''.format(recipient, token)
 
     msg.attach(MIMEText(body, 'html'))
 
@@ -35,5 +38,4 @@ def send_email(email, token):
 
     if not response:
         return True
-    else:
-        return False
+    return False

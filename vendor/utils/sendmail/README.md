@@ -1,17 +1,18 @@
-# Email Validation
+Send  Email with SMTP
+==============================
 
 ## Related projects
-[Improved Tornado](https://github.com/reganto/tornado)
+[usernado](https://github.com/reganto/usernado)
 
 ## Usage
 
-Get a secret code from [neverbounce](https://neverbounce.com/)
+Set `sender` and `password` in send_email function
+
+Change url to handle requests
 
 ```bash
-git clone https://github.com/reganto/email_validation.git
+git clone https://github.com/reganto/send_email.git
 ```
-
-Add `secret code` to code
 
 Then import function to your project
 
