@@ -54,6 +54,13 @@ settings['static_path'] = MEDIA_ROOT
 settings['cookie_secret'] = base64.b64encode(uuid.uuid4().bytes+uuid.uuid4().bytes)
 settings['xsrf_cookies'] = True
 
+# Secret keys
+settings['email_sender'] = 'example@gmail.com'
+settings['email_password'] = 'password'
+settings['captcha_secret_key'] = 'cseck'
+settings['captcha_site_key'] = 'csitek'
+settings['neverbounce_key'] = 'neverbkey'
+
 # Select template engine
 if options.template == 'tornado':
     settings['template_loader'] = tornado.template.Loader(TEMPLATE_ROOT)
@@ -92,7 +99,3 @@ logconfig.initialize_logging(SYSLOG_TAG, SYSLOG_FACILITY, LOGGERS,
 if options.config:
     tornado.options.parse_config_file(options.config)
 
-# EMAIL
-# vendor/utils/send_email
-EMAIL_SENDER = 'SENDER'
-EMAIL_PASSWORD = 'PASSOWRD'
