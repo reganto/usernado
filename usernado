@@ -1,4 +1,3 @@
 #!/bin/bash
 
 cp -r ~/.usernado/usernado ./$1
-
