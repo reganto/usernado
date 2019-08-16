@@ -14,6 +14,8 @@ import logconfig
 path = lambda root,*a: os.path.join(root, *a)
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
+
+# Command line options
 define("port", default=8888, help="run on the given port", type=int)
 define("config", default=None, help="tornado config file")
 define("debug", default=False, help="debug mode")
@@ -48,19 +50,21 @@ if 'DEPLOYMENT_TYPE' in os.environ:
 else:
     DEPLOYMENT = DeploymentType.SOLO
 
+
+# App Settings
 settings = dict()
 settings['debug'] = DEPLOYMENT != DeploymentType.PRODUCTION or options.debug
 settings['static_path'] = MEDIA_ROOT
-settings['cookie_secret'] = base64.b64encode(uuid.uuid4().bytes+uuid.uuid4().bytes)
+settings['cookie_secret'] = base64.b64encode(
+    uuid.uuid4().bytes+uuid.uuid4().bytes
+)
 settings['xsrf_cookies'] = True
-
 # Secret keys
+settings['captcha_secret_key'] = 'KEY'
+settings['captcha_site_key'] = 'KEY'
+settings['neverbounce_key'] = 'KEY'
 settings['email_sender'] = 'example@gmail.com'
 settings['email_password'] = 'password'
-settings['captcha_secret_key'] = 'cseck'
-settings['captcha_site_key'] = 'csitek'
-settings['neverbounce_key'] = 'neverbkey'
-
 # Select template engine
 if options.template == 'tornado':
     settings['template_loader'] = tornado.template.Loader(TEMPLATE_ROOT)
@@ -98,4 +102,3 @@ logconfig.initialize_logging(SYSLOG_TAG, SYSLOG_FACILITY, LOGGERS,
 
 if options.config:
     tornado.options.parse_config_file(options.config)
-
