@@ -54,5 +54,6 @@ docs/_build/
 # PyBuilder
 target/
 
-# API Keys
-vendor/keys/secret.py
+# Settings 
+settings.py
+
