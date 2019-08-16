@@ -1,4 +1,3 @@
-[submodule "vendor/redirect"]
-	path = vendor/redirect 
-	url = https://github.com/reganto/paratorn.git
-
+[submodule "vendor/utils"]
+	path = vendor/utils/captcha
+	url = https://github.com/reganto/captcha.git
