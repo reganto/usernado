@@ -1,17 +1,19 @@
 import requests
-from vendor.keys.secret import NEVERBOUNCE_KEY
+from settings import settings
 
-# email validation
-def email_validation(email):
+
+def email_validation(this_email):
     """ validation received email
     :param email: received email
     :return: True or Flase
     """
-    
-    email_validation_url = '''https://api.neverbounce.com/v4/
-    single/check?key={0}&email={1}'''.format(NEVERBOUNCE_KEY, email)
-    email_response = requests.post(email_validation_url)
-    email_response = email_response.json()
-    if email_response['result'] == 'valid':
+
+    key = settings.get('neverbounce_key')
+    payload = 'https://api.neverbounce.com/v4/single/check?key={0}&email={1}' \
+        .format(key, this_email)
+    response = requests.post(payload)
+    response = response.json()
+    result = response.get('result')
+    if result == 'valid':
         return True
     return False
