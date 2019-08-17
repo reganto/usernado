@@ -17,7 +17,7 @@
 - Default support for *W3.CSS* and *Jquery*
 - Add a startup configuration bash script
 - Add a utility to create new project
-- Add Tornado code snippets
+- Add Tornado code snippets(I decided to create a new repository to make the Usernado lighter -> [here](https://github.com/reganto/tornado-snippets))
 - Add Tornado-utilities(vendor/utils)
 
 ## How to
