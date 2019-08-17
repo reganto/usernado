@@ -23,8 +23,7 @@
 ## How to
 
 
-![whoto](https://user-images.githubusercontent.com/29402115/63086512-431bac80-bf65-11e9-98a9-8c9b8bf10d1e.gif)
-
+![whoto](https://user-images.githubusercontent.com/29402115/63206974-0f12c980-c0d4-11e9-815a-b513e2aadc6c.gif)
 
 
 First install dependencies from requirements.txt 
