@@ -13,6 +13,7 @@ class Application(tornado.web.Application):
 
 
 def main():
+    print(f"Server (re)started on port {options.port}...")
     app = Application()
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(options.port)
