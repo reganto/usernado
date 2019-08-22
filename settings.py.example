@@ -5,7 +5,7 @@ import logging
 import tornado
 import tornado.template
 from tornado.options import define, options
-import logconfig
+# import logconfig
 
 
 # Make filepaths relative to settings.
