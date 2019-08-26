@@ -5,4 +5,7 @@ logger = logging.getLogger('boilerplate.' + __name__)
 
 class HomeHandler(BaseHandler):
     def get(self):
-        self.render('home/index.html', page_title='Tornado')
+        self.render(
+            'home/index.html',
+            # page_title='Usernado'
+        )
