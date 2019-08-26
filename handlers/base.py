@@ -74,3 +74,17 @@ class BaseHandler(tornado.web.RequestHandler):
             req=self.request,
             headers=dict(self.request.headers)
         )
+
+
+class Customize404Handler(BaseHandler):
+    def prepare(self):
+        raise tornado.web.HTTPError(404)
+    def write_error(self, code, **kwargs):
+        self.render(
+            'error.html',
+            page_title='Error',
+            code=code,
+            status=kwargs,
+            req=self.request,
+            headers=dict(self.request.headers)
+        )
