@@ -7,5 +7,5 @@ class HomeHandler(BaseHandler):
     def get(self):
         self.render(
             'home/index.html',
-            # page_title='Usernado'
+            page_title='Usernado'
         )
