@@ -5,6 +5,7 @@ import logging
 import tornado
 import tornado.template
 from tornado.options import define, options
+from handlers.base import Customize404Handler
 # import logconfig
 
 
@@ -53,6 +54,8 @@ else:
 
 # App Settings
 settings = dict()
+# custom 404 page
+settings['default_handler_class'] = Customize404Handler
 settings['debug'] = DEPLOYMENT != DeploymentType.PRODUCTION or options.debug
 settings['static_path'] = MEDIA_ROOT
 settings['cookie_secret'] = base64.b64encode(
