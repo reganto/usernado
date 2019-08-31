@@ -16,6 +16,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Command line options
 define("port", default=8888, help="run on the given port", type=int)
+define("address", default="127.0.0.1", help="run on the given address", type=str)
 define("config", default=None, help="tornado config file")
 define("debug", default=False, help="debug mode")
 define(
