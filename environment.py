@@ -10,9 +10,9 @@ path = lambda *a: os.path.join(ROOT, *a)
 prev_sys_path = list(sys.path)
 
 site.addsitedir(path('handlers'))
-if os.path.exists(path('vendor')):
-    for directory in os.listdir(path('vendor')):
-        full_path = path('vendor/%s' % directory)
+if os.path.exists(path('utils')):
+    for directory in os.listdir(path('utils')):
+        full_path = path('utils/%s' % directory)
         if os.path.isdir(full_path):
             site.addsitedir(full_path)
 
