@@ -6,17 +6,16 @@
 </head>
 <body onload="sendForm()">
 
-    <form action="{{ url }}" method="post">
+    <form id="hideform" action="{{ url }}" method="post">
         {% module xsrf_form_html() %}
         {% for key in kwargs %}
         <input type="hidden" name="{{ key }}" value="{{ kwargs[key] }}" />
         {% end %}
-        <input type="submit" id="reg" style="display: none" />
     </form>
 
     <script !src="">
         function sendForm() {
-            document.getElementById('reg').click();
+            document.getElementById('hideform').submit();
         }
     </script>
 
