@@ -4,4 +4,6 @@ mkdir -p ~/.usernado
 cp -rf ../usernado ~/.usernado/
 
 mv ~/.usernado/usernado/usernado /bin/
-rm ~/.usernado/usernado/configure.sh
+rm ~/.usernado/usernado/configure
+rm ~/.usernado/usernado/LICENSE
+rm ~/.usernado/usernado/README.md
