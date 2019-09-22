@@ -17,7 +17,7 @@ MEDIA_ROOT = path(ROOT, 'media')
 TEMPLATE_ROOT = path(ROOT, 'templates')
 
 # Command Line Options
-define("port", default=8888, help="run on the given port", type=int)
+define("port", default=8000, help="run on the given port", type=int)
 define("address", default="127.0.0.1", help="run on the given address", type=str)
 define("config", default=None, help="tornado config file")
 tornado.options.parse_command_line()
