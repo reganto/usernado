@@ -8,53 +8,58 @@ from tornado.options import define, options
 from handlers.base import Customize404Handler
 
 
-# Make filepaths relative to settings.
+# Make Filepaths Relative to Settings.
 path = lambda root, *a: os.path.join(root, *a)
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
-# Media & template root
+# Media & Template Root
 MEDIA_ROOT = path(ROOT, 'media')
 TEMPLATE_ROOT = path(ROOT, 'templates')
 
-# Command line options
+# Command Line Options
 define("port", default=8888, help="run on the given port", type=int)
 define("address", default="127.0.0.1", help="run on the given address", type=str)
 define("config", default=None, help="tornado config file")
-define("debug", default=False, help="debug mode")
-define("template", default="tornado", help="select template engine", type=str)
 tornado.options.parse_command_line()
 
 
-# APP SETTINGS
+# APP SETTINGS (start)
 
 settings = dict()
 
-# custom 404 page
+# Custom 404 Page
 settings['default_handler_class'] = Customize404Handler
 
-# debug mode
-settings['debug'] = options.debug
+# Debug Mode
+settings['debug'] = True
 
-# static path
+# Static Path
 settings['static_path'] = MEDIA_ROOT
 
-# cookie secret
+# Cookie Secret
 settings['cookie_secret'] = base64.b64encode(uuid.uuid4().bytes+uuid.uuid4().bytes)
 
-# csrf cookie
-settings['xsrf_cookies'] = True
+# Csrf Cookie
+# settings['xsrf_cookies'] = True
 
-# Secret keys
-settings['captcha_secret_key'] = 'KEY'
-settings['captcha_site_key'] = 'KEY'
-settings['neverbounce_key'] = 'KEY'
-settings['email_sender'] = 'example@gmail.com'
-settings['email_password'] = 'password'
+# Secret Keys
+# settings['captcha_secret_key'] = 'KEY'
+# settings['captcha_site_key'] = 'KEY'
+# settings['neverbounce_key'] = 'KEY'
+# settings['email_sender'] = 'example@gmail.com'
+# settings['email_password'] = 'password'
 
-# template engine
-if options.template == 'tornado':
+# Template Engine
+#
+# If you want to use jinja2 as default template engine use --template=jinja2 
+#
+# Example: python app.py --port=8000 --template=jinja2
+#
+template_engine = 'tornado'
+
+if template_engine == 'tornado':
     settings['template_loader'] = tornado.template.Loader(TEMPLATE_ROOT)
-elif options.template == 'jinja2':
+elif template_engine == 'jinja2':
     from tornado_jinja2 import Jinja2Loader
     import jinja2
     jinja2_env = jinja2.Environment(
@@ -64,6 +69,9 @@ elif options.template == 'jinja2':
     jinja2_loader = Jinja2Loader(jinja2_env)
     settings['template_loader'] = jinja2_loader
 
-# run with specific config file
+# App Settings (end)
+
+
+# Run With Specific Config File
 if options.config:
     tornado.options.parse_config_file(options.config)
