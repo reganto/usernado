@@ -9,10 +9,6 @@
 
 Get a `secret code` and `data-sitekey` from [google recaptcha](https://www.google.com/recaptcha/intro/v3.html)
 
-```bash
-git clone https://github.com/reganto/check-captcha.git
-```
-
 Insert `secret code` to code
 
 Then import function to your project

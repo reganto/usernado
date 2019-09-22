@@ -7,10 +7,6 @@
 
 Get a secret code from [neverbounce](https://neverbounce.com/)
 
-```bash
-git clone https://github.com/reganto/email_validation.git
-```
-
 Add `secret code` to code
 
 Then import function to your project
