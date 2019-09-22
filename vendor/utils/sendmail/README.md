@@ -8,12 +8,6 @@ Send  Email with SMTP
 
 Set `sender` and `password` in send_email function
 
-Change url to handle requests
-
-```bash
-git clone https://github.com/reganto/send_email.git
-```
-
 Then import function to your project
 
 ## Contributing
