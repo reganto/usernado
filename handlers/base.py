@@ -2,7 +2,6 @@ import json
 import logging
 import tornado.web
 import tornado.escape
-logger = logging.getLogger('boilerplate.' + __name__)
 
 
 class BaseHandler(tornado.web.RequestHandler):
@@ -20,8 +19,6 @@ class BaseHandler(tornado.web.RequestHandler):
         try:
             self.request.arguments = json.loads(self.request.body)
         except ValueError:
-            msg = "Could not decode JSON: {}".format(self.request.body)
-            logger.debug(msg)
             raise tornado.web.HTTPError(400, msg)
 
     def get_json_argument(self, name, default=None):
@@ -34,14 +31,9 @@ class BaseHandler(tornado.web.RequestHandler):
             self.load_json()
         if name not in self.request.arguments:
             if default is self._ARG_DEFAULT:
-                msg = "Missing argument {}".format(name)
-                logger.debug(msg)
                 raise tornado.web.HTTPError(400, msg)
-            logger.debug("Returning default argument {}, as we couldn't find "
-                         "{} in {}".format(default, name, self.request.arguments))
             return default
         arg = self.request.arguments[name]
-        logger.debug("Found {}: {} in JSON arguments".format(name, arg))
         return arg
 
     def get_current_user(self):
