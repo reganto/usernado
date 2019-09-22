@@ -14,7 +14,6 @@
 - Tornado-boilerplate -- a standard layout for Tornado apps(thanks to [Bueda](https://github.com/bueda/tornado-boilerplate))
 - Add Jinja2 template engine(thanks to [mr-ping](https://github.com/mr-ping/tornado_jinja2))
 - A better error page
-- Default support for *W3.CSS* and *Jquery*
 - Add a startup configuration bash script
 - Add a utility to create new project
 - Add Tornado code snippets(I decided to create a new repository to make the Usernado lighter -> [here](https://github.com/reganto/tornado-snippets))
@@ -77,9 +76,6 @@ This is the sample code for the Introduction to Tornado book, published by O'Rei
 
 ## TODO
 
-- [x] Add login snippet
-- [x] Add upload snippet
-- [x] Manage send email utility and integrate it with settings
 - [ ] Add paginatoin snippet
 - [ ] Move related projects to wiki
 - [ ] Add error page for jinja2 template
