@@ -60,7 +60,6 @@ class BaseHandler(tornado.web.RequestHandler):
     def write_error(self, code, **kwargs):
         self.render(
             'error.html',
-            page_title='Error',
             code=code,
             status=kwargs,
             req=self.request,
@@ -74,7 +73,6 @@ class Customize404Handler(BaseHandler):
     def write_error(self, code, **kwargs):
         self.render(
             'error.html',
-            page_title='Error',
             code=code,
             status=kwargs,
             req=self.request,
