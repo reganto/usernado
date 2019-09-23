@@ -67,7 +67,7 @@ class BaseHandler(tornado.web.RequestHandler):
         )
 
 
-class Customize404Handler(BaseHandler):
+class Custom404Handler(BaseHandler):
     def prepare(self):
         raise tornado.web.HTTPError(404)
     def write_error(self, code, **kwargs):

@@ -5,7 +5,7 @@ import logging
 import tornado
 import tornado.template
 from tornado.options import define, options
-from handlers.base import Customize404Handler
+from handlers.base import Custom404Handler
 
 
 # Make Filepaths Relative to Settings.
@@ -28,7 +28,7 @@ tornado.options.parse_command_line()
 settings = dict()
 
 # Custom 404 Page
-settings['default_handler_class'] = Customize404Handler
+settings['default_handler_class'] = Custom404Handler
 
 # Debug Mode
 settings['debug'] = True
