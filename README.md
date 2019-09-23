@@ -5,8 +5,8 @@
 
 
 ---
-![Usernado](https://img.shields.io/badge/usernado-1.0.1-green)
-![Tornado](https://img.shields.io/badge/tornado-6.0.3-green)
+![Usernado](https://img.shields.io/badge/usernado-1.1.0-green)
+![License](https://img.shields.io/hexpm/l/plug?color=green)
 
 ### Features
 
@@ -41,7 +41,7 @@ Go to Usernado directory.
 
 Run this command in bash:
 
-    sudo ./configure.sh
+    sudo ./configure
 
 Now you can create a new project with this command:
 
