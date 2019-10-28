@@ -3,10 +3,18 @@
 
 {% block body %}
     <div class="w3-red w3-panel w3-card-2 w3-animate-zoom w3-display-container">
-        <a href="https://duckduckgo.com/?q={{ status['exc_info'][1] }}" 
-            target="_blank" class="w3-display-topright">
-            <img src="{{ static_url('images/duck.png') }}" alt="google" width="50" height="50" />
-        </a>
+        <div class="w3-display-topright"> 
+           <a href="https://duckduckgo.com/?q={{ status['exc_info'][1] }}" 
+                target="_blank">
+                <img src="{{ static_url('images/duck.png') }}" alt="duckduckgo"
+                title="search in duckduckgo" width="30" height="30" />
+            </a>
+            <a href="https://google.com/?q={{ status['exc_info'][1] }}" 
+                target="_blank">
+                <img src="{{ static_url('images/goo.png') }}" alt="google" 
+                title="search in google" width="30" height="30" />
+            </a>
+        </div>
         <p><b>{{ code }}</b></p>
         <p>{{ status['exc_info'][1] }}</p>
     </div>
