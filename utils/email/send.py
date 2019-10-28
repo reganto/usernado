@@ -1,5 +1,6 @@
 # Before use this utility you MUST allow less secure apps
 # In your gmail account https://myaccount.google.com/u/4/lesssecureapps
+# Change email_sender and email_password in settings.py
 
 import smtplib
 from email.mime.text import MIMEText
