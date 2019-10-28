@@ -50,11 +50,6 @@ settings['cookie_secret'] = base64.b64encode(uuid.uuid4().bytes+uuid.uuid4().byt
 # settings['email_password'] = 'password'
 
 # Template Engine
-#
-# If you want to use jinja2 as default template engine use --template=jinja2 
-#
-# Example: python app.py --port=8000 --template=jinja2
-#
 template_engine = 'tornado'
 
 if template_engine == 'tornado':
