@@ -1,9 +1,15 @@
+# Get a secret code and data-sitekey from https://www.google.com/recaptcha/intro/v3.html
+# Add secret code to settings.py
+# Add below lines to your html:
+# <script src='https://www.google.com/recaptcha/api.js'></script>
+# <div class="g-recaptcha" data-sitekey="YOUR DATA-SITEKEY"></div>
+
 import requests
 from settings import settings
 
-# check captcha
+
 def check_captcha(g_recaptcha_response, remote_ip):
-    """ check recaptcha function
+    """ check google recaptcha 
     :parama g_recaptcha_response: response from recaptcha
     (self.get_argument('g-recaptcha-response'))
     :param remote_ip: remote ip(request.remote_ip)
