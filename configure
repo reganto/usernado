@@ -7,3 +7,4 @@ mv ~/.usernado/usernado/usernado /bin/
 rm ~/.usernado/usernado/configure
 rm ~/.usernado/usernado/LICENSE
 rm ~/.usernado/usernado/README.md
+rm -r ~/.usernado/usernado/.git
