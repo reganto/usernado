@@ -8,7 +8,7 @@
             <img src="{{ static_url('images/duck.png') }}" alt="google" width="50" height="50" />
         </a>
         <p><b>{{ code }}</b></p>
-        <p>{{ status }}</p>
+        <p>{{ status['exc_info'][1] }}</p>
     </div>
 
     <div class="w3-panel w3-animate-opacity">

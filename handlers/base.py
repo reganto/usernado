@@ -74,7 +74,7 @@ class Custom404Handler(BaseHandler):
         self.render(
             'error.html',
             code=code,
-            status=kwargs['exc_info'][1],
+            status=kwargs,
             req=self.request,
             headers=dict(self.request.headers)
         )
