@@ -15,9 +15,10 @@
 - Add Jinja2 template engine(thanks to [mr-ping](https://github.com/mr-ping/tornado_jinja2))
 - Better error page
 - Startup configuration bash script
-- Utility to create new project
-- Tornado code snippets(I decided to create a new repository to make the Usernado lighter -> [here](https://github.com/reganto/tornado-snippets))
-- Add Tornado-utilities(vendor/utils)
+- A utility to create new project
+- Utilities(utils/)
+- Code snippets(I decided to create a new repository to make the Usernado lighter -> [here](https://github.com/reganto/tornado-snippets))
+
 
 ## How to
 
