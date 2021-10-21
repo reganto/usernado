@@ -1,24 +1,28 @@
-import tornado.httpserver
-import tornado.ioloop
 import tornado.web
-from tornado.options import options
+import tornado.ioloop
+from tornado.options import parse_command_line
 
-from settings import settings
-from urls import url_patterns
+from routes import routes as Routes
+from settings import settings as Settings
+
+
+def _settings_to_dict(cls):
+    class_attributes_dict = vars(cls)
+    result_dict = {}
+    for key, value in class_attributes_dict.items():
+        if not key.startswith('__'):
+            result_dict[key] = value
+    return result_dict
 
 
 class Application(tornado.web.Application):
     def __init__(self):
-        tornado.web.Application.__init__(self, url_patterns, **settings)
+        routes = Routes
+        settings = _settings_to_dict(Settings.get('development'))
+        super().__init__(routes, **settings)
 
 
-def main():
-    print(f"Server (re)started on {options.address}:{options.port}")
-    app = Application()
-    http_server = tornado.httpserver.HTTPServer(app)
-    http_server.listen(options.port, options.address)
-    tornado.ioloop.IOLoop.instance().start()
-
-
-if __name__ == "__main__":
-    main()
+if __name__ == '__main__':
+    parse_command_line()
+    Application().listen(8001)
+    tornado.ioloop.IOLoop.current().start()
