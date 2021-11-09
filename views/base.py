@@ -4,10 +4,7 @@ import tornado.escape
 
 class BaseHandler(tornado.web.RequestHandler):
     def get_current_user(self):
-        user = self.get_secure_cookie('user')
-        if user:
-            return tornado.escape.json_decode(user) 
-        return None
+        return self.get_secure_cookie('user')
 
     def get_json_argument(self, name, default=None):
         if self.request.body:
