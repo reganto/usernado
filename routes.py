@@ -1,8 +1,8 @@
 from tornado.web import url
 
-import views
+import handlers 
 
-routes = [
-    url('/', views.HomePageHandler, name='home'),
+ROUTES = [
+    url('/', handlers.homePageHandler, name='home'),
 ]
 
