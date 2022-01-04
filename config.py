@@ -1,10 +1,9 @@
-import os.path
+from pathlib import Path
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
-add_path = lambda *args: os.path.join(ROOT, *args)
+BASE_DIR = Path(__file__).resolve().parent
 
 SETTINGS = dict(
-        template_path=add_path('templates'),
+        template_path=BASE_DIR / 'templates',
         cookie_secret=os.urandom(16),
         )
 

@@ -1,7 +1,6 @@
 import tornado.web
 import tornado.ioloop
-from tornado.options import parse_command_line
-
+import tornado.options
 from routes import ROUTES 
 from config import SETTINGS
 
@@ -12,7 +11,7 @@ class Application(tornado.web.Application):
 
 
 if __name__ == '__main__':
-    parse_command_line()
+    tornado.options.parse_command_line()
     Application().listen(8000)
     tornado.ioloop.IOLoop.current().start()
 

@@ -2,11 +2,9 @@ import tornado.web
 import tornado.escape
 
 
-class BaseHandler(tornado.web.RequestHandler):
-    def get_current_user(self):
-        return self.get_secure_cookie('user')
+class apiHandler(tornado.web.RequestHandler):
 
-    def get_json_argument(self, name, default=None):
+    def get_json_argument(self, name, default=None):  # TODO: needs refactoring! here is lack of Docstring and Logic is pice of sheet
         if self.request.body:
             try:
                 raw_data = self.request.body.decode().replace('\'', '\"')
@@ -17,7 +15,7 @@ class BaseHandler(tornado.web.RequestHandler):
         else:
             print('Data is not presented')
 
-    def get_json_arguments(self):
+    def get_json_arguments(self):  # TODO: needs refactoring! here is lack of Docstring and Logic is pice of sheet
         if self.request.body:
             try:
                 raw_data = self.request.body.decode().replace('\'', '\"')
