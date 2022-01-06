@@ -1,6 +1,6 @@
-from .usernado import Facade
+from .usernado import Handler
 
-class homePageHandler(Facade.webHandler):
+class homeHandler(Handler.Web):
     def get(self):
         self.render('home.html')
 

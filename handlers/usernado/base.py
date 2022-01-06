@@ -1,8 +1,8 @@
 from .base_handlers import api_handler, web_handler, socket_handler
 
 
-class Facade:
-    apiHandler = api_handler.apiHandler
-    webHandler = web_handler.webHandler
-    socketHandler = socket_handler.socketHandler
+class Handler:
+    Api = api_handler.apiHandler
+    Web = web_handler.webHandler
+    WebSocket = socket_handler.socketHandler
 

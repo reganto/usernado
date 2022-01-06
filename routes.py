@@ -1,7 +1,7 @@
-import handlers 
 from tornado.web import url
+from handlers.home import homeHandler
 
 ROUTES = [
-    url('/', handlers.homePageHandler, name='home'),
+    url('/', homeHandler, name='home'),
 ]
 
