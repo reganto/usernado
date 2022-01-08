@@ -1,7 +1,7 @@
 from tornado.web import url
-from handlers.home import homeHandler
+from handlers.home import IndexHandler
 
 ROUTES = [
-    url('/', homeHandler, name='home'),
+    url('/', IndexHandler, name='index'),
 ]
 

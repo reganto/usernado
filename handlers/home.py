@@ -1,6 +1,6 @@
 from .usernado import Handler
 
-class homeHandler(Handler.Web):
+class IndexHandler(Handler.Web):
     def get(self):
-        self.render('home.html')
+        self.render('index.html')
 

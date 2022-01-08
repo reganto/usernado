@@ -2,7 +2,7 @@ import tornado.web
 import tornado.escape
 
 
-class apiHandler(tornado.web.RequestHandler):
+class APIHandler(tornado.web.RequestHandler):
 
     def get_json_argument(self, name, default=None):  # TODO: needs refactoring! here is lack of Docstring and Logic is pice of sheet
         if self.request.body:

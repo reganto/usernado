@@ -1,6 +1,6 @@
 import tornado.websocket
 
 
-class socketHandler(tornado.websocket.WebSocketHandler):
-    NotImplementedError 
+class WebSocketHandler(tornado.websocket.WebSocketHandler):
+    pass
 

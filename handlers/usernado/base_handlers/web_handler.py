@@ -1,7 +1,7 @@
 import tornado.web
 
 
-class webHandler(tornado.web.RequestHandler):
+class WebHandler(tornado.web.RequestHandler):
 
     def get_current_user(self):
         return self.get_secure_cookie('username')
