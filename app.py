@@ -14,4 +14,3 @@ if __name__ == '__main__':
     tornado.options.parse_command_line()
     Application().listen(8000)
     tornado.ioloop.IOLoop.current().start()
-
