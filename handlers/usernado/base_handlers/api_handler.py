@@ -4,25 +4,35 @@ import tornado.escape
 
 class APIHandler(tornado.web.RequestHandler):
 
-    def get_json_argument(self, name, default=None):  # TODO: needs refactoring! here is lack of Docstring and Logic is pice of sheet
-        if self.request.body:
-            try:
-                raw_data = self.request.body.decode().replace('\'', '\"')
-                json_data = tornado.escape.json_decode(raw_data)
-                return json_data.get(name, default)
-            except Exception as e:
-                print('Error in get_json_argument: ', e)
-        else:
-            print('Data is not presented')
 
-    def get_json_arguments(self):  # TODO: needs refactoring! here is lack of Docstring and Logic is pice of sheet
-        if self.request.body:
-            try:
-                raw_data = self.request.body.decode().replace('\'', '\"')
-                json_data = tornado.escape.json_decode(raw_data)
-                return json_data
-            except Exception as e:
-                print('Error in get_json_argument: ', e)
-        else:
-            print('Data is not presented')
+    def get_json_argument(self, name: str, default: str = None) -> str:
+        """Get json argument from current request
 
+        :param name: name of the argument
+        :type name: str
+        :param default: if name not provided then we use default, defaults to None
+        :type default: str, optional
+        :return: value of a json argument
+        :rtype: str
+        """
+        try:
+            raw_data = self.request.body.decode().replace('\'', '\"')
+        except Exception:
+            raise
+        else:
+            json_data = tornado.escape.json_decode(raw_data)
+            return json_data.get(name, default)
+
+    def get_json_arguments(self) -> dict:
+        """Get all json arguments from current request
+
+        :return: a dict of all json arguments
+        :rtype: dict
+        """
+        try:
+            raw_data = self.request.body.decode().replace('\'', '\"')
+        except Exception:
+            raise
+        else:
+            json_data = tornado.escape.json_decode(raw_data)
+            return json_data
