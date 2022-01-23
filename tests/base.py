@@ -24,5 +24,5 @@ class BaseTestCase(AsyncHTTPSTestCase):
                 'Cookie': response.headers['Set-Cookie'],
                 'Content-Type': 'application/x-www-form-urlencoded',
                 }
-       # users have to add new headers with this syntax -> headers.update()
-       return headers
+        # users have to add new headers with this syntax -> headers.update()
+        return headers
