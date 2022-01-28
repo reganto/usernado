@@ -52,6 +52,8 @@ from .usernado import Handler
 class Echo(Handler.WebSocket):
     def on_message(self, message):
         self.send(message)
+        # Use send to send message to specific participant
+        # And use broadcast to send message to participants
 ```
 
 
