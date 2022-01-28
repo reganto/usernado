@@ -9,8 +9,6 @@
 * **Web:** redirect_to_route
 * **testing:** login
 
-
-
 ## Examples
 
 **Web**:
@@ -25,8 +23,6 @@ class Hello(Handler.Web):
         self.render('hello.html')
 ```
 
-
-
 **Api**
 
 ```python
@@ -39,8 +35,6 @@ class Echo(Handler.Api):
         username = self.get_json_argument('username')
         self.write({'username': username})
 ```
-
-
 
 **WebSocket**
 
@@ -56,11 +50,7 @@ class Echo(Handler.WebSocket):
         # And use broadcast to send message to participants
 ```
 
-
-
 As you can see `Handler` is a Facade. you can use it to handle your request as you wish.
-
-
 
 ## Login test user
 
@@ -85,16 +75,11 @@ class YourTestCase(BaseTestCase):
             method='GET',
             headers=headers
             )
-        
+
          self.assertEqual(response.code, 200)
-         
 ```
-
-
 
 ## TODO
 
 - [ ] str_plural uimodule
-- [ ] send and broadcast for websockets
-
-
+- [x] send and broadcast for websockets
