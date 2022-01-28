@@ -26,14 +26,22 @@ class Hello(Handler.Web):
 **Api**
 
 ```python
+import json
+
 from .usernado import Handler
 
 
 
 class Echo(Handler.Api):
     def get(self):
-        username = self.get_json_argument('username')
-        self.write({'username': username})
+        try:    
+            message = self.get_json_argument('message')
+        except json.decoder.JSONDecodeError:
+            self.write(
+                {'Error': 'Json argument does not exist in current request.'}
+            )
+        else:
+            self.write({'message': message})
 ```
 
 **WebSocket**
@@ -81,5 +89,5 @@ class YourTestCase(BaseTestCase):
 
 ## TODO
 
-- [ ] str_plural uimodule
 - [x] send and broadcast for websockets
+- [ ] str_plural uimodule
