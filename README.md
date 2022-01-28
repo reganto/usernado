@@ -60,7 +60,7 @@ As you can see `Handler` is a Facade. you can use it to handle your request as y
 
 
 
-### Login test user
+## Login test user
 
 if you want an authenticated user in your tests so try `login` method. below is a example:
 
