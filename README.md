@@ -2,6 +2,14 @@
 
 [Tornado](https://www.tornadoweb.org/en/stable/) Boilerplate for Human 
 
+
+
+## Clone Usernado
+
+```bash
+git clone https://github.com/reganto/Usernado.git
+```
+
 ## Hello World
 
 ```python
