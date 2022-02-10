@@ -168,7 +168,7 @@ class WebHandler(tornado.web.RequestHandler):
 
         self.redirect(self.reverse_url(name))
 
-    def get_scaped_argument(self, argument) -> str:
+    def get_escaped_argument(self, argument) -> str:
         """Get argument from client then scaped it
 
         :param argument: incoming argument
