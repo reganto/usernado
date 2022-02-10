@@ -2,47 +2,87 @@
 
 [Tornado](https://www.tornadoweb.org/en/stable/) Boilerplate for Human 
 
-## So Far
-
-* **Handler Facade:** Api, Web, WebSocket
-* **Api:** get_json_argument(s)
-* **Web:** redirect_to_route
-* **testing:** login
-
-## Examples
-
-**Web**:
+## Hello World
 
 ```python
 from .usernado import Handler
 
 
 
-class Hello(Handler.Web):
+class HelloWorld(Handler.Web):
     def get(self):
-        self.render('hello.html')
+        self.write('Hello, World!')
 ```
+
+You should add a route for `HelloWorld` handler to rotues.py file.
+
+## Examples
+
+**Register User**:
+
+```python
+from models import User
+from .usernado import Handler
+
+
+class RegisterUser(Handler.Web):
+    def get(self):
+        self.render('register.html')
+
+    def post(self):
+        username = self.get_scaped_argument('username')
+        password = self.get_scaped_argument('password')
+        
+        self.register(User, username, password)
+```
+
+**Login User**
+
+```python
+from models import User
+from .usernado import Handler
+
+
+class LoginUser(Handler.Web):
+    def get(self):
+        self.render('register.html')
+
+    def post(self):
+        username = self.get_scaped_argument('username')
+        password = self.get_scaped_argument('password')
+        
+        self.login(User, username, password)
+```
+
+**Logout User**
+
+```python
+from .usernado import Handler
+
+
+class LogoutUser(Handler.Web):
+    def get(self):
+        if self.authenticate():
+            self.logout()
+        else:
+            self.write('<h3>You are not an authenticated user.</h3>')
+```
+
+You should create a models.py file and define a `User` model.
 
 **Api**
 
 ```python
-import json
-
 from .usernado import Handler
 
 
-
 class Echo(Handler.Api):
-    def get(self):
-        try:    
-            message = self.get_json_argument('message')
-        except json.decoder.JSONDecodeError:
-            self.write(
-                {'Error': 'Json argument does not exist in current request.'}
-            )
-        else:
-            self.write({'message': message})
+    def get(self):    
+        message = self.get_json_argument('message')
+        self.write({'message': message})
 ```
+
+As simple as possible. Isn't it?
 
 **WebSocket**
 
@@ -54,8 +94,6 @@ from .usernado import Handler
 class Echo(Handler.WebSocket):
     def on_message(self, message):
         self.send(message)
-        # Use send to send message to specific participant
-        # And use broadcast to send message to participants
 ```
 
 As you can see `Handler` is a Facade. you can use it to handle your request as you wish.
@@ -89,5 +127,6 @@ class YourTestCase(BaseTestCase):
 
 ## TODO
 
-- [x] send and broadcast for websockets
-- [ ] str_plural uimodule
+- [x] Send and broadcast for websockets
+- [ ] Abstracted authenticate methods
+- [ ] pluralize uimodule
