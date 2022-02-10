@@ -30,9 +30,9 @@ class RegisterUser(Handler.Web):
         self.render('register.html')
 
     def post(self):
-        username = self.get_scaped_argument('username')
-        password = self.get_scaped_argument('password')
-        
+        username = self.get_escaped_argument('username')
+        password = self.get_escaped_argument('password')
+
         self.register(User, username, password)
 ```
 
@@ -45,12 +45,12 @@ from .usernado import Handler
 
 class LoginUser(Handler.Web):
     def get(self):
-        self.render('register.html')
+        self.render('login.html')
 
     def post(self):
-        username = self.get_scaped_argument('username')
-        password = self.get_scaped_argument('password')
-        
+        username = self.get_escaped_argument('username')
+        password = self.get_escaped_argument('password')
+
         self.login(User, username, password)
 ```
 
@@ -68,7 +68,7 @@ class LogoutUser(Handler.Web):
             self.write('<h3>You are not an authenticated user.</h3>')
 ```
 
-You should create a models.py file and define a `User` model.
+Before using authenticate methods, you should create a models.py file and define a `User` model.
 
 **Api**
 
