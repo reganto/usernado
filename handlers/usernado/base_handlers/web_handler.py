@@ -30,12 +30,46 @@ class AuthStrategy:
         return hashed_password
 
     @classmethod
+    def _sqlalchemy_session_maker(cls):  # Is there better implementation to do this?
+        from sqlalchemy import create_engine
+        from sqlalchemy.ext.declarative import declarative_base
+        from sqlalchemy.orm import sessionmaker
+        DB = 'sqlite:///db.sqlite3'
+        engine = create_engine(DB)
+        Base = declarative_base()
+        Session = sessionmaker(bind=engine)
+        session = Session()
+        return session
+
+    @classmethod
     def _sqlalchemy_register(cls, klass, user_model, username, password):
-        NotImplemented
+        hashed_password = cls.hash_password(password)
+        session = cls._sqlalchemy_session_maker()
+        user_already_exist = session.query(user_model).filter_by(username=username).first()
+        if user_already_exist:
+            raise UserAlreadyExistError(user_already_exist)
+        else:
+            user = user_model(
+                username=username,
+                password=hashed_password,
+                salt=cls._salt
+            )
+            session.add(user)
+            session.commit()
+            klass.set_secure_cookie("username", klass.get_argument("username"))
 
     @classmethod
     def _sqlalchemy_login(cls, klass, user_model, username, password):
-        NotImplemented
+        session = cls._sqlalchemy_session_maker()
+        user_exist = session.query(user_model).filter_by(username=username).first()
+        if not user_exist:
+            raise UserDoesNotExistError("User does not exist")
+        hashed_password = cls.hash_password(password, salt=user_exist.salt)
+
+        if user_exist and user_exist.password == hashed_password:
+            klass.set_secure_cookie("username", username)
+        else:
+            raise PermissionError("You'r username or password is incorrent")
 
     @classmethod
     def _peewee_register(cls, klass, user_model, username, password):
@@ -88,10 +122,10 @@ class WebHandler(tornado.web.RequestHandler):
                 )
             else:
                 raise UnsupportedUserModelError(user_model)
-        except ModuleNotFoundError:
+        except (ModuleNotFoundError, UnsupportedUserModelError):
             try:
                 import sqlalchemy
-                if isinstance(user_model, sqlalchemy.Model):
+                if user_model.metadata:  # Is there a better implementation to do this?
                     AuthStrategy._sqlalchemy_register(
                         klass=self,
                         user_model=user_model,
@@ -123,10 +157,10 @@ class WebHandler(tornado.web.RequestHandler):
                 )
             else:
                 raise UnsupportedUserModelError(user_model)
-        except ModuleNotFoundError:
+        except (ModuleNotFoundError, UnsupportedUserModelError):
             try:
                 import sqlalchemy
-                if isinstance(user_model, sqlalchemy.Model):
+                if user_model.metadata:  # Is there a better implementation to do this?
                     AuthStrategy._sqlalchemy_login(
                         klass=self,
                         user_model=user_model,
