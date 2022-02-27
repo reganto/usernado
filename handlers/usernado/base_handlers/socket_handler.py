@@ -5,13 +5,11 @@ import tornado.websocket
 
 
 class WebSocketHandler(tornado.websocket.WebSocketHandler):
-
-
     def send(
             self,
             message: Union[bytes, str, Dict[str, Any]],
             binary: bool = False,
-            ):
+    ):
         """Send a message to specific participant
 
         :message: Message to send
@@ -25,7 +23,7 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
             participants: set,
             message: Union[bytes, str, Dict[str, Any]],
             binary: bool = False,
-            ):
+    ):
         """Broadcast a message to all participants
 
         :participants: Participants to send broadcast message

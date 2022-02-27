@@ -30,7 +30,8 @@ class AuthStrategy:
         return hashed_password
 
     @classmethod
-    def _sqlalchemy_session_maker(cls):  # Is there better implementation to do this?
+    # Is there better implementation to do this?
+    def _sqlalchemy_session_maker(cls):
         from sqlalchemy import create_engine
         from sqlalchemy.ext.declarative import declarative_base
         from sqlalchemy.orm import sessionmaker
@@ -45,7 +46,8 @@ class AuthStrategy:
     def _sqlalchemy_register(cls, klass, user_model, username, password):
         hashed_password = cls.hash_password(password)
         session = cls._sqlalchemy_session_maker()
-        user_already_exist = session.query(user_model).filter_by(username=username).first()
+        user_already_exist = session.query(
+            user_model).filter_by(username=username).first()
         if user_already_exist:
             raise UserAlreadyExistError(user_already_exist)
         else:
@@ -61,7 +63,8 @@ class AuthStrategy:
     @classmethod
     def _sqlalchemy_login(cls, klass, user_model, username, password):
         session = cls._sqlalchemy_session_maker()
-        user_exist = session.query(user_model).filter_by(username=username).first()
+        user_exist = session.query(user_model).filter_by(
+            username=username).first()
         if not user_exist:
             raise UserDoesNotExistError("User does not exist")
         hashed_password = cls.hash_password(password, salt=user_exist.salt)

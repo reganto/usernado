@@ -3,8 +3,6 @@ import tornado.escape
 
 
 class APIHandler(tornado.web.RequestHandler):
-
-
     def get_json_argument(self, name: str, default: str = None) -> str:
         """Get json argument from current request
 
