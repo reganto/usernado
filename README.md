@@ -2,19 +2,10 @@
 
 [Tornado](https://www.tornadoweb.org/en/stable/) Boilerplate for Human 
 
-
-
-## Clone Usernado
-
-```bash
-git clone https://github.com/reganto/Usernado.git
-```
-
 ## Hello World
 
 ```python
 from .usernado import Handler
-
 
 
 class HelloWorld(Handler.Web):
@@ -22,14 +13,20 @@ class HelloWorld(Handler.Web):
         self.write('Hello, World!')
 ```
 
-You should add a route for `HelloWorld` handler to rotues.py file.
+As simple as possible, isn't it?
+
+## Clone Usernado
+
+```bash
+git clone https://github.com/reganto/Usernado.git
+```
 
 ## Examples
 
 **Register User**:
 
 ```python
-from models import User
+from models import User       #  you should make this model in advance
 from .usernado import Handler
 
 
@@ -47,7 +44,7 @@ class RegisterUser(Handler.Web):
 **Login User**
 
 ```python
-from models import User
+from models import User        #  you should make this model in advance
 from .usernado import Handler
 
 
@@ -56,8 +53,8 @@ class LoginUser(Handler.Web):
         self.render('login.html')
 
     def post(self):
-        username = self.get_escaped_argument('username')
-        password = self.get_escaped_argument('password')
+        username = self.get_scaped_argument('username')
+        password = self.get_scaped_argument('password')
 
         self.login(User, username, password)
 ```
@@ -67,7 +64,7 @@ class LoginUser(Handler.Web):
 ```python
 from .usernado import Handler
 
-
+ 
 class LogoutUser(Handler.Web):
     def get(self):
         if self.authenticate():
@@ -75,8 +72,6 @@ class LogoutUser(Handler.Web):
         else:
             self.write('<h3>You are not an authenticated user.</h3>')
 ```
-
-Before using authenticate methods, you should create a models.py file and define a `User` model.
 
 **Api**
 
@@ -90,7 +85,8 @@ class Echo(Handler.Api):
         self.write({'message': message})
 ```
 
-As simple as possible. Isn't it?
+
+
 
 **WebSocket**
 
@@ -98,21 +94,19 @@ As simple as possible. Isn't it?
 from .usernado import Handler
 
 
-
 class Echo(Handler.WebSocket):
     def on_message(self, message):
         self.send(message)
 ```
 
-As you can see `Handler` is a Facade. you can use it to handle your request as you wish.
+As you can see `Handler` is a Facade. you can use it to handle your requests as you wish.
 
 ## Login test user
 
-if you want an authenticated user in your tests so try `login` method. below is a example:
+If you want an authenticated user in your tests so try `login` method. below is a example:
 
 ```python
 from tests.base import BaseTestCase
-
 
 
 class YourTestCase(BaseTestCase):
