@@ -1,7 +1,7 @@
 import hashlib
 import secrets
-from typing import Optional
 from abc import ABCMeta, abstractmethod
+from typing import Optional
 
 import tornado.web
 from tornado.escape import xhtml_escape
@@ -48,10 +48,10 @@ def _sqlalchemy_session_maker():
     :return: _description_
     :rtype: _type_
     """
+    import database
     from sqlalchemy import create_engine
     from sqlalchemy.ext.declarative import declarative_base
     from sqlalchemy.orm import sessionmaker
-    import database
     engine = create_engine(database.models.DB)
     Base = declarative_base()
     Session = sessionmaker(bind=engine)

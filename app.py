@@ -1,8 +1,9 @@
-import tornado.web
 import tornado.ioloop
 import tornado.options
-from routes import ROUTES 
+import tornado.web
+
 from config import SETTINGS
+from routes import ROUTES
 
 
 class Application(tornado.web.Application):

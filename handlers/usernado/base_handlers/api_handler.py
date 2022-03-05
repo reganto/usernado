@@ -1,5 +1,5 @@
-import tornado.web
 import tornado.escape
+import tornado.web
 
 
 class APIHandler(tornado.web.RequestHandler):

@@ -1,5 +1,4 @@
-from typing import Union, Any, Dict
-
+from typing import Any, Dict, Union
 
 import tornado.websocket
 
