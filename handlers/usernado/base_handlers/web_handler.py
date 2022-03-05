@@ -1,5 +1,8 @@
 import hashlib
 import secrets
+from typing import Optional
+from abc import ABCMeta, abstractmethod
+
 import tornado.web
 from tornado.escape import xhtml_escape
 
@@ -20,84 +23,199 @@ class UnsupportedUserModelError(BaseValidationError):
     pass
 
 
-class AuthStrategy:
-    _salt = secrets.token_hex()
+SALT = secrets.token_hex()
 
-    @classmethod
-    def hash_password(cls, password: str, salt: bytes = _salt) -> str:
-        password = password.encode('utf-8')
-        hashed_password = hashlib.sha512(password + salt.encode()).hexdigest()
-        return hashed_password
 
-    @classmethod
-    # Is there better implementation to do this?
-    def _sqlalchemy_session_maker(cls):
-        from sqlalchemy import create_engine
-        from sqlalchemy.ext.declarative import declarative_base
-        from sqlalchemy.orm import sessionmaker
-        DB = 'sqlite:///db.sqlite3'
-        engine = create_engine(DB)
-        Base = declarative_base()
-        Session = sessionmaker(bind=engine)
-        session = Session()
-        return session
+def _hash_password(password: str, salt: Optional[hex] = SALT) -> str:
+    """_summary_ TODO
 
-    @classmethod
-    def _sqlalchemy_register(cls, klass, user_model, username, password):
-        hashed_password = cls.hash_password(password)
-        session = cls._sqlalchemy_session_maker()
-        user_already_exist = session.query(
-            user_model).filter_by(username=username).first()
+    :param password: _description_
+    :type password: str
+    :param salt: _description_, defaults to SALT
+    :type salt: Optional[hex], optional
+    :return: _description_
+    :rtype: str
+    """
+    password = password.encode('utf-8')
+    hashed_password = hashlib.sha512(password + salt.encode()).hexdigest()
+    return hashed_password
+
+
+# Is there better implementation to do this?
+def _sqlalchemy_session_maker():
+    """_summary_ TODO
+
+    :return: _description_
+    :rtype: _type_
+    """
+    from sqlalchemy import create_engine
+    from sqlalchemy.ext.declarative import declarative_base
+    from sqlalchemy.orm import sessionmaker
+    import database
+    engine = create_engine(database.models.DB)
+    Base = declarative_base()
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    return session
+
+
+class IAuth(metaclass=ABCMeta):
+    """_summary_ TODO
+
+    :param metaclass: _description_, defaults to ABCMeta
+    :type metaclass: _type_, optional
+    """
+    @staticmethod
+    @abstractmethod
+    def register(request, model, username, password):
+        """_summary_ TODO
+
+        :param request: _description_
+        :type request: _type_
+        :param model: _description_
+        :type model: _type_
+        :param username: _description_
+        :type username: _type_
+        :param password: _description_
+        :type password: _type_
+        """
+        NotImplementedError
+
+    @staticmethod
+    @abstractmethod
+    def login(request, model, username, password):
+        """_summary_ TODO
+
+        :param request: _description_
+        :type request: _type_
+        :param model: _description_
+        :type model: _type_
+        :param username: _description_
+        :type username: _type_
+        :param password: _description_
+        :type password: _type_
+        """
+        NotImplementedError
+
+
+class PeeweeAuth(IAuth):
+    def register(request, model, username, password):
+        """_summary_
+
+        :param request: _description_
+        :type request: _type_
+        :param model: _description_
+        :type model: _type_
+        :param username: _description_
+        :type username: _type_
+        :param password: _description_
+        :type password: _type_
+        :raises UserAlreadyExistError: _description_
+        :return: _description_
+        :rtype: _type_
+        """
+        hashed_password = _hash_password(password)
+        user_already_exist = model.select().where(
+            model.username == username).first()
         if user_already_exist:
             raise UserAlreadyExistError(user_already_exist)
-        else:
-            user = user_model(
+        try:
+            model.create(
                 username=username,
                 password=hashed_password,
-                salt=cls._salt
+                salt=SALT
             )
-            session.add(user)
-            session.commit()
-            klass.set_secure_cookie("username", klass.get_argument("username"))
+        except Exception as e:
+            print('Error in user registration proccess: ', e)
+        else:
+            return True
 
-    @classmethod
-    def _sqlalchemy_login(cls, klass, user_model, username, password):
-        session = cls._sqlalchemy_session_maker()
-        user_exist = session.query(user_model).filter_by(
-            username=username).first()
+    def login(request, model, username, password):
+        """_summary_
+
+        :param request: _description_
+        :type request: _type_
+        :param model: _description_
+        :type model: _type_
+        :param username: _description_
+        :type username: _type_
+        :param password: _description_
+        :type password: _type_
+        :raises UserDoesNotExistError: _description_
+        :raises PermissionError: _description_
+        """
+        user_exist = model.select().where(model.username == username).first()
         if not user_exist:
             raise UserDoesNotExistError("User does not exist")
-        hashed_password = cls.hash_password(password, salt=user_exist.salt)
+        hashed_password = _hash_password(password, salt=user_exist.salt)
 
         if user_exist and user_exist.password == hashed_password:
-            klass.set_secure_cookie("username", username)
+            request.set_secure_cookie("username", username)
         else:
             raise PermissionError("You'r username or password is incorrent")
 
-    @classmethod
-    def _peewee_register(cls, klass, user_model, username, password):
-        hashed_password = cls.hash_password(password)
-        user_already_exist = user_model.select().where(
-            user_model.username == username).first()
+
+class SqlAclchemyAuth(IAuth):
+    def register(request, model, username, password):
+        """_summary_
+
+        :param request: _description_
+        :type request: _type_
+        :param model: _description_
+        :type model: _type_
+        :param username: _description_
+        :type username: _type_
+        :param password: _description_
+        :type password: _type_
+        :raises UserAlreadyExistError: _description_
+        :return: _description_
+        :rtype: _type_
+        """
+        hashed_password = _hash_password(password)
+        session = _sqlalchemy_session_maker()
+        user_already_exist = session.query(
+            model).filter_by(username=username).first()
         if user_already_exist:
             raise UserAlreadyExistError(user_already_exist)
-        else:
-            user_model.create(
+        try:
+            user = model(
                 username=username,
                 password=hashed_password,
-                salt=cls._salt
+                salt=SALT
             )
-            klass.set_secure_cookie("username", klass.get_argument("username"))
+            session.add(user)
+            session.commit()
+        except Exception as e:
+            print('Error in user registration proccess: ', e)
+            session.rollback()
+        else:
+            return True
+        finally:
+            session.close()
 
-    @classmethod
-    def _peewee_login(cls, klass, user_model, username, password):
-        user_exist = user_model.select().where(user_model.username == username).first()
+    def login(request, model, username, password):
+        """_summary_
+
+        :param request: _description_
+        :type request: _type_
+        :param model: _description_
+        :type model: _type_
+        :param username: _description_
+        :type username: _type_
+        :param password: _description_
+        :type password: _type_
+        :raises UserDoesNotExistError: _description_
+        :raises PermissionError: _description_
+        """
+        session = _sqlalchemy_session_maker()
+        user_exist = session.query(model).filter_by(
+            username=username).first()
         if not user_exist:
             raise UserDoesNotExistError("User does not exist")
-        hashed_password = cls.hash_password(password, salt=user_exist.salt)
+        hashed_password = _hash_password(password, salt=user_exist.salt)
 
         if user_exist and user_exist.password == hashed_password:
-            klass.set_secure_cookie("username", username)
+            request.set_secure_cookie("username", username)
         else:
             raise PermissionError("You'r username or password is incorrent")
 
@@ -117,9 +235,9 @@ class WebHandler(tornado.web.RequestHandler):
         try:
             import peewee
             if issubclass(user_model, peewee.Model):
-                AuthStrategy._peewee_register(
-                    klass=self,
-                    user_model=user_model,
+                return PeeweeAuth.register(
+                    request=self,
+                    model=user_model,
                     username=username,
                     password=password,
                 )
@@ -129,9 +247,9 @@ class WebHandler(tornado.web.RequestHandler):
             try:
                 import sqlalchemy
                 if user_model.metadata:  # Is there a better implementation to do this?
-                    AuthStrategy._sqlalchemy_register(
-                        klass=self,
-                        user_model=user_model,
+                    return SqlAclchemyAuth.register(
+                        request=self,
+                        model=user_model,
                         username=username,
                         password=password,
                     )
@@ -152,9 +270,9 @@ class WebHandler(tornado.web.RequestHandler):
         try:
             import peewee
             if issubclass(user_model, peewee.Model):
-                AuthStrategy._peewee_login(
-                    klass=self,
-                    user_model=user_model,
+                PeeweeAuth.login(
+                    request=self,
+                    model=user_model,
                     username=username,
                     password=password,
                 )
@@ -164,9 +282,9 @@ class WebHandler(tornado.web.RequestHandler):
             try:
                 import sqlalchemy
                 if user_model.metadata:  # Is there a better implementation to do this?
-                    AuthStrategy._sqlalchemy_login(
-                        klass=self,
-                        user_model=user_model,
+                    SqlAclchemyAuth.login(
+                        request=self,
+                        model=user_model,
                         username=username,
                         password=password,
                     )
@@ -206,7 +324,7 @@ class WebHandler(tornado.web.RequestHandler):
         self.redirect(self.reverse_url(name))
 
     def get_escaped_argument(self, argument) -> str:
-        """Get argument from client then scaped it
+        """Get argument from client then escaped it
 
         :param argument: incoming argument
         :type argument: str
