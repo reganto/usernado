@@ -15,19 +15,20 @@ class HelloWorld(Handler.Web):
 
 As simple as possible, isn't it?
 
-## Clone Usernado
+## Clone Usernado and Do Magic
 
 ```bash
 git clone https://github.com/reganto/Usernado.git
 ```
 
-## Examples
+## Authentication Example
 
 **Register User**:
 
 ```python
-from models import User       #  you should make this model in advance
 from .usernado import Handler
+#  you should make User model in advance
+from database.models import User
 
 
 class RegisterUser(Handler.Web):
@@ -44,8 +45,9 @@ class RegisterUser(Handler.Web):
 **Login User**
 
 ```python
-from models import User        #  you should make this model in advance
 from .usernado import Handler
+#  you should make User model in advance
+from database.models import User
 
 
 class LoginUser(Handler.Web):
@@ -64,7 +66,7 @@ class LoginUser(Handler.Web):
 ```python
 from .usernado import Handler
 
- 
+
 class LogoutUser(Handler.Web):
     def get(self):
         if self.authenticate():
@@ -73,7 +75,7 @@ class LogoutUser(Handler.Web):
             self.write('<h3>You are not an authenticated user.</h3>')
 ```
 
-**Api**
+## API Example
 
 ```python
 from .usernado import Handler
@@ -85,10 +87,7 @@ class Echo(Handler.Api):
         self.write({'message': message})
 ```
 
-
-
-
-**WebSocket**
+## Websocket Example
 
 ```python
 from .usernado import Handler
@@ -99,36 +98,17 @@ class Echo(Handler.WebSocket):
         self.send(message)
 ```
 
-As you can see `Handler` is a Facade. you can use it to handle your requests as you wish.
+As you see `Handler` is a Facade. you can use it to handle your requests as you wish.
 
-## Login test user
-
-If you want an authenticated user in your tests so try `login` method. below is a example:
-
-```python
-from tests.base import BaseTestCase
-
-
-class YourTestCase(BaseTestCase):
-    def test_an_authenticated_user_can_see_threads(self):
-        headers = self.login('/users/login')
-        # Use headers in your further request
-        # Note: if you use login method to authenticate user
-        # and then try to send some headers with forther request
-        # you have to append your headers to headers that comes from
-        # login method. Umm something like headers.update(your_headers).
-
-        response = self.fetch(
-            '/threads/',
-            method='GET',
-            headers=headers
-            )
-
-         self.assertEqual(response.code, 200)
-```
+# 
 
 ## TODO
 
 - [x] Send and broadcast for websockets
-- [ ] Abstracted authenticate methods
-- [ ] pluralize uimodule
+- [x] Abstracted authentication methods
+- [ ] Authenticaion methods should return True/False
+- [ ] Add username & password to test login 
+- [ ] Add pluralize (str_plural) uimodule
+- [ ] Add diff_for_human (humanize) decorator
+- [ ] Add third party authentication abstract methods
+- [ ] Add pagination
