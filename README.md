@@ -5,7 +5,7 @@
 ## Hello World
 
 ```python
-from .usernado import Handler
+from handlers.usernado import Handler
 
 
 class HelloWorld(Handler.Web):
@@ -26,7 +26,7 @@ git clone https://github.com/reganto/Usernado.git
 **Register User**:
 
 ```python
-from .usernado import Handler
+from handlers.usernado import Handler
 #  you should make User model in advance
 from database.models import User
 
@@ -45,7 +45,7 @@ class RegisterUser(Handler.Web):
 **Login User**
 
 ```python
-from .usernado import Handler
+from handlers.usernado import Handler
 #  you should make User model in advance
 from database.models import User
 
@@ -64,7 +64,7 @@ class LoginUser(Handler.Web):
 **Logout User**
 
 ```python
-from .usernado import Handler
+from handlers.usernado import Handler
 
 
 class LogoutUser(Handler.Web):
@@ -78,7 +78,7 @@ class LogoutUser(Handler.Web):
 ## API Example
 
 ```python
-from .usernado import Handler
+from handlers.usernado import Handler
 
 
 class Echo(Handler.Api):
@@ -90,7 +90,7 @@ class Echo(Handler.Api):
 ## Websocket Example
 
 ```python
-from .usernado import Handler
+from handlers.usernado import Handler
 
 
 class Echo(Handler.WebSocket):
