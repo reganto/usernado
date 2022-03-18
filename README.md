@@ -15,7 +15,7 @@ class HelloWorld(Handler.Web):
 
 As simple as possible, isn't it?
 
-## Clone Usernado and Do Magic
+## Install Usernado 
 
 ```bash
 git clone https://github.com/reganto/Usernado.git
@@ -55,8 +55,8 @@ class LoginUser(Handler.Web):
         self.render('login.html')
 
     def post(self):
-        username = self.get_scaped_argument('username')
-        password = self.get_scaped_argument('password')
+        username = self.get_escaped_argument('username')
+        password = self.get_escaped_argument('password')
 
         self.login(User, username, password)
 ```
