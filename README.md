@@ -100,8 +100,6 @@ class Echo(Handler.WebSocket):
 
 As you see `Handler` is a Facade. you can use it to handle your requests as you wish.
 
-# 
-
 ## TODO
 
 - [x] Send and broadcast for websockets
