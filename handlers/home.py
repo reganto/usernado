@@ -1,4 +1,4 @@
-from .usernado import Handler
+from handlers.usernado import Handler
 
 
 class Home(Handler.Web):

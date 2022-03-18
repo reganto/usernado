@@ -1,4 +1,4 @@
-from .base_handlers import api_handler, web_handler, socket_handler
+from handlers.usernado.base_handlers import api_handler, web_handler, socket_handler
 
 
 class Handler:
