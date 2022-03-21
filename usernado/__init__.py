@@ -8,7 +8,7 @@ from usernado.torntriplets import APIHandler, WebHandler, WebSocketHandler
 class Handler:
     @property
     @staticmethod
-    def Api():
+    def API():
         return APIHandler
 
     @property
