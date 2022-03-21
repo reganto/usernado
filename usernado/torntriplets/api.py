@@ -1,8 +1,9 @@
 import tornado.escape
 import tornado.web
+from usernado.torntriplets.base import BaseHandler
 
 
-class APIHandler(tornado.web.RequestHandler):
+class APIHandler(BaseHandler):
     def get_json_argument(self, name: str, default: str = None) -> str:
         """Get json argument from current request
 

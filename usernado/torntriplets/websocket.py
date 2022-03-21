@@ -2,8 +2,10 @@ from typing import Any, Dict, Union
 
 import tornado.websocket
 
+from usernado.torntriplets.base import BaseHandler
 
-class WebSocketHandler(tornado.websocket.WebSocketHandler):
+
+class WebSocketHandler(BaseHandler):
     def send(
             self,
             message: Union[bytes, str, Dict[str, Any]],

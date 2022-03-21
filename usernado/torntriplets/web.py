@@ -17,6 +17,8 @@ from typing import Optional
 import tornado.web
 from tornado.escape import xhtml_escape
 
+from usernado.torntriplets.base import BaseHandler
+
 
 class BaseValidationError(ValueError):
     pass
@@ -231,7 +233,7 @@ class SqlAclchemyAuth(IAuth):
             raise PermissionError("You'r username or password is incorrent")
 
 
-class WebHandler(tornado.web.RequestHandler):
+class WebHandler(BaseHandler):
     def register(self, user_model, username: str, password: str) -> None:
         """Register user with provided username and password
 
