@@ -1,22 +1,9 @@
-"""This is module docstring.
-This module do stuff.
-"""
-
-__all__ = [
-    'WebHandler', 'UserDoesNotExistError',
-    'UserAlreadyExistError', 'UnsupportedUserModelError',
-]
-__version__ = '0.0.5'
-__author__ = 'Morteza Naghizadeh aka Reganto'
-
 import hashlib
 import secrets
 from abc import ABCMeta, abstractmethod
 from typing import Optional
 
-import tornado.web
 from tornado.escape import xhtml_escape
-
 from usernado.torntriplets.base import BaseHandler
 
 

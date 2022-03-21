@@ -1,25 +1,22 @@
-__version__ = '0.1.0'
+__version__ = "0.0.6"
+__author__ = "Morteza Naghizadeh"
+__all__ = ["Handler"]
 
-
-from usernado.torntriplets import WebHandler, WebSocketHandler, APIHandler
+from usernado.torntriplets import APIHandler, WebHandler, WebSocketHandler
 
 
 class Handler:
-    # @property
-    # @staticmethod
-    # def Api():
-    #     return api.APIHandler
+    @property
+    @staticmethod
+    def Api():
+        return APIHandler
 
-    # @property
-    # @staticmethod
-    # def Web():
-    #     return web.WebHandler
+    @property
+    @staticmethod
+    def Web():
+        return WebHandler
 
-    # @property
-    # @staticmethod
-    # def WebSocket():
-    #     return websocket.WebSocketHandler
-
-    Api = APIHandler
-    Web = WebHandler
-    WebSocket = WebSocketHandler
+    @property
+    @staticmethod
+    def WebSocket():
+        return WebSocketHandler

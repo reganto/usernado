@@ -15,7 +15,7 @@ class APIHandler(BaseHandler):
         :rtype: str
         """
         try:
-            raw_data = self.request.body.decode().replace('\'', '\"')
+            raw_data = self.request.body.decode().replace("'", '"')
         except Exception:
             raise
         else:
@@ -29,7 +29,7 @@ class APIHandler(BaseHandler):
         :rtype: dict
         """
         try:
-            raw_data = self.request.body.decode().replace('\'', '\"')
+            raw_data = self.request.body.decode().replace("'", '"')
         except Exception:
             raise
         else:
