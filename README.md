@@ -13,7 +13,7 @@ pip install usernado
 ```python
 from usernado import Handler
 
-# 
+# Create User model in advance
 from database.models import User
 
 
@@ -24,9 +24,8 @@ class RegisterUser(Handler.Web):
     def post(self):
         username = self.get_escaped_argument("username")
         password = self.get_escaped_argument("password")
-        
+
         self.register(User, username, password)
-        
 ```
 
 As you see `Handler` is a Facade. you can use it to handle your requests as you wish.
@@ -35,11 +34,11 @@ As you see `Handler` is a Facade. you can use it to handle your requests as you 
 
 - [Documentation](#)
 
-- [Examples](#)
+- [Examples](https://github.com/reganto/Usernado/tree/master/example)
 
 - [PyPI](https://pypi.org/project/usernado/)
 
-- [Change Log](#)
+- [Change Log](https://github.com/reganto/Usernado/blob/master/CHANGES.md)
 
 ## TODO
 
