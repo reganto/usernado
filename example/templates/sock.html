@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Echo</title>
+</head>
+<body>
+    <div>
+        <input type="text" name="message" id="message" placeholder="Message"><br>
+        <button type="submit" onclick="sendData()">Send</button>
+        <p id="msg"></p>
+    </div>
+
+    <script>
+        var socket = new WebSocket(`ws://${location.host}/echo`);
+
+        function sendData() {
+            data = document.getElementById("message").value;
+            socket.send(data);
+        }
+
+        socket.onmessage = (e) => {
+            document.getElementById("msg").innerHTML += e.data+"<br />";
+        }
+    </script>
+</body>
+</html>
