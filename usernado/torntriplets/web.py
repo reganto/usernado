@@ -151,6 +151,7 @@ class PeeweeAuth(IAuth):
 
         if user_exist and user_exist.password == hashed_password:
             request.set_secure_cookie("username", username)
+            return True
         else:
             raise PermissionError("You'r username or password is incorrent")
 
@@ -216,6 +217,7 @@ class SqlAclchemyAuth(IAuth):
 
         if user_exist and user_exist.password == hashed_password:
             request.set_secure_cookie("username", username)
+            return True
         else:
             raise PermissionError("You'r username or password is incorrent")
 
@@ -270,7 +272,7 @@ class WebHandler(BaseHandler):
         try:
             import peewee
             if issubclass(user_model, peewee.Model):
-                PeeweeAuth.login(
+                return PeeweeAuth.login(
                     request=self,
                     model=user_model,
                     username=username,
@@ -282,7 +284,7 @@ class WebHandler(BaseHandler):
             try:
                 import sqlalchemy
                 if user_model.metadata:  # Is there a better implementation to do this?
-                    SqlAclchemyAuth.login(
+                    return SqlAclchemyAuth.login(
                         request=self,
                         model=user_model,
                         username=username,
