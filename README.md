@@ -54,6 +54,8 @@
 
 - Websocket easier than ever
 
+- Better exception printer thanks to [tornado-debugger](https://github.com/bhch/tornado-debugger)
+
 ### Installation
 
 Install it via pip:
