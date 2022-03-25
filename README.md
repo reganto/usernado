@@ -48,13 +48,16 @@
 
 ### Features
 
-- ORM agnostic authentication
-
 - REST support
 
 - Websocket easier than ever
 
+- ORM agnostic authentication
+
+- Humanize datetime in templates
+
 - Better exception printer thanks to [tornado-debugger](https://github.com/bhch/tornado-debugger)
+
 
 ### Installation
 
