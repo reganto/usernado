@@ -101,9 +101,9 @@ class Echo(Handler.API):
 - [x] Send and broadcast for websockets
 - [x] Abstracted authentication methods
 - [x] Authenticaion methods should return True/False
+- [x] Add diff_for_human (humanize) decorator
 - [ ] Add username & password to test login 
 - [ ] Add pluralize (str_plural) uimodule
-- [ ] Add diff_for_human (humanize) decorator
 - [ ] Add third party authentication abstract methods
 - [ ] Add pagination
 
