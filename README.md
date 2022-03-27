@@ -72,7 +72,7 @@ pip install usernado
 
 ### Example
 
-Check it out [Examples](https://github.com/reganto/Usernado/tree/master/example)
+Check it out [here](https://github.com/reganto/Usernado/tree/master/example)
 
 ### Resources
 
