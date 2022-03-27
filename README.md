@@ -22,6 +22,7 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
+    <li><a href="#why-usernado">Why Usernado</a></li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
@@ -41,6 +42,15 @@
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
+
+<!-- Why Userndo  -->
+
+## Why Usernado
+
+I use Tornado every day. I really like it. But as you know, Tornado is not a full-stack framework, and I had to put all the pieces of the puzzle together every day! This may be interesting for the first and second time, but it will get annoying over time. So I tried to make a extension and use it whenever I wanted.
+
+This is how the Usernado was born.
+
 
 <!-- Getting Started -->
 
@@ -72,7 +82,7 @@ pip install usernado
 
 ### Example
 
-Check it out [here](https://github.com/reganto/Usernado/tree/master/example)
+Check it out [here](https://github.com/reganto/Usernado/tree/master/example).
 
 ### Resources
 
