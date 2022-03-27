@@ -17,6 +17,7 @@ class Home(Handler.Web):
 class Echo(Handler.WebSocket):
     def on_message(self, message):
         self.send(message)
+        # Use send.broadcast(msg) to send message to all participants
 
 
 class App(Application):
@@ -27,8 +28,8 @@ class App(Application):
         ]
         settings = dict(
             debug=True,
-            template_path = BASE_DIR / "templates",
-            cookie_secret= secrets.token_bytes(),
+            template_path=BASE_DIR / "templates",
+            cookie_secret=secrets.token_bytes(),
         )
         super().__init__(handlers, **settings)
 
@@ -36,4 +37,3 @@ class App(Application):
 if __name__ == "__main__":
     App().listen(8000)
     IOLoop.current().start()
-

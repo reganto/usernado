@@ -22,7 +22,7 @@
         }
 
         socket.onmessage = (e) => {
-            document.getElementById("msg").innerHTML += e.data+"<br />";
+            document.getElementById("msg").innerHTML += `${e.data} <br />`;
         }
     </script>
 </body>

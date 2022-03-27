@@ -1,3 +1,4 @@
+import secrets
 from datetime import datetime
 
 from usernado.helpers import humanize
@@ -12,14 +13,14 @@ DB = peewee.SqliteDatabase("db.sqlite3")
 
 class Post(peewee.Model):
     title = peewee.CharField(max_length=100)
-    create_at = peewee.DateTimeField(default=datetime.now)
+    created_at = peewee.DateTimeField(default=datetime.now)
 
     class Meta:
         database = DB
 
     @humanize
     def diff_for_humans(self):
-        return self.create_at
+        return self.created_at
 
 
 DB.create_tables(
@@ -40,7 +41,7 @@ if __name__ == "__main__":
     Application(
         [("/", Home)],
         debug=True,
-        cookie_secret="kdjfkdjf",
+        cookie_secret=secrets.token_bytes(),
         template_path="templates",
     ).listen(8000)
     IOLoop.current().start()
