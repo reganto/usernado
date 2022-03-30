@@ -5,8 +5,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v0.1.0
-      with:
-        ref: 'master'
+      uses: actions/checkout@master
     - name: Black
       uses: psf/black@stable
