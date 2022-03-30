@@ -1,0 +1,10 @@
+name: Linters
+on: [push]
+jobs:
+  Black:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v0.1.0
+    - name: Black
+      uses: psf/black@stable
