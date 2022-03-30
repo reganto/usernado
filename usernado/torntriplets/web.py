@@ -36,7 +36,7 @@ def _hash_password(password: str, salt: Optional[hex] = SALT) -> str:
     :return: _description_
     :rtype: str
     """
-    password = password.encode('utf-8')
+    password = password.encode("utf-8")
     hashed_password = hashlib.sha512(password + salt.encode()).hexdigest()
     return hashed_password
 
@@ -52,6 +52,7 @@ def _sqlalchemy_session_maker():
     from sqlalchemy import create_engine
     from sqlalchemy.ext.declarative import declarative_base
     from sqlalchemy.orm import sessionmaker
+
     engine = create_engine(database.models.DB)
     Base = declarative_base()
     Session = sessionmaker(bind=engine)
@@ -65,6 +66,7 @@ class IAuth(metaclass=ABCMeta):
     :param metaclass: _description_, defaults to ABCMeta
     :type metaclass: _type_, optional
     """
+
     @staticmethod
     @abstractmethod
     def register(request, model, username, password):
@@ -115,18 +117,13 @@ class PeeweeAuth(IAuth):
         :rtype: _type_
         """
         hashed_password = _hash_password(password)
-        user_already_exist = model.select().where(
-            model.username == username).first()
+        user_already_exist = model.select().where(model.username == username).first()
         if user_already_exist:
             raise UserAlreadyExistError(user_already_exist)
         try:
-            model.create(
-                username=username,
-                password=hashed_password,
-                salt=SALT
-            )
+            model.create(username=username, password=hashed_password, salt=SALT)
         except Exception as e:
-            print('Error in user registration proccess: ', e)
+            print("Error in user registration proccess: ", e)
         else:
             return True
 
@@ -174,20 +171,15 @@ class SqlAclchemyAuth(IAuth):
         """
         hashed_password = _hash_password(password)
         session = _sqlalchemy_session_maker()
-        user_already_exist = session.query(
-            model).filter_by(username=username).first()
+        user_already_exist = session.query(model).filter_by(username=username).first()
         if user_already_exist:
             raise UserAlreadyExistError(user_already_exist)
         try:
-            user = model(
-                username=username,
-                password=hashed_password,
-                salt=SALT
-            )
+            user = model(username=username, password=hashed_password, salt=SALT)
             session.add(user)
             session.commit()
         except Exception as e:
-            print('Error in user registration proccess: ', e)
+            print("Error in user registration proccess: ", e)
             session.rollback()
         else:
             return True
@@ -209,8 +201,7 @@ class SqlAclchemyAuth(IAuth):
         :raises PermissionError: _description_
         """
         session = _sqlalchemy_session_maker()
-        user_exist = session.query(model).filter_by(
-            username=username).first()
+        user_exist = session.query(model).filter_by(username=username).first()
         if not user_exist:
             raise UserDoesNotExistError("User does not exist")
         hashed_password = _hash_password(password, salt=user_exist.salt)
@@ -236,6 +227,7 @@ class WebHandler(BaseHandler):
 
         try:
             import peewee
+
             if issubclass(user_model, peewee.Model):
                 return PeeweeAuth.register(
                     request=self,
@@ -248,6 +240,7 @@ class WebHandler(BaseHandler):
         except (ModuleNotFoundError, UnsupportedUserModelError):
             try:
                 import sqlalchemy
+
                 if user_model.metadata:  # Is there a better implementation to do this?
                     return SqlAclchemyAuth.register(
                         request=self,
@@ -258,7 +251,7 @@ class WebHandler(BaseHandler):
                 else:
                     raise UnsupportedUserModelError(user_model)
             except ModuleNotFoundError:
-                self.write('<h3>You should install Peewee or SqlAlchemy.</h3>')
+                self.write("<h3>You should install Peewee or SqlAlchemy.</h3>")
 
     def login(self, user_model, username: str, password: str) -> None:
         """Login user with provided username and password
@@ -271,6 +264,7 @@ class WebHandler(BaseHandler):
 
         try:
             import peewee
+
             if issubclass(user_model, peewee.Model):
                 return PeeweeAuth.login(
                     request=self,
@@ -283,6 +277,7 @@ class WebHandler(BaseHandler):
         except (ModuleNotFoundError, UnsupportedUserModelError):
             try:
                 import sqlalchemy
+
                 if user_model.metadata:  # Is there a better implementation to do this?
                     return SqlAclchemyAuth.login(
                         request=self,
@@ -293,7 +288,7 @@ class WebHandler(BaseHandler):
                 else:
                     raise UnsupportedUserModelError(user_model)
             except ModuleNotFoundError:
-                self.write('<h3>You should install Peewee or SqlAlchemy.</h3>')
+                self.write("<h3>You should install Peewee or SqlAlchemy.</h3>")
 
     def logout(self) -> None:
         """Logout user"""
@@ -314,7 +309,7 @@ class WebHandler(BaseHandler):
         :return: a secure cookie value
         :rtype: str
         """
-        return self.get_secure_cookie('username')
+        return self.get_secure_cookie("username")
 
     def redirect_to_route(self, name: str):
         """Redirect to specific route

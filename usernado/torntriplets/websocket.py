@@ -5,9 +5,9 @@ from usernado.torntriplets.base import BaseSocket
 
 class WebSocketHandler(BaseSocket):
     def send(
-            self,
-            message: Union[bytes, str, Dict[str, Any]],
-            binary: bool = False,
+        self,
+        message: Union[bytes, str, Dict[str, Any]],
+        binary: bool = False,
     ):
         """Send a message to specific participant
 
@@ -18,10 +18,10 @@ class WebSocketHandler(BaseSocket):
         self.write_message(message, binary)
 
     def broadcast(
-            self,
-            participants: set,
-            message: Union[bytes, str, Dict[str, Any]],
-            binary: bool = False,
+        self,
+        participants: set,
+        message: Union[bytes, str, Dict[str, Any]],
+        binary: bool = False,
     ):
         """Broadcast a message to all participants
 
