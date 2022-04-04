@@ -43,7 +43,7 @@ def humanize(func):
 class Route(object):
     """Usernado API router class.
 
-    .. versionadded:: 0.1.1
+    .. versionadded:: 0.2.0
     """
 
     urls = []
