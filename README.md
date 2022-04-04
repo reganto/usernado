@@ -101,7 +101,7 @@ Check it out [here](https://github.com/reganto/Usernado/tree/master/example).
 - [x] Authenticaion methods should return True/False
 - [x] Add diff_for_human (humanize) decorator
 - [x] Add api_route for API handlers
-- [ ] Add username & password to test login 
+- [x] Add username & password to test login 
 - [ ] Add pluralize (str_plural) uimodule
 - [ ] Add third party authentication abstract methods
 - [ ] Add pagination
