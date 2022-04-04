@@ -14,6 +14,7 @@ DB = peewee.SqliteDatabase("db.sqlite3")
 
 
 class User(peewee.Model):
+    """You have to provide these three fields at least."""
     username = peewee.CharField(max_length=100)
     password = peewee.CharField(max_length=100)
     salt = peewee.CharField(max_length=100)
