@@ -1,6 +1,7 @@
 import functools
 
 import pendulum
+import tornado.web
 
 
 def humanize(func):
@@ -37,3 +38,26 @@ def humanize(func):
         return " ".join([w for w in result])
 
     return wrapper
+
+
+class Route(object):
+    """Usernado API router class.
+
+    .. versionadded:: 0.1.1
+    """
+
+    urls = []
+
+    def __call__(self, url: str, name: str = None):
+        def wrapper(cls):
+            self.urls.append(
+                tornado.web.URLSpec(
+                    url, cls, name=name if name else cls.__name__.lower()
+                )
+            )
+            return cls
+
+        return wrapper
+
+
+api_route = Route()
