@@ -23,7 +23,7 @@ if __name__ == "__main__":
 
 """
 curl -X POST \
--i http:/localhost:8000/echo/ \
+-i http:/localhost:8000/api/v1.3/echo/ \
 -H "Content-Type:application/json" \
 -d "{'message': 'Hello'}"
 """
