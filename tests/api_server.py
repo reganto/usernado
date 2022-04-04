@@ -4,10 +4,11 @@ from tornado.ioloop import IOLoop
 from usernado import Handler
 
 
-@api_route("/", "home")
+@api_route("/api/v1.3/echo/", "home")
 class Home(Handler.API):
-    def get(self):
-        self.write({"message": "Hello"})
+    def post(self):
+        message = self.get_json_argument("message")
+        self.write(message)
 
 
 class App(Application):
