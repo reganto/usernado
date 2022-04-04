@@ -47,6 +47,10 @@ class RegisterHandler(Handler.Web):
         else:
             self.redirect_to_route("login")
 
+    def check_xsrf_cookie(self) -> None:
+        """Test purpose."""
+        pass
+
 
 class LoginHandler(Handler.Web):
     def get(self):
@@ -61,6 +65,10 @@ class LoginHandler(Handler.Web):
             print(e)
         else:
             self.redirect_to_route("dashboard")
+
+    def check_xsrf_cookie(self) -> None:
+        """Test purpose."""
+        pass
 
 
 class LogoutHandler(Handler.Web):
@@ -80,9 +88,9 @@ class App(Application):
     def __init__(self):
         handlers = [
             url("/", DashboardHandler, name="dashboard"),
-            url("/register/", RegisterHandler, name="register"),
-            url("/login/", LoginHandler, name="login"),
-            url("/logout/", LogoutHandler, name="logout"),
+            url("/auth/register/", RegisterHandler, name="register"),
+            url("/auth/login/", LoginHandler, name="login"),
+            url("/auth/logout/", LogoutHandler, name="logout"),
         ]
         settings = dict(
             debug=True,
