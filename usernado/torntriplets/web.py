@@ -1,10 +1,10 @@
-import hashlib
-import secrets
 from abc import ABCMeta, abstractmethod
 from typing import Optional
+import hashlib
+import secrets
 
-from tornado.escape import xhtml_escape
 from usernado.torntriplets.base import BaseHandler
+from tornado.escape import xhtml_escape
 
 
 class BaseValidationError(ValueError):
@@ -27,15 +27,7 @@ SALT = secrets.token_hex()
 
 
 def _hash_password(password: str, salt: Optional[hex] = SALT) -> str:
-    """_summary_ TODO
-
-    :param password: _description_
-    :type password: str
-    :param salt: _description_, defaults to SALT
-    :type salt: Optional[hex], optional
-    :return: _description_
-    :rtype: str
-    """
+    """docstring"""
     password = password.encode("utf-8")
     hashed_password = hashlib.sha512(password + salt.encode()).hexdigest()
     return hashed_password
@@ -43,11 +35,7 @@ def _hash_password(password: str, salt: Optional[hex] = SALT) -> str:
 
 # Is there better implementation to do this?
 def _sqlalchemy_session_maker():
-    """_summary_ TODO
-
-    :return: _description_
-    :rtype: _type_
-    """
+    """docstring"""
     import database
     from sqlalchemy import create_engine
     from sqlalchemy.ext.declarative import declarative_base
@@ -61,61 +49,22 @@ def _sqlalchemy_session_maker():
 
 
 class IAuth(metaclass=ABCMeta):
-    """_summary_ TODO
-
-    :param metaclass: _description_, defaults to ABCMeta
-    :type metaclass: _type_, optional
-    """
-
     @staticmethod
     @abstractmethod
     def register(request, model, username, password):
-        """_summary_ TODO
-
-        :param request: _description_
-        :type request: _type_
-        :param model: _description_
-        :type model: _type_
-        :param username: _description_
-        :type username: _type_
-        :param password: _description_
-        :type password: _type_
-        """
+        """docstring"""
         NotImplementedError
 
     @staticmethod
     @abstractmethod
     def login(request, model, username, password):
-        """_summary_ TODO
-
-        :param request: _description_
-        :type request: _type_
-        :param model: _description_
-        :type model: _type_
-        :param username: _description_
-        :type username: _type_
-        :param password: _description_
-        :type password: _type_
-        """
+        """docstring"""
         NotImplementedError
 
 
 class PeeweeAuth(IAuth):
     def register(request, model, username, password):
-        """_summary_
-
-        :param request: _description_
-        :type request: _type_
-        :param model: _description_
-        :type model: _type_
-        :param username: _description_
-        :type username: _type_
-        :param password: _description_
-        :type password: _type_
-        :raises UserAlreadyExistError: _description_
-        :return: _description_
-        :rtype: _type_
-        """
+        """docstring"""
         hashed_password = _hash_password(password)
         user_already_exist = model.select().where(model.username == username).first()
         if user_already_exist:
@@ -128,19 +77,7 @@ class PeeweeAuth(IAuth):
             return True
 
     def login(request, model, username, password):
-        """_summary_
-
-        :param request: _description_
-        :type request: _type_
-        :param model: _description_
-        :type model: _type_
-        :param username: _description_
-        :type username: _type_
-        :param password: _description_
-        :type password: _type_
-        :raises UserDoesNotExistError: _description_
-        :raises PermissionError: _description_
-        """
+        """docstring"""
         user_exist = model.select().where(model.username == username).first()
         if not user_exist:
             raise UserDoesNotExistError("User does not exist")
@@ -155,20 +92,7 @@ class PeeweeAuth(IAuth):
 
 class SqlAclchemyAuth(IAuth):
     def register(request, model, username, password):
-        """_summary_
-
-        :param request: _description_
-        :type request: _type_
-        :param model: _description_
-        :type model: _type_
-        :param username: _description_
-        :type username: _type_
-        :param password: _description_
-        :type password: _type_
-        :raises UserAlreadyExistError: _description_
-        :return: _description_
-        :rtype: _type_
-        """
+        """docstring"""
         hashed_password = _hash_password(password)
         session = _sqlalchemy_session_maker()
         user_already_exist = session.query(model).filter_by(username=username).first()
@@ -187,19 +111,7 @@ class SqlAclchemyAuth(IAuth):
             session.close()
 
     def login(request, model, username, password):
-        """_summary_
-
-        :param request: _description_
-        :type request: _type_
-        :param model: _description_
-        :type model: _type_
-        :param username: _description_
-        :type username: _type_
-        :param password: _description_
-        :type password: _type_
-        :raises UserDoesNotExistError: _description_
-        :raises PermissionError: _description_
-        """
+        """docstring"""
         session = _sqlalchemy_session_maker()
         user_exist = session.query(model).filter_by(username=username).first()
         if not user_exist:
