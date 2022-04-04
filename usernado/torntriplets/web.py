@@ -1,5 +1,4 @@
 from abc import ABCMeta, abstractmethod
-from typing import Optional
 import hashlib
 import secrets
 
@@ -26,7 +25,7 @@ class UnsupportedUserModelError(BaseValidationError):
 SALT = secrets.token_hex()
 
 
-def _hash_password(password: str, salt: Optional[hex] = SALT) -> str:
+def _hash_password(password: str, salt: str = SALT) -> str:
     """docstring"""
     password = password.encode("utf-8")
     hashed_password = hashlib.sha512(password + salt.encode()).hexdigest()
