@@ -4,6 +4,25 @@ import pendulum
 import tornado.web
 
 
+class Pluralize(tornado.web.UIModule):
+    """pluralize a string based on a value.
+
+    To use this is templates you have to add ``Pluralize`` to ``ui_modules`` setting.
+    .. versionadded:: 0.2.1
+    """
+
+    def render(self, word: str, count: int) -> str:
+        if count > 1:
+            if word.endswith(("s", "x", "z", "ch", "sh")):
+                return f"{word}es"
+            elif word.endswith("y"):
+                return f"{word[:len(word)-1]}ies"
+            else:
+                # TODO: implement other forms of word pluralization
+                return f"{word}s"
+        return word
+
+
 def humanize(func):
     """Humanize datetime in templates
 
