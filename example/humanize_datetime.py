@@ -1,5 +1,5 @@
-import secrets
 from datetime import datetime
+import secrets
 
 from usernado.helpers import humanize
 from tornado.web import Application
