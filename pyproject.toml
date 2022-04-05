@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "usernado"
-version = "0.2.0"
+version = "0.2.1"
 description = "Usernado is a Tornado extension to make life easier."
 authors = ["Reganto <tell.reganto@gmail.com>"]
 license = "Apache-2.0"
