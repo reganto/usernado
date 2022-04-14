@@ -9,7 +9,7 @@ class WebSocketHandler(BaseSocket):
         message: Union[bytes, str, Dict[str, Any]],
         binary: bool = False,
     ):
-        """Send a message to specific participant
+        """Send a message to specific participant.
 
         :param message: Message to send
         :type message: Union[bytes, str, Dict[str, Any]]
@@ -24,7 +24,7 @@ class WebSocketHandler(BaseSocket):
         message: Union[bytes, str, Dict[str, Any]],
         binary: bool = False,
     ):
-        """Broadcast a message to all participants
+        """Broadcast a message to all participants.
 
         :param participants: Participants to send message
         :type participants: set
