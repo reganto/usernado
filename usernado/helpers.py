@@ -5,10 +5,14 @@ import tornado.web
 
 
 class Pluralize(tornado.web.UIModule):
-    """pluralize a string based on a value.
+    """Pluralize a string based on a value.
 
-    To use this is templates you have to add ``Pluralize`` to ``ui_modules`` setting.
-    .. versionadded:: 0.2.1
+    You Must set `Pluralize` as a valid UIModule
+    In `ui_modules` setting like so.
+
+    ui_modules=dict(
+        'pluralize': Pluralize,
+    )
     """
 
     def render(self, word: str, count: int) -> str:
@@ -24,21 +28,9 @@ class Pluralize(tornado.web.UIModule):
 
 
 def humanize(func):
-    """Humanize datetime in templates
+    """Humanize datetime in templates.
 
-    example:
-
-        class Post(Model):
-            title = CharField(max_length=200)
-            created_at = DateTimeField(default=datetime.now)
-
-            @humanize
-            def diff_for_humans(self):
-                return self.created_at
-
-    Then you can use it in templates like so:
-
-        <p>This post was published {{ post.diff_for_humans() }} ago.</p>
+    Take a look at example directory.
     """
 
     @functools.wraps(func)
@@ -60,10 +52,7 @@ def humanize(func):
 
 
 class Route(object):
-    """Usernado API router class.
-
-    .. versionadded:: 0.2.0
-    """
+    """Usernado API router class."""
 
     urls = []
 
