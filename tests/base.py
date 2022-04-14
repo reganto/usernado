@@ -7,9 +7,9 @@ class BaseTestCase(AsyncHTTPSTestCase):
         return App()
 
     def login(self, url: str, username: str, password: str) -> dict:
-        """Login test user
+        """Login test user.
 
-        You can fetch an authentication required endpoint
+        You can fetch an authentication required endpoint.
 
         >> headers = self.login('LOGIN_URL', 'USERNAME', 'PASSWORD')
 
