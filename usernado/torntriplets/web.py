@@ -47,6 +47,7 @@ def _hash_password(password: str, salt: str = _SALT) -> str:
     :return: A hashed password
     :rtype: str
     """
+
     password = password.encode("utf-8")
     hashed_password = hashlib.sha512(password + salt.encode()).hexdigest()
     return hashed_password
@@ -54,7 +55,9 @@ def _hash_password(password: str, salt: str = _SALT) -> str:
 
 def _sqlalchemy_session_maker():
     """Generate a session for SQLAlchemy.
+
     There seems to be a better implementation to do this!"""
+
     import database
     from sqlalchemy import create_engine
     from sqlalchemy.ext.declarative import declarative_base
@@ -156,7 +159,7 @@ class SQLAlchemy(IAuth):
 
 class WebHandler(BaseHandler):
     def register(self, user_model, username: str, password: str) -> bool:
-        """Signup user with provided username and password
+        """Signup user with provided username and password.
 
         :param user_model: User model
         :type user_model: SQLAlchemy | Peewee |
@@ -165,10 +168,11 @@ class WebHandler(BaseHandler):
         :param password: Password
         :type password: str
         :raises UnsupportedUserModelError: If user_model was not
-        an instance of SQLAlchemy or Peewee.
+          an instance of SQLAlchemy or Peewee.
         :return: Return True, If user registration is successful.
         :rtype: bool
         """
+
         try:
             import peewee
 
@@ -200,7 +204,7 @@ class WebHandler(BaseHandler):
                 self.write("<h3>You have to install SQLAlchemy or Peewee first.</h3>")
 
     def login(self, user_model, username: str, password: str) -> bool:
-        """Signin user with provided username and password
+        """Signin user with provided username and password.
 
         :param user_model: User model
         :type user_model: SQLAlchemy | Peewee |
@@ -208,10 +212,12 @@ class WebHandler(BaseHandler):
         :type username: str
         :param password: Password
         :type password: str
-        :raises UnsupportedUserModelError: _description_
+        :raises UnsupportedUserModelError: If user_model was not
+          an instance of SQLAlchemy or Peewee.
         :return: Return True, if user login is successful.
         :rtype: True
         """
+
         try:
             import peewee
 
@@ -243,7 +249,8 @@ class WebHandler(BaseHandler):
                 self.write("<h3>You have to install SQLAlchemy or Peewee first.</h3>")
 
     def logout(self) -> None:
-        """Logout user"""
+        """Logout user."""
+
         self.clear_cookie("username")
 
     def authenticate(self) -> bool:
@@ -251,24 +258,27 @@ class WebHandler(BaseHandler):
 
         :rtype: bool
         """
+
         return bool(self.current_user)
 
     def get_current_user(self) -> str:
-        """To implement user authentication we need to
-        override this method. for more information, take a look
-        at Tornado documentation.
+        """To implement user authentication we need tooverride this method.
+
+        for more information, take a look at Tornado documentation.
 
         :return: A secure cookie
         :rtype: str
         """
+
         return self.get_secure_cookie("username")
 
     def redirect_to_route(self, name: str):
-        """Redirect to particular route
+        """Redirect to particular route.
 
         :param name: Name of route
         :type name: str
         """
+
         self.redirect(self.reverse_url(name))
 
     def get_escaped_argument(self, argument) -> str:
@@ -279,4 +289,5 @@ class WebHandler(BaseHandler):
         :return: Escaped argument
         :rtype: str
         """
+
         return self.get_argument(xhtml_escape(argument))
