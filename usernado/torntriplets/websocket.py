@@ -11,9 +11,10 @@ class WebSocketHandler(BaseSocket):
     ):
         """Send a message to specific participant
 
-        :message: Message to send
-        :returns: None
-
+        :param message: Message to send
+        :type message: Union[bytes, str, Dict[str, Any]]
+        :param binary: Type of message, defaults to False
+        :type binary: bool, optional
         """
         self.write_message(message, binary)
 
@@ -25,10 +26,12 @@ class WebSocketHandler(BaseSocket):
     ):
         """Broadcast a message to all participants
 
-        :participants: Participants to send broadcast message
-        :message: Message to send to all participants
-        :returns: None
-
+        :param participants: Participants to send message
+        :type participants: set
+        :param message: Message to send
+        :type message: Union[bytes, str, Dict[str, Any]]
+        :param binary: Type of message, defaults to False
+        :type binary: bool, optional
         """
         for participant in participants:
             participant.send(message, binary)
