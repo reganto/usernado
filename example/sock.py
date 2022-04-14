@@ -3,18 +3,18 @@ import secrets
 
 from tornado.web import Application, url
 from tornado.ioloop import IOLoop
-from usernado import Handler
+from usernado import Usernado
 
 
 BASE_DIR = Path(__file__).resolve().parent
 
 
-class Home(Handler.Web):
+class HomeHandler(Usernado.Web):
     def get(self):
         self.render("sock.html")
 
 
-class Echo(Handler.WebSocket):
+class EchoConnection(Usernado.WebSocket):
     def on_message(self, message):
         self.send(message)
         # Use send.broadcast(msg) to send message to all participants
@@ -23,8 +23,8 @@ class Echo(Handler.WebSocket):
 class App(Application):
     def __init__(self):
         handlers = [
-            url("/", Home),
-            url("/echo", Echo),
+            url("/", HomeHandler),
+            url("/echo", EchoConnection),
         ]
         settings = dict(
             debug=True,

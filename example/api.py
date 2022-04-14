@@ -1,11 +1,11 @@
 from usernado.helpers import api_route
 from tornado.web import Application
 from tornado.ioloop import IOLoop
-from usernado import Handler
+from usernado import Usernado
 
 
 @api_route("/api/v1.3/echo/")
-class EchoHandler(Handler.API):
+class EchoHandler(Usernado.API):
     def post(self):
         message = self.get_json_argument("message")
         self.write(message)
