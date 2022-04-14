@@ -23,13 +23,8 @@
   <summary>Table of Contents</summary>
   <ol>
     <li><a href="#why-usernado">Why Usernado</a></li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#installation">Installation</a></li>
     <li>
       <a href="#usage">Usage</a>
       <ul>
@@ -47,16 +42,11 @@
 
 ## Why Usernado
 
-I use Tornado every day. I really like it. But as you know, Tornado is not a full-stack framework, and I had to put all the pieces of the puzzle together every day! This may be interesting for the first and second time, but it will get annoying over time. So I tried to make a extension and use it whenever I wanted.
+I'm using Tornado every day. I really like it. Besides of all advantages of Tornado, it's not a full-stack framework, and I had to put all the pieces of the puzzle together every day! So this is my attempt to follow DRY(Don't Repeat Yourself) principle. this is how the Usernado was born.
 
-This is how the Usernado was born.
+<!-- Features -->
 
-
-<!-- Getting Started -->
-
-## Getting Started
-
-### Features
+## Features
 
 - REST support
 
@@ -68,12 +58,20 @@ This is how the Usernado was born.
 
 - Better exception printer thanks to [tornado-debugger](https://github.com/bhch/tornado-debugger)
 
-### Installation
+<!-- Getting Started -->
+
+## Installation
 
 Install it via pip:
 
 ```bash
 pip install usernado
+```
+
+Or you can install it via poetry:
+
+```bash
+poetry add usernado
 ```
 
 <!-- USAGE EXAMPLES -->
