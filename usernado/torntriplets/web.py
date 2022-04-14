@@ -112,7 +112,7 @@ class PeeweeAuth(IAuth):
             request.set_secure_cookie("username", username)
             return True
         else:
-            raise PermissionError("Your username or password is NOT correct.")
+            raise PermissionDeniedError("Your username or password is NOT correct.")
 
 
 class SQLAlchemy(IAuth):
@@ -151,7 +151,7 @@ class SQLAlchemy(IAuth):
             request.set_secure_cookie("username", username)
             return True
         else:
-            raise PermissionError("Your username or password is NOT correct.")
+            raise PermissionDeniedError("Your username or password is NOT correct.")
 
 
 class WebHandler(BaseHandler):
