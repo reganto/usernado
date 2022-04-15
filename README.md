@@ -60,19 +60,17 @@ I'm using Tornado every day. I really like it. Besides of all advantages of Torn
 
 <!-- Getting Started -->
 
-## Installation
+## Installation & Usage
 
-Install it via pip:
+Install either with pip or poetry.
 
 ```bash
 pip install usernado
-```
-
-Or you can install it via poetry:
-
-```bash
+or
 poetry add usernado
 ```
+
+Or optionally you can install from github using `pip install git+https://github.com/reganto/usernado`
 
 <!-- USAGE EXAMPLES -->
 
@@ -80,7 +78,16 @@ poetry add usernado
 
 ### Example
 
-Check it out [here](https://github.com/reganto/Usernado/tree/master/example).
+```python
+from usernado import Usernado
+
+
+class HelloHandler(Usernado.Web):
+    def get(self):
+        self.write("Hello, World!")
+```
+
+For more examples please Check out [examples](https://github.com/reganto/Usernado/tree/master/example).
 
 ### Resources
 
