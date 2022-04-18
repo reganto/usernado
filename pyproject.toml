@@ -1,11 +1,40 @@
 [tool.poetry]
 name = "usernado"
-version = "0.1.0"
+version = "0.2.2"
 description = "Usernado is a Tornado extension to make life easier."
-authors = ["Reganto <rreganto@gmail.com>"]
+authors = ["Reganto <tell.reganto@gmail.com>"]
+license = "Apache-2.0"
+readme = "README.md"
+homepage = "https://github.com/reganto/usernado"
+keywords = ["Tornado", "Python"]
+include = ["README.md", "LICENSE.txt"]
+classifiers = [
+    "Environment :: Web Environment",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.4",
+    "Programming Language :: Python :: 3.5",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/reganto/usernado/issues"
+
 
 [tool.poetry.dependencies]
 python = "^3.8"
+pendulum = "^2.1.2"
+tornado-debugger = "^0.9.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

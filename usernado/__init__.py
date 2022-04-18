@@ -1,10 +1,10 @@
-__version__ = "0.1.0"
-__all__ = ["Handler"]
+__version__ = "0.2.2"
+__all__ = ["Usernado"]
 
 from usernado.torntriplets import APIHandler, WebHandler, WebSocketHandler
 
 
-class Handler:
+class Usernado:
     API = APIHandler
     Web = WebHandler
     WebSocket = WebSocketHandler
