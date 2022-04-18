@@ -60,7 +60,7 @@ I'm using Tornado every day. I really like it. Besides of all advantages of Torn
 
 <!-- Getting Started -->
 
-## Installation & Usage
+## Installation
 
 Install either with pip or poetry.
 
@@ -123,8 +123,6 @@ Distributed under the Apache License. See `LICENSE.txt` for more information.
 
 ## Contact
 
-Project Link: [https://github.com/reganto/Usernado](https://github.com/reganto/Usernado)
-
-Email: [tell.reganto](mailto:tell.reganto@gmail.com)
+Email: tell.reganto[at]gmail[dotcom]
 
 <p align="right">(<a href="#top">back to top</a>)</p>
