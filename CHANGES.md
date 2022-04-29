@@ -1,0 +1,362 @@
+- Change version to v0.2.3
+- fixed #20 -- Other forms of noune pluralization added to Pluralize uimodule
+- Update readme - refs #7
+- tox.ini
+- Add Peewee, Sqlalchemy, black to dev env
+- Change version to v0.2.2 - refs #7
+- Change version to v0.2.2
+- Update readme
+- Update readme
+- Yet another small refactor - refs #7
+- Small refactor - refs #7
+- Add __all__ to errors module and helpers moduel - refs #7
+- Refactor examples - refs #7
+- Refactore docstring in web.py - refs #7
+- Better docstring for helpers methods - refs #7
+- Better dosctring for websocket.py - refs #7
+- Create seperate errors module - refs #7
+- Add better dostring for api.py - refs #7
+- Add better documentation for classes and methods - refs #7
+- Update linters workflow
+- Update linters workflow
+- Define Pluralize UI module test case
+- Fix misspelled file name
+- Update readme
+- Change version to 0.2.1
+- Pluralize uimodule - resolve #11
+- Update authentication example
+- Update authentication example
+- Fix a typo
+- A little refactoring on _hash_password type annotation
+- Update readme
+- Tests
+- Base test case
+- API test
+- Change versionadded to 0.2.0
+- v0.2.0
+- Update pyproject
+- Update docstrings
+- Update API example (api_route)
+- Add API router class to handlers
+- Change version to 0.1.1
+- api.py refactoring and documentation improvement (#16)
+- Reformat setup.py
+- Adopte code with Black linter for Github actions
+- Config gh-actions2
+- Config gh-actions
+- Change checkout tag version
+- Github actions initialize
+- Update readme
+- Update readme
+- Test usernado version
+- Update readme
+- Contributing
+- Refactor examples
+- Change version to 0.1.0
+- Update readme
+- Update readme
+- Humanize datetime example - refs #12
+- Add humanize helper(decorator) - resolves #12
+- setup.cfg
+- Update readme
+- Update readme
+- Authentication methods returns True if auth process done without any error - resolves #6
+- Update setup.cfg
+- setup.cfg
+- Change version to 0.0.7
+- Update readme
+- docs
+- Add CHANGES.md
+- Add example directory
+- Update setup.cfg
+- Update readme
+- Change dependencies versions
+- Convert static methods to class attributes
+- Change Handler.Api to Handler.API
+- Update readme
+- Change license to Apache 2
+- Some code refactoring
+- Make it ready for pypi packaging
+- License
+- Convert all relative imports to absolute imports
+- Update readme
+- Update readme
+- Merge branch 'fix-import'
+- Fix import
+- Update readme
+- Update README
+- Sort imports
+- Handle authentication methods via strategy design pattern
+- ORM Agnostic Authentication
+- ORM agnostic authentication
+- ORM agnostic authentication
+- foo
+- ORM agnostic authentication
+- Update README
+- Correct a typo
+- Update README
+- Update README
+- Update README
+- Peewee authentication is working now
+- remove on_open assignment
+- Move tests to tests branch
+- Simplify ummmm handlers and some refactores
+- readme
+- readme
+- Add send and broadcast methods to WebSocket handlers
+- readme
+- readme
+- readme
+- readme
+- readme
+- correct a typo in tests/base.py
+- login test user
+- Part of testcases consecutively repeated so I create a base test case then I tried to test get_json_argument(s) eventually we are green
+- Add a handler and a route to test get_json_argument(s)
+- refactor get_json_argument and get_json_arguments
+- Add autoreload flag to detect changes in source files and  automatically restart server
+- gitignore
+- Use secrets.token_ rather than os.urandom, I think it's more convenient
+- gitignore
+- PascalCase name for classes is much prettier and compliant with PEP8 so I tried to replace them
+- I thought about a favicon so static_path added to config.py
+- Rename Facade to Handler
+- Add a Facade for three type of handlers(api, web, websocket)
+- Rename views directory to handlers
+- app.py
+- tests
+- Remove LICENSE and settings.py
+- Rename routes to ROUTES
+- I think 'handlers' is a much better name for tornado request handlers directory rather than views
+- Class base configuration was a little confusing
+- update base.py and remove json_decode for secure_cookie
+- remove test
+- Merge commit '3296525'
+- Merge commit '25ca794'
+- use this test runner: python -m tornado.testing tests/test_basic.py
+- unit tests
+- tests directory
+- remove models dir, maybe it's better to create a single models.py file rather than models dir
+- Apache License 2.0
+- models
+- There is a new boilerplate
+- readme
+- readme
+- change icon
+- add delete .git dir to config file
+- remove additional lines for template engine
+- refine check email utility
+- remove all init files
+- refine validation utility
+- refine send email utility
+- delete __init__ in email utils
+- refine send emeil utility
+- add google error search: BBB
+- remove detail from error page
+- remove detail from error page
+- refine blog address
+- readme
+- change name of custom 404 class
+- set title for base template
+- license
+- readme
+- change font site of usernado
+- change default port to 8000
+- update config file
+- remove requirements.txt
+- integerate send & validation email in one directory
+- add __init__.py to sendmail
+- add __init__.py to validation
+- add __init__.py to captcha
+- add __init__.py to handlers
+- optimize settings
+- rename configure.sh
+- remove fabfile
+- rename vendor with utils
+- remove pylintrc
+- remove gitmodule
+- remove vendor directory
+- remove tests directory
+- remove submit button and add submit() function instead click to event handler
+- comment doc link
+- refine tornado link
+- remove lib directory
+- remove logconfig directory
+- remove logging module
+- remove log lines
+- remove settings.py from gitignore
+- remove settings.py.example
+- optimize settings.py
+- readme
+- readme
+- readme
+- add options.address to log line
+- add address command line option
+- add settings for custom 404 page
+- uncomment page title
+- add custome404 class
+- change page title
+- update settings.example
+- add docs link
+- add a line to get server status
+- add tornado snippets link
+- update gif
+- update codes
+- remove white spaces
+- update code
+- add sample gitmodule
+- remove extra requirements
+- update stdout logs
+- remove extra white spaces
+- remove snippets directory -> reganto/tornado-snippets
+- change license to GPL3
+- update code
+- update code
+- add secret keys section
+- add docstring
+- add secret keys section
+- re arrenge
+- remove keys folder
+- update send email utility
+- update email validation utility
+- delete all __init__ files
+- update captcha utility
+- update links
+- readme
+- integrate settings with send email utility
+- integerate settings with send email
+- add center class
+- readme
+- update git ignore
+- add api secret keys
+- update gitignore
+- add lib folder for other python files and add a sample file
+- update gitignore
+- readme
+- readme
+- readme
+- update config file
+- update config file
+- update config file
+- update config file
+- update config file
+- update startup script
+- update config file
+- rename to usernado
+- update config file
+- readme
+- update header
+- update logo
+- replace tuple with tornado.web.url method
+- update requirements
+- readme
+- add authentication snippet
+- remove utils link
+- change name of class
+- inital commit
+- add a test sample
+- readme
+- readme
+- readme
+- add check captcha function to utils
+- add email validation to utils
+- add send email function to utils
+- readme
+- readme
+- merge Merge branch 'master' of github.com:reganto/tornado
+- readme
+- readme
+- readme
+- readme
+- readme
+- readme
+- readme
+- readme
+- readme
+- add secret_cookie
+- add page_title to render
+- add page_title variable to base.html and remove bock title
+- refine links
+- readme
+- readme
+- add google search icon -> Not implemented
+- readme
+- add google serach icon -> not implemented
+- add duckduckgo serach icon
+- add error page
+- refine tornado header
+- add w3.css link to base.html
+- add write_error method to BaseHandler
+- readme
+- add template option to select template engine
+- readme
+- add requirements to projects
+- remove requirements dir
+- readme
+- readme
+- readme
+- add w3.css
+- add new version of jquery
+- remove old version of jquery
+- create a snippets dir in vendor and move snippets to it
+- snippet for handle mime type
+- refine repo, blog links
+- readme
+- readme
+- readme
+- update master file
+- update config file
+- update readme
+- update .gitignore
+- add redirect to base
+- remove redirect from vendor dir
+- add get_current_user to BaseHandler
+- configure file
+- readme
+- tornado command
+- configure file
+- readme
+- readme
+- readme
+- readme
+- readme
+- readme
+- readme
+- remove asstes directory
+- :)
+- readme
+- readme
+- readme
+- remove utilities and create vendor instead it
+- readme
+- update gitmodules
+- move redirect module to vendor directory
+- remove utilities directory ==> conflict with vendor dir
+- update gitignore
+- readme
+- readme
+- readme
+- update tornado script
+- update startup script
+- update index.html
+- update
+- update
+- update
+- update requirements/production
+- update production
+- update redirect module
+- change dir to ~ after installation
+- add git statements
+- create tornado script
+- delete code for create tornado script
+- update production
+- update setting
+- add a startup script
+- un comment permanent and status parameters
+- update tornado version
+- update readme
+- update license
+- update readme
+- update readme
+- update readme
+- initial commit
