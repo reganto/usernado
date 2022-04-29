@@ -21,14 +21,60 @@ class Pluralize(tornado.web.UIModule):
     )
     """
 
+    IRREGULAR_NOUNS = {
+        "woman": "women",
+        "man": "men",
+        "child": "children",
+        "tooth": "teeth",
+        "foot": "feet",
+        "person": "people",
+        "leaf": "leaves",
+        "mouse": "mice",
+        "goose": "geese",
+        "half": "halves",
+        "knife": "knives",
+        "wife": "wives",
+        "life": "lives",
+        "elf": "elves",
+        "loaf": "loaves",
+        "potato": "potatoes",
+        "tomato": "tomatoes",
+        "cactus": "cacti",
+        "focus": "foci",
+        "fungus": "fungi",
+        "nucleus": "nuclei",
+        "syllabus": "syllabuses",
+        "analysis": "analyses",
+        "diagnosis": "diagnoses",
+        "oasis": "oases",
+        "thesis": "theses",
+        "crisis": "crises",
+        "phenomenon": "phenomena",
+        "criterion": "criteria",
+        "datum": "data",
+    }
+
+    SAME_FORMS = {
+        "sheep": "sheep",
+        "fish": "fish",
+        "deer": "deer",
+        "species": "species",
+        "aircraft": "aircraft",
+    }
+
     def render(self, word: str, count: int) -> str:
         if count > 1:
-            if word.endswith(("s", "x", "z", "ch", "sh")):
+            if word in self.IRREGULAR_NOUNS:
+                return self.IRREGULAR_NOUNS.get(word)
+            elif word in self.SAME_FORMS:
+                return self.SAME_FORMS.get(word)
+            elif word.endswith(("s", "x", "z", "ch", "sh")):
                 return f"{word}es"
-            elif word.endswith("y"):
+            elif word[-2] not in ["o", "u", "e", "i", "a"] and word.endswith(
+                "y"
+            ):  # noqa E501
                 return f"{word[:len(word)-1]}ies"
             else:
-                # TODO: implement other forms of word pluralization
                 return f"{word}s"
         return word
 
