@@ -262,9 +262,10 @@ class WebHandler(BaseHandler):
         return bool(self.current_user)
 
     def get_current_user(self) -> str:
-        """To implement user authentication we need tooverride this method.
+        """To implement user authentication we need to override this method.
 
         for more information, take a look at Tornado documentation.
+        https://www.tornadoweb.org/en/stable/guide/security.html?highlight=get_current_user#user-authentication
 
         :return: A secure cookie
         :rtype: str
