@@ -281,13 +281,18 @@ class WebHandler(BaseHandler):
 
         self.redirect(self.reverse_url(name))
 
-    def get_escaped_argument(self, argument) -> str:
-        """Receives an argument from current request then escape it.
+    def get_escaped_argument(
+        self,
+        name: str,
+        default: str,
+        strip: bool = True,
+    ) -> str:
+        """Get an argument from current request then escape it.
 
-        :param argument: Incoming argument
-        :type argument: str
+        :param name: Name of desired argument
+        :type name: str
         :return: Escaped argument
         :rtype: str
         """
-
-        return self.get_argument(xhtml_escape(argument))
+        argument = self.get_argument(name, default, strip)
+        return xhtml_escape(argument)
