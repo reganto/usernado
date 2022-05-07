@@ -39,8 +39,8 @@ class RegisterHandler(Usernado.Web):
         self.render("register.html")
 
     def post(self):
-        username = self.get_escaped_argument("username")
-        password = self.get_escaped_argument("password")
+        username = self.get_escaped_argument("username", None)
+        password = self.get_escaped_argument("password", None)
         try:
             self.register(User, username, password)
         except Exception as e:
@@ -58,8 +58,8 @@ class LoginHandler(Usernado.Web):
         self.render("login.html")
 
     def post(self):
-        username = self.get_escaped_argument("username")
-        password = self.get_escaped_argument("password")
+        username = self.get_escaped_argument("username", None)
+        password = self.get_escaped_argument("password", None)
         try:
             self.login(User, username, password)
         except Exception as e:
