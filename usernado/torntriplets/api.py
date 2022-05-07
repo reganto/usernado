@@ -1,7 +1,8 @@
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 
 import tornado.escape
 import tornado.web
+
 from usernado.torntriplets.base import BaseHandler
 
 
@@ -14,12 +15,17 @@ class DataMalformedOrNotProvidedError(BaseValidationError):
 
 
 class APIHandler(BaseHandler):
-    def get_json_argument(self, name: str, default: str = None) -> str:
+    def get_json_argument(
+        self,
+        name: str,
+        default: Optional[str] = None,
+    ) -> str:
         """Get json argument from current request.
 
         :param name: Name of the argument
         :type name: str
-        :param default: Default value for argument if not presented, defaults to None
+        :param default: Default value for argument if not presented,
+         defaults to None
         :type default: str, optional
         :raises DataMalformedOrNotProvidedError:
         :return: Particular JSON argument that comes with current request
