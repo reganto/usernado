@@ -275,7 +275,7 @@ class WebHandler(BaseHandler):
     def redirect_to_route(self, name: str):
         """Redirect to particular route.
 
-        :param name: Name of route
+        :param name: Named route
         :type name: str
         """
 
