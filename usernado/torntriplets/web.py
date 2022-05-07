@@ -290,7 +290,7 @@ class WebHandler(BaseHandler):
         default: Union[None, str],
         strip: bool = True,
     ) -> Optional[str]:
-        """Get an argument from current request then escape it.
+        """Returns the escaped value of the argument with the given name.
 
         :param name: Name of desired argument
         :type name: str
