@@ -9,6 +9,7 @@
 import hashlib
 import secrets
 from abc import ABCMeta, abstractmethod
+from typing import Optional, Union
 
 from tornado.escape import xhtml_escape
 
@@ -286,9 +287,9 @@ class WebHandler(BaseHandler):
     def get_escaped_argument(
         self,
         name: str,
-        default: str,
+        default: Union[None, str],
         strip: bool = True,
-    ) -> str:
+    ) -> Optional[str]:
         """Get an argument from current request then escape it.
 
         :param name: Name of desired argument
