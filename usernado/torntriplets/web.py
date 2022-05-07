@@ -253,8 +253,9 @@ class WebHandler(BaseHandler):
 
         self.clear_cookie("username")
 
+    @property
     def authenticate(self) -> bool:
-        """Current user is authenticated or not
+        """Check if current user is authenticated
 
         :rtype: bool
         """
