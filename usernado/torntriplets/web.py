@@ -255,7 +255,7 @@ class WebHandler(BaseHandler):
 
     @property
     def authenticate(self) -> bool:
-        """Check if current user is authenticated
+        """Check if current user is authenticated.
 
         :rtype: bool
         """
