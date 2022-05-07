@@ -2,16 +2,17 @@
 01- Create a class which implement `IAuth` interface
  with name convention like so: ORMNAMEAuth
 02- Override `register` and `login` methods
-03- Add model check logic in WebHandler's register 
+03- Add model check logic in WebHandler's register
  and login methods.
 """
 
-from abc import ABCMeta, abstractmethod
 import hashlib
 import secrets
+from abc import ABCMeta, abstractmethod
+
+from tornado.escape import xhtml_escape
 
 from usernado.torntriplets.base import BaseHandler
-from tornado.escape import xhtml_escape
 
 
 class BaseValidationError(ValueError):
@@ -58,13 +59,12 @@ def _sqlalchemy_session_maker():
 
     There seems to be a better implementation to do this!"""
 
-    import database
     from sqlalchemy import create_engine
-    from sqlalchemy.ext.declarative import declarative_base
     from sqlalchemy.orm import sessionmaker
 
+    import database
+
     engine = create_engine(database.models.DB)
-    Base = declarative_base()
     Session = sessionmaker(bind=engine)
     session = Session()
     return session
