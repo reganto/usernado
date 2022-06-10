@@ -104,10 +104,10 @@ class PeeweeAuth(IAuth):
         else:
             return True
 
-    def login(request, model, username , password):
+    def login(request, model, username, password):
         user = None
         try:
-            user = model.filter(model.username==username).first()
+            user = model.filter(model.username == username).first()
         except Exception:
             raise UserDoesNotExistError
         else:
