@@ -104,15 +104,16 @@ class PeeweeAuth(IAuth):
         else:
             return True
 
-    def login(request, model, username, password):
-        user_exist = model.select().where(model.username == username).first()
+    def login(request, model, username , password):
+        user = None
+        try:
+            user = model.filter(model.username==username).first()
+        except Exception:
+            raise UserDoesNotExistError
+        else:
+            hashed_password = _hash_password(password, salt=user.salt)
 
-        if not user_exist:
-            raise UserDoesNotExistError("User does not exist.")
-
-        hashed_password = _hash_password(password, salt=user_exist.salt)
-
-        if user_exist and user_exist.password == hashed_password:
+        if user and user.password == hashed_password:
             request.set_secure_cookie("username", username)
             return True
         else:
