@@ -4,7 +4,7 @@
 <div align="center">
   <h1>Usernado</h1>
   <p align="center">
-    A Tornado Extension to Make Life Easier.
+    Makes it Easy to Manage Tornado :tornado: Applications
     <br />
     <a href="#"><strong>Explore the docs »</strong></a>
     <br />
