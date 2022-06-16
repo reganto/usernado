@@ -9,11 +9,7 @@
     <a href="#"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/reganto/Usernado/tree/master/example">View Demo</a>
-    ·
-    <a href="https://github.com/reganto/Usernado/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/reganto/Usernado/issues">Request Feature</a>
+    <a href="https://github.com/reganto/Usernado/issues"><img src="https://img.shields.io/github/issues/reganto/usernado"></a> <a href="https://github.com/reganto/usernado/blob/master/LICENSE.txt"><img src="https://img.shields.io/github/license/reganto/usernado"></a>  <a href="https://badge.fury.io/py/usernado"><img src="https://badge.fury.io/py/usernado.svg" alt="PyPI version" height="18"></a> <a href="https://pepy.tech/project/usernado"><img src="https://pepy.tech/badge/usernado"/></a>
   </p>
 </div>
 
