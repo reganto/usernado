@@ -114,7 +114,12 @@ class PeeweeAuth(IAuth):
             hashed_password = _hash_password(password, salt=user.salt)
 
         if user and user.password == hashed_password:
-            request.set_secure_cookie("username", username)
+            request.set_secure_cookie(
+                "username",
+                username,
+                secure=True,
+                httpOnly=True,
+            )
             return True
         else:
             raise PermissionDeniedError("Your username or password is NOT correct.")
@@ -153,7 +158,12 @@ class SQLAlchemy(IAuth):
         hashed_password = _hash_password(password, salt=user_exist.salt)
 
         if user_exist and user_exist.password == hashed_password:
-            request.set_secure_cookie("username", username)
+            request.set_secure_cookie(
+                "username",
+                username,
+                secure=True,
+                httpOnly=True,
+            )
             return True
         else:
             raise PermissionDeniedError("Your username or password is NOT correct.")
