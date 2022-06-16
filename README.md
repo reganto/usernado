@@ -13,27 +13,6 @@
   </p>
 </div>
 
-<!-- TABLE OF CONTENTS -->
-
-<!-- <details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li><a href="#why-usernado">Why Usernado</a></li>
-    <li><a href="#features">Features</a></li>
-    <li><a href="#installation">Installation</a></li>
-    <li>
-      <a href="#usage">Usage</a>
-      <ul>
-        <li><a href="#example">Example</a></li>
-        <li><a href="#resources">Resources</a></li>
-      </ul>
-    </li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ol>
-</details> -->
-
 <!-- Why Userndo  -->
 
 ## Why Usernado
@@ -44,15 +23,15 @@ I'm using Tornado every day. I really like it. Besides of all advantages of Torn
 
 ## Features
 
-- REST support
+- REST support :zap:
 
-- Websocket easier than ever
+- Websocket easier than ever :zap:
 
-- ORM agnostic authentication
+- ORM agnostic authentication :zap:
 
-- Humanize datetime in templates
+- Humanize datetime in templates :zap:
 
-- Better exception printer thanks to [tornado-debugger](https://github.com/bhch/tornado-debugger)
+- Better exception printer thanks to [tornado-debugger](https://github.com/bhch/tornado-debugger) :zap:
 
 <!-- Getting Started -->
 
