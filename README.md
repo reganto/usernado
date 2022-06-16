@@ -17,7 +17,7 @@
 
 ## Why Usernado
 
-I'm using 🌪️ every day. I really like it 😍 . Besides of all advantages of Tornado, it's not a full-stack framework, and I had to put all the pieces of the puzzle together every day 😩: ! So this is my attempt to follow DRY(Don't Repeat Yourself) principle. this is how the Usernado was born.
+I'm using 🌪️ every day. I really like it 😍 . Besides of all advantages of Tornado, it's not a full-stack framework, and I had to put all the pieces of the puzzle together every day 😩 ! So this is my attempt to follow DRY(Don't Repeat Yourself) principle. this is how the Usernado was born.
 
 <!-- Features -->
 
