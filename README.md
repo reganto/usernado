@@ -15,7 +15,7 @@
 
 <!-- TABLE OF CONTENTS -->
 
-<details>
+<!-- <details>
   <summary>Table of Contents</summary>
   <ol>
     <li><a href="#why-usernado">Why Usernado</a></li>
@@ -32,7 +32,7 @@
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
-</details>
+</details> -->
 
 <!-- Why Userndo  -->
 
@@ -62,11 +62,15 @@ Install either with pip or poetry.
 
 ```bash
 pip install usernado
-or
+```
+```bash
 poetry add usernado
 ```
 
-Or optionally you can install from github using `pip install git+https://github.com/reganto/usernado`
+Or optionally you can install from github using 
+```bash 
+pip install git+https://github.com/reganto/usernado
+```
 
 <!-- USAGE EXAMPLES -->
 
@@ -85,14 +89,6 @@ class HelloHandler(Usernado.Web):
 
 For more examples please Check out [examples](https://github.com/reganto/Usernado/tree/master/example).
 
-### Resources
-
-- [Documentation](#)
-
-- [PyPI](https://pypi.org/project/usernado/)
-
-- [Change Log](https://github.com/reganto/Usernado/blob/master/CHANGES.md)
-
 <!-- ROADMAP -->
 
 ## Roadmap
@@ -107,18 +103,10 @@ For more examples please Check out [examples](https://github.com/reganto/Usernad
 - [ ] Add third party authentication abstract methods
 - [ ] Add pagination
 
-See the [open issues](https://github.com/reganto/Usernado/issues) for a full list of proposed features (and known issues).
-
-<!-- LICENSE -->
-
-## License
-
-Distributed under the Apache License. See `LICENSE.txt` for more information.
-
 <!-- CONTACT -->
 
 ## Contact
 
 Email: tell.reganto[at]gmail[dotcom]
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right"><a href="#top"><img src="https://raw.githubusercontent.com/DjangoEx/python-engineer-roadmap/main/statics/top.png" width=50 height=50 /></a></p>
