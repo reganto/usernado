@@ -82,7 +82,6 @@ For more examples please Check out [examples](https://github.com/reganto/Usernad
 - [x] Add api_route for API handlers
 - [x] Add username & password to test login 
 - [x] Add pluralize (str_plural) uimodule
-- [ ] Add third party authentication abstract methods
 - [ ] Add pagination
 
 <!-- CONTACT -->
