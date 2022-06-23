@@ -9,6 +9,9 @@
     <a href="#"><strong>Explore the docs »</strong></a>
     <br />
     <br />
+    <a href="https://github.com/reganto/usernado/actions?query=workflow%3ALinters+event%3Apush+branch%3Amaster" target="_blank">
+    <img src="https://github.com/reganto/usernado/workflows/Linters/badge.svg?event=push&branch=master" alt="Test">
+    </a>
     <a href="https://github.com/reganto/Usernado/issues"><img src="https://img.shields.io/github/issues/reganto/usernado"></a> <a href="https://github.com/reganto/usernado/blob/master/LICENSE.txt"><img src="https://img.shields.io/github/license/reganto/usernado"></a>  <a href="https://badge.fury.io/py/usernado"><img src="https://badge.fury.io/py/usernado.svg" alt="PyPI version" height="18"></a> <a href="https://pepy.tech/project/usernado"><img src="https://pepy.tech/badge/usernado"/></a>
   </p>
 </div>
@@ -79,7 +82,6 @@ For more examples please Check out [examples](https://github.com/reganto/Usernad
 - [x] Add api_route for API handlers
 - [x] Add username & password to test login 
 - [x] Add pluralize (str_plural) uimodule
-- [ ] Add third party authentication abstract methods
 - [ ] Add pagination
 
 <!-- CONTACT -->
