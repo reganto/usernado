@@ -15,6 +15,21 @@ class DataMalformedOrNotProvidedError(BaseValidationError):
 
 
 class APIHandler(BaseHandler):
+    def _get_json_data(self) -> Dict[Any, Any]:
+        """Get JSON data from current request
+
+        :raises DataMalformedOrNotProvidedError:
+        :return: JSON data that comes with current request
+        :rtype: Dict[Any, Any]
+        """
+        try:
+            raw_data = self.request.body.decode().replace("'", '"')
+        except Exception:
+            raise DataMalformedOrNotProvidedError
+        else:
+            json_data = tornado.escape.json_decode(raw_data)
+            return json_data
+
     def get_json_argument(
         self,
         name: str,
@@ -31,13 +46,8 @@ class APIHandler(BaseHandler):
         :return: Particular JSON argument that comes with current request
         :rtype: str
         """
-        try:
-            raw_data = self.request.body.decode().replace("'", '"')
-        except Exception:
-            raise DataMalformedOrNotProvidedError
-        else:
-            json_data = tornado.escape.json_decode(raw_data)
-            return json_data.get(name, default)
+        data = self._get_json_data()
+        return data.get(name, default)
 
     def get_json_arguments(self) -> Dict[Any, Any]:
         """Get all json arguments from current request.
@@ -46,10 +56,4 @@ class APIHandler(BaseHandler):
         :return: All JSON argument that comes with current request
         :rtype: Dict[Any, Any]
         """
-        try:
-            raw_data = self.request.body.decode().replace("'", '"')
-        except Exception:
-            raise DataMalformedOrNotProvidedError
-        else:
-            json_data = tornado.escape.json_decode(raw_data)
-            return json_data
+        return self._get_json_data()
