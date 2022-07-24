@@ -286,14 +286,14 @@ class WebHandler(BaseHandler):
 
         return self.get_secure_cookie("username")
 
-    def redirect_to_route(self, name: str):
+    def redirect_to_route(self, name: str, *args):
         """Redirect to particular route.
 
         :param name: Named route
         :type name: str
         """
 
-        self.redirect(self.reverse_url(name))
+        self.redirect(self.reverse_url(name, args=args))
 
     def get_escaped_argument(
         self,
