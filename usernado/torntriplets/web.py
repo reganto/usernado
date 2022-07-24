@@ -293,7 +293,7 @@ class WebHandler(BaseHandler):
         :type name: str
         """
 
-        self.redirect(self.reverse_url(name, args=args))
+        self.redirect(self.reverse_url(name, *args))
 
     def get_escaped_argument(
         self,
