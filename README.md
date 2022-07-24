@@ -6,7 +6,7 @@
   <p align="center">
     Makes it Easy to Manage Tornado :tornado: Applications
     <br />
-    <a href="#"><strong>Explore the docs »</strong></a>
+    <a href="https://usernado.readthedocs.io/en/latest/"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/reganto/usernado/actions?query=workflow%3ALinters+event%3Apush+branch%3Amaster" target="_blank">
