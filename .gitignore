@@ -141,3 +141,7 @@ cython_debug/
 .vscode/
 
 favicon_io.zip
+
+node_modules/*
+package.json
+package-lock.json
