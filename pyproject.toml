@@ -1,11 +1,12 @@
 [tool.poetry]
 name = "usernado"
 version = "0.2.8"
-description = "Usernado is a Tornado Extension to Make Life Easier."
+description = "Makes it Easy to Manage Tornado Applications"
 authors = ["Reganto <tell.reganto@gmail.com>"]
 license = "Apache-2.0"
 readme = "README.md"
-homepage = "https://github.com/reganto/usernado"
+repository = "https://github.com/reganto/usernado"
+documentation = "https://usernado.readthedocs.io/en/latest/"
 keywords = ["Tornado", "Python"]
 include = ["README.md", "LICENSE.txt"]
 classifiers = [
@@ -43,7 +44,41 @@ sqlalchemy = "^1.4.31"
 flake8 = "^4.0.1"
 isort = "^5.10.1"
 pytest-cov = "^3.0.0"
+nox = "^2022.8.7"
+nox-poetry = "^1.0.1"
+mypy = "^0.971"
+pyproject-flake8 = "^0.0.1-alpha.4"
+flake8-bugbear = "^22.7.1"
+flake8-broken-line = "^0.4.0"
+flake8-comprehensions = "^3.10.0"
+pep8-naming = "^0.13.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+show_error_codes = true
+ignore_missing_imports = true
+strict = true
+
+[tool.flake8]
+max-line-length = 99
+extend-ignore = ["E203"]
+extend-exclude = [".nox", ".lock", ".toml"]
+
+[tool.black]
+line-length = 99
+target-version = ["py38", "py39", "py310"]
+extend-exclude = [".nox", ".lock", ".toml"]
+
+
+[tool.isort]
+profile = "black"
+line_length = 99
+force_sort_within_sections = true
+src_paths = ["usernado/"]
+skip_gitignore = true
+
+[tool.coverage.run]
+branch = true

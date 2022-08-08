@@ -1,11 +1,11 @@
-from pathlib import Path
 import secrets
+from pathlib import Path
 
-from tornado.web import Application, url
-from usernado.helpers import Pluralize
 from tornado.ioloop import IOLoop
-from usernado import Usernado
+from tornado.web import Application, url
 
+from usernado import Usernado
+from usernado.helpers import Pluralize
 
 BASE_DIR = Path(__file__).resolve().parent
 

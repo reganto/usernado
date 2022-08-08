@@ -1,7 +1,8 @@
-from usernado.helpers import api_route
-from tornado.web import Application
 from tornado.ioloop import IOLoop
+from tornado.web import Application
+
 from usernado import Usernado
+from usernado.helpers import api_route
 
 
 @api_route("/api/v1.3/echo/")

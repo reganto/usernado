@@ -1,12 +1,12 @@
-from datetime import datetime
 import secrets
+from datetime import datetime
 
-from usernado.helpers import humanize
-from tornado.web import Application
-from tornado.ioloop import IOLoop
-from usernado import Usernado
 import peewee
+from tornado.ioloop import IOLoop
+from tornado.web import Application
 
+from usernado import Usernado
+from usernado.helpers import humanize
 
 DB = peewee.SqliteDatabase("db.sqlite3")
 

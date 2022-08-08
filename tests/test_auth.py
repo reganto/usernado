@@ -1,5 +1,4 @@
 from example.authentication import User
-
 from tests.base import BaseTestCase
 
 

@@ -1,10 +1,11 @@
-from pathlib import Path
 import secrets
+from pathlib import Path
 
-from tornado.web import Application, authenticated, url
-from tornado.ioloop import IOLoop
-from usernado import Usernado
 import peewee
+from tornado.ioloop import IOLoop
+from tornado.web import Application, authenticated, url
+
+from usernado import Usernado
 
 BASE_DIR = Path(__file__).resolve().parent
 
