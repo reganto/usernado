@@ -12,7 +12,7 @@ class DataMalformedOrNotProvidedError(ValueError):
 
 class APIHandler(BaseHandler):
     def _get_json_data(self) -> Dict[Any, Any]:
-        """Get JSON data from incoming request
+        """Get JSON data from incoming request.
 
         :raises DataMalformedOrNotProvidedError:
         :return: JSON data from incoming request.
@@ -31,22 +31,22 @@ class APIHandler(BaseHandler):
         name: str,
         default: Optional[str] = None,
     ) -> str:
-        """Get json argument from current request.
+        """Get json argument from incoming request.
 
-        :param name: Name of the argument
+        :param name: Name of the argument.
         :type name: str
         :param default: Default value for argument if not presented,
          defaults to None
         :type default: str, optional
         :raises DataMalformedOrNotProvidedError:
-        :return: Particular JSON argument that comes with current request
+        :return: Particular JSON argument that comes with current request.
         :rtype: str
         """
         data = self._get_json_data()
         return data.get(name, default)
 
     def get_json_arguments(self) -> Dict[Any, Any]:
-        """Get all json arguments from current request.
+        """Get all json arguments from incoming request.
 
         :raises DataMalformedOrNotProvidedError:
         :return: All JSON argument that comes with current request

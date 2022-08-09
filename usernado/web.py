@@ -1,38 +1,37 @@
-"""If you want to add support for other ORM's:
-01- Create a class which implement `IAuth` interface
- with name convention like so: ORMNAMEAuth
-02- Override `register` and `login` methods
-03- Add model check logic in WebHandler's register
+"""If you want to add support for other ORM:
+- Create a class which implement :class:`IAuth` interface
+ with name convention like  ``_OrmNameAuth``.
+- Override :attr:`register` and :attr:`login` methods
+- Add model check logic in :class:`WebHandler`'s register
  and login methods.
 """
 
 from abc import ABCMeta, abstractmethod
 import hashlib
 import secrets
-from typing import Optional, Union
+from typing import Optional, Union, Any
 
+import sqlalchemy
+import peewee
+import tornado
 from tornado.escape import xhtml_escape
 
 from .base import BaseHandler
 
 
-class BaseValidationError(ValueError):
+class UserDoesNotExistError(ValueError):
     pass
 
 
-class UserDoesNotExistError(BaseValidationError):
+class UserAlreadyExistError(ValueError):
     pass
 
 
-class UserAlreadyExistError(BaseValidationError):
+class PermissionDeniedError(ValueError):
     pass
 
 
-class PermissionDeniedError(BaseValidationError):
-    pass
-
-
-class UnsupportedUserModelError(BaseValidationError):
+class UnsupportedUserModelError(ValueError):
     pass
 
 
@@ -42,11 +41,11 @@ _SALT = secrets.token_hex()
 def _hash_password(password: str, salt: str = _SALT) -> str:
     """Generate hashed password.
 
-    :param password: Incomming password
+    :param password: Incoming password.
     :type password: str
     :param salt: A salt to make hashing more strength, defaults to _SALT
     :type salt: str, optional
-    :return: A hashed password
+    :return: A hashed password.
     :rtype: str
     """
 
@@ -55,10 +54,15 @@ def _hash_password(password: str, salt: str = _SALT) -> str:
     return hashed_password
 
 
-def _sqlalchemy_session_maker():
+def _sqlalchemy_session_maker() -> "sqlalchemy.orm.sessionmaker":
     """Generate a session for SQLAlchemy.
 
-    There seems to be a better implementation to do this!"""
+    .. note:: I'm not sure this is a good implementiation for
+    generating sqlalchemy sessions.
+
+    :return: A generated sqlalchemy session
+    :rtype: sqlalchemy.orm.sessionmaker
+    """
 
     import database
     from sqlalchemy import create_engine
@@ -72,39 +76,90 @@ def _sqlalchemy_session_maker():
 
 class IAuth(metaclass=ABCMeta):
     """Every ORM specific authentication class MUST implement
-    this Interface and override `register` and `login` mehtods.
+    this Interface and override ``register`` and ``login`` mehtods.
     """
 
     @staticmethod
     @abstractmethod
-    def register(request, model, username, password):
+    def register(
+        request: tornado.httpclient.HTTPRequest,
+        model: Union[peewee.Model, "sqlalchemy.orm.declarative_base"],
+        username: str,
+        password: str,
+    ) -> bool:
+        """Abstract register method.
+
+        :param request: Incoming HTTP request.
+        :type request: tornado.httpclient.HTTPRequest
+        :param model: ORM model.
+        :type model: Union[peewee.Model, sqlalchemy.orm.declarative_base]
+        :param username: Username.
+        :type username: str
+        :param password: Password.
+        :type password: str
+        :return: True if user registration done successfully otherwise False.
+        :rtype: bool
+        """
         NotImplementedError
 
     @staticmethod
     @abstractmethod
-    def login(request, model, username, password):
+    def login(
+        request: tornado.httpclient.HTTPRequest,
+        model: Union[peewee.Model, "sqlalchemy.orm.declarative_base"],
+        username: str,
+        password: str,
+    ) -> bool:
+        """Abstract login method.
+
+        :param request: Incoming HTTP request.
+        :type request: tornado.httpclient.HTTPRequest
+        :param model: ORM model.
+        :type model: Union[peewee.Model, sqlalchemy.orm.declarative_base]
+        :param username: Username.
+        :type username: str
+        :param password: Password.
+        :type password: str
+        :return: True if user registration done successfully otherwise False.
+        :rtype: bool
+        """
         NotImplementedError
 
 
-class PeeweeAuth(IAuth):
+class _PeeweeAuth(IAuth):
     """Peewee specific authentication class."""
 
-    def register(request, model, username, password):
+    @staticmethod
+    def register(
+        request: tornado.httpclient.HTTPRequest,
+        model: Union[peewee.Model, "sqlalchemy.orm.declarative_base"],
+        username: str,
+        password: str,
+    ) -> bool:
         hashed_password = _hash_password(password)
-        user_already_exist = model.select().where(model.username == username).first()
+        user_already_exist = model.filter(model.username == username).first()
 
         if user_already_exist:
-            raise UserAlreadyExistError(user_already_exist)
+            raise UserAlreadyExistError
 
         try:
-            model.create(username=username, password=hashed_password, salt=_SALT)
+            model.create(
+                username=username,
+                password=hashed_password,
+                salt=_SALT,
+            )
         except Exception as e:
             print("Error in user registration proccess: ", e)
         else:
             return True
 
-    def login(request, model, username, password):
-        user = None
+    @staticmethod
+    def login(
+        request: tornado.httpclient.HTTPRequest,
+        model: Union[peewee.Model, "sqlalchemy.orm.declarative_base"],
+        username: str,
+        password: str,
+    ) -> bool:
         try:
             user = model.filter(model.username == username).first()
         except Exception:
@@ -124,10 +179,16 @@ class PeeweeAuth(IAuth):
             raise PermissionDeniedError("Your username or password is NOT correct.")
 
 
-class SQLAlchemy(IAuth):
+class _SQLAlchemy(IAuth):
     """SQLAlchemy specific authentication class."""
 
-    def register(request, model, username, password):
+    @staticmethod
+    def register(
+        request: tornado.httpclient.HTTPRequest,
+        model: Union[peewee.Model, "sqlalchemy.orm.declarative_base"],
+        username: str,
+        password: str,
+    ) -> bool:
         hashed_password = _hash_password(password)
         session = _sqlalchemy_session_maker()
         user_already_exist = session.query(model).filter_by(username=username).first()
@@ -147,7 +208,13 @@ class SQLAlchemy(IAuth):
         finally:
             session.close()
 
-    def login(request, model, username, password):
+    @staticmethod
+    def login(
+        request: tornado.httpclient.HTTPRequest,
+        model: Union[peewee.Model, "sqlalchemy.orm.declarative_base"],
+        username: str,
+        password: str,
+    ) -> bool:
         session = _sqlalchemy_session_maker()
         user_exist = session.query(model).filter_by(username=username).first()
 
@@ -169,95 +236,103 @@ class SQLAlchemy(IAuth):
 
 
 class WebHandler(BaseHandler):
-    def register(self, user_model, username: str, password: str) -> bool:
+    def register(
+        self,
+        model: Union[peewee.Model, "sqlalchemy.orm.declarative_base"],
+        username: str,
+        password: str,
+    ) -> bool:
         """Signup user with provided username and password.
 
-        :param user_model: User model
-        :type user_model: SQLAlchemy | Peewee |
-        :param username: Username
+        :param model: ORM model.
+        :type model: Union[peewee.Model, sqlalchemy.orm.declarative_base]
+        :param username: Username.
         :type username: str
-        :param password: Password
+        :param password: Password.
         :type password: str
-        :raises UnsupportedUserModelError: If user_model was not
-          an instance of SQLAlchemy or Peewee.
-        :return: Return True, If user registration is successful.
+        :raises UnsupportedUserModelError: Raised when auth operation for ``model`` was not provided.
+        :return: True if user registration done successfully otherwise False.
         :rtype: bool
         """
 
         try:
             import peewee
 
-            if issubclass(user_model, peewee.Model):
-                return PeeweeAuth.register(
+            if issubclass(model, peewee.Model):
+                return _PeeweeAuth.register(
                     request=self,
-                    model=user_model,
+                    model=model,
                     username=username,
                     password=password,
                 )
             else:
-                raise UnsupportedUserModelError(user_model)
+                raise UnsupportedUserModelError
         except (ModuleNotFoundError, UnsupportedUserModelError):
             try:
                 import sqlalchemy
 
-                if user_model.metadata:
+                if model.metadata:
                     # I've no experience in sqlalchemy so I look for a better
-                    # implementation to check if user_model is type of sqlalchemy or not.
-                    return SQLAlchemy.register(
+                    # implementation to check if model is type of sqlalchemy or not.
+                    return _SQLAlchemy.register(
                         request=self,
-                        model=user_model,
+                        model=model,
                         username=username,
                         password=password,
                     )
                 else:
-                    raise UnsupportedUserModelError(user_model)
+                    raise UnsupportedUserModelError
             except ModuleNotFoundError:
-                self.write("<h3>You have to install SQLAlchemy or Peewee first.</h3>")
+                self.write("<h3>Install <b>SQLAlchemy</b> or <b>Peewee</b> first.</h3>")
 
-    def login(self, user_model, username: str, password: str) -> bool:
+    def login(
+        self,
+        model: Union[peewee.Model, "sqlalchemy.orm.declarative_base"],
+        username: str,
+        password: str,
+    ) -> bool:
         """Signin user with provided username and password.
 
-        :param user_model: User model
-        :type user_model: SQLAlchemy | Peewee |
-        :param username: Username
+        :param model: ORM model.
+        :type model: Union[peewee.Model, sqlalchemy.orm.declarative_base]
+        :param username: Username.
         :type username: str
-        :param password: Password
+        :param password: Password.
         :type password: str
-        :raises UnsupportedUserModelError: If user_model was not
-          an instance of SQLAlchemy or Peewee.
-        :return: Return True, if user login is successful.
-        :rtype: True
+        :raises UnsupportedUserModelError: Raised when auth operation for ``model`` was not provided.
+        :return: True if user login done successfully otherwise False.
+        :rtype: bool
         """
 
         try:
             import peewee
 
-            if issubclass(user_model, peewee.Model):
-                return PeeweeAuth.login(
+            if issubclass(model, peewee.Model):
+                return _PeeweeAuth.login(
                     request=self,
-                    model=user_model,
+                    model=model,
                     username=username,
                     password=password,
                 )
             else:
-                raise UnsupportedUserModelError(user_model)
+                raise UnsupportedUserModelError(model)
         except (ModuleNotFoundError, UnsupportedUserModelError):
             try:
                 import sqlalchemy
 
-                if user_model.metadata:
+                if model.metadata:
                     # I've no experience in sqlalchemy so I look for a better
-                    # implementation to check if user_model is type of sqlalchemy or not.
-                    return SQLAlchemy.login(
+                    # implementation to check if model is type of sqlalchemy or not.
+                    return _SQLAlchemy.login(
                         request=self,
-                        model=user_model,
+                        model=model,
                         username=username,
                         password=password,
                     )
                 else:
-                    raise UnsupportedUserModelError(user_model)
+                    raise UnsupportedUserModelError
             except ModuleNotFoundError:
-                self.write("<h3>You have to install SQLAlchemy or Peewee first.</h3>")
+                self.write("<h3>Install <b>SQLAlchemy</b> or <b>Peewee</b> first.</h3>")
 
     def logout(self) -> None:
         """Logout user."""
@@ -266,26 +341,26 @@ class WebHandler(BaseHandler):
 
     @property
     def authenticate(self) -> bool:
-        """Check if current user is authenticated.
+        """Check if current user is authenticated?
 
         :rtype: bool
         """
 
         return bool(self.current_user)
 
-    def get_current_user(self) -> str:
+    def get_current_user(self) -> Optional[bytes]:
         """To implement user authentication we need to override this method.
 
         for more information, take a look at Tornado documentation.
         https://www.tornadoweb.org/en/stable/guide/security.html?highlight=get_current_user#user-authentication
 
-        :return: A secure cookie
-        :rtype: str
+        :return: A secure cookie.
+        :rtype: Optional[bytes]
         """
 
         return self.get_secure_cookie("username")
 
-    def redirect_to_route(self, name: str, *args):
+    def redirect_to_route(self, name: str, *args: Any) -> None:
         """Redirect to particular route.
 
         :param name: Named route
@@ -297,14 +372,18 @@ class WebHandler(BaseHandler):
     def get_escaped_argument(
         self,
         name: str,
-        default: Union[None, str],
+        default: Optional[str] = None,
         strip: bool = True,
-    ) -> Optional[str]:
-        """Returns the escaped value of the argument with the given name.
+    ) -> str:
+        """Returns the xhtml escaped value of the argument with the given name.
 
-        :param name: Name of desired argument
+        :param name: Name of the desired argument.
         :type name: str
-        :return: Escaped argument
+        :param default: Default value for non existing argument, defaults to None.
+        :type default: Optional[str], optional
+        :param strip: Strip argument value, defaults to True.
+        :type strip: bool, optional
+        :return: Escaped argument.
         :rtype: str
         """
         argument = self.get_argument(name, default, strip)

@@ -4,24 +4,34 @@ __all__ = [
     "api_route",
 ]
 
+from typing import Optional, Dict, Any, Callable, List
 import functools
 
 import pendulum
 import tornado.web
+import usernado
 
 
 class Pluralize(tornado.web.UIModule):
     """Pluralize a string based on a value.
 
-    You Must set `Pluralize` as a valid UIModule
-    In `ui_modules` setting like so.
+    You Must set ``Pluralize`` as a valid UIModule
+    In ``ui_modules`` setting like so::
+
+    .. code-block:: python
 
     ui_modules=dict(
         'pluralize': Pluralize,
     )
+
+    and then use this uimoduele in templates like so::
+
+    .. code-block:: html
+
+    {% module Pluralize(post, post_counts) %}
     """
 
-    IRREGULAR_NOUNS = {
+    IRREGULAR_NOUNS: Dict[str, str] = {
         "woman": "women",
         "man": "men",
         "child": "children",
@@ -54,7 +64,7 @@ class Pluralize(tornado.web.UIModule):
         "datum": "data",
     }
 
-    SAME_FORMS = {
+    SAME_FORMS: Dict[str, str] = {
         "sheep": "sheep",
         "fish": "fish",
         "deer": "deer",
@@ -62,7 +72,7 @@ class Pluralize(tornado.web.UIModule):
         "aircraft": "aircraft",
     }
 
-    def render(self, word: str, count: int) -> str:
+    def render(self, word: str, count: int) -> Optional[str]:
         if count > 1:
             if word in self.IRREGULAR_NOUNS:
                 return self.IRREGULAR_NOUNS.get(word)
@@ -77,14 +87,30 @@ class Pluralize(tornado.web.UIModule):
         return word
 
 
-def humanize(func):
+def humanize(func: Callable[..., Any]) -> Callable[..., Any]:
     """Humanize datetime in templates.
 
-    Take a look at example directory.
+    To use ``humanize`` you have to create a DateTimeField
+    in your model then create a function decorated with
+    ``humanize`` like so::
+
+    .. code-block:: python
+
+    @humanize
+    def diff_for_humans(self):
+        return self.created_at
+
+    then use this in your templates like so::
+
+    .. code-block:: html
+
+    {{ obj.diff_for_humans() }}
+
+    .. seealso:: for further information take a look at ``examples``.
     """
 
     @functools.wraps(func)
-    def wrapper(*args, **kwargs):
+    def wrapper(*args: Any, **kwargs: Any) -> str:
         field = func(*args, **kwargs)
         # replace naive datetime tzinfo with pendulum tzinfo
         # naive datetime(is not comparable)
@@ -96,6 +122,7 @@ def humanize(func):
         for word in result:
             if word == "after":
                 result.remove(word)
+        # TODO: Needs attention
         return " ".join([w for w in result])
 
     return wrapper
@@ -104,12 +131,16 @@ def humanize(func):
 class Route(object):
     """Usernado API router class."""
 
-    urls = []
+    urls: List[tornado.web.URLSpec] = []
 
-    def __call__(self, url: str, name: str = None):
-        def wrapper(cls):
+    def __call__(self, url: str, name: Optional[str] = None) -> Callable[..., Any]:  # noqa: E501
+        def wrapper(cls: usernado.APIHandler) -> usernado.APIHandler:
             self.urls.append(
-                tornado.web.URLSpec(url, cls, name=name if name else cls.__name__.lower())
+                tornado.web.URLSpec(
+                    url,
+                    cls,
+                    name=name if name else cls.__name__.lower(),
+                )
             )
             return cls
 
