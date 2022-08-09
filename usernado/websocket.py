@@ -6,6 +6,8 @@ from .base import BaseSocket
 
 
 class WebSocketHandler(BaseSocket):
+    """Every websocket handler MUST inherit from ``WebSocketHandler``."""
+
     def send(
         self,
         message: Union[bytes, str, Dict[str, Any]],

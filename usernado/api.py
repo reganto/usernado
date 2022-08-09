@@ -11,6 +11,12 @@ class DataMalformedOrNotProvidedError(ValueError):
 
 
 class APIHandler(BaseHandler):
+    """Every API handler MUST inherit from ``APIHandler``.
+
+    Actually ``APIHandler`` is a :ref:`webhandler` with extra two methods.
+    To use API functionalities you can decorate ``APIHandler`` inherited classes with :ref:`api_route`.
+    """
+
     def _get_json_data(self) -> Dict[Any, Any]:
         """Get JSON data from incoming request.
 

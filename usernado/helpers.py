@@ -16,19 +16,17 @@ class Pluralize(tornado.web.UIModule):
     """Pluralize a string based on a value.
 
     You Must set ``Pluralize`` as a valid UIModule
-    In ``ui_modules`` setting like so::
+    In ``ui_modules`` setting like so
 
     .. code-block:: python
 
-    ui_modules=dict(
-        'pluralize': Pluralize,
-    )
+       ui_modules=dict('pluralize': Pluralize)
 
-    and then use this uimoduele in templates like so::
+    and then use this uimoduele in templates like so
 
     .. code-block:: html
 
-    {% module Pluralize(post, post_counts) %}
+       {% module pluralize(post, post_counts) %}
     """
 
     IRREGULAR_NOUNS: Dict[str, str] = {
@@ -91,22 +89,19 @@ def humanize(func: Callable[..., Any]) -> Callable[..., Any]:
     """Humanize datetime in templates.
 
     To use ``humanize`` you have to create a DateTimeField
-    in your model then create a function decorated with
-    ``humanize`` like so::
+    in your model then create a method in your model decorated with
+    ``humanize`` like so
 
     .. code-block:: python
 
-    @humanize
-    def diff_for_humans(self):
-        return self.created_at
+       @humanize
+       def diff_for_humans(self):
+           return self.created_at
 
-    then use this in your templates like so::
+    then use ``humanize`` in your templates like so::
 
-    .. code-block:: html
 
-    {{ obj.diff_for_humans() }}
-
-    .. seealso:: for further information take a look at ``examples``.
+       {{ obj.diff_for_humans() }}
     """
 
     @functools.wraps(func)
@@ -128,8 +123,13 @@ def humanize(func: Callable[..., Any]) -> Callable[..., Any]:
     return wrapper
 
 
-class Route(object):
-    """Usernado API router class."""
+class _Route(object):
+    """Usernado API router class.
+
+    You can decorate :ref:`apihandler` inherited classes with ``api_route`` decorator.
+
+    .. seealso:: For further information take a look at `examples <https://github.com/reganto/usernado/tree/master/example>`_
+    """
 
     urls: List[tornado.web.URLSpec] = []
 
@@ -147,4 +147,4 @@ class Route(object):
         return wrapper
 
 
-api_route = Route()
+api_route = _Route()

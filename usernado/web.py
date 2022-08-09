@@ -1,9 +1,10 @@
 """If you want to add support for other ORM:
-- Create a class which implement :class:`IAuth` interface
- with name convention like  ``_OrmNameAuth``.
-- Override :attr:`register` and :attr:`login` methods
-- Add model check logic in :class:`WebHandler`'s register
- and login methods.
+
+1. Create a class which implement :class:`IAuth` interface with name convention like  ``_OrmNameAuth``.
+
+2. Override :class:`~IAuth.register` and :class:`~IAuth.login` methods
+
+3. Add model check logic in :class:`WebHandler`'s :class:`~WebHandler.register` and :class:`~WebHandler.login` methods.
 """
 
 from abc import ABCMeta, abstractmethod
@@ -236,6 +237,8 @@ class _SQLAlchemy(IAuth):
 
 
 class WebHandler(BaseHandler):
+    """Every HTTP request handler MUST inherit from ``WebHandler``."""
+
     def register(
         self,
         model: Union[peewee.Model, "sqlalchemy.orm.declarative_base"],
@@ -351,8 +354,7 @@ class WebHandler(BaseHandler):
     def get_current_user(self) -> Optional[bytes]:
         """To implement user authentication we need to override this method.
 
-        for more information, take a look at Tornado documentation.
-        https://www.tornadoweb.org/en/stable/guide/security.html?highlight=get_current_user#user-authentication
+        for more information, take a look at `Tornado documentation <https://www.tornadoweb.org/en/stable/guide/security.html?highlight=get_current_user#user-authentication>`_.
 
         :return: A secure cookie.
         :rtype: Optional[bytes]
