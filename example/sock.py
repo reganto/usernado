@@ -4,17 +4,17 @@ import secrets
 from tornado.ioloop import IOLoop
 from tornado.web import Application, url
 
-from usernado import Usernado
+from usernado import WebHandler, WebSocketHandler
 
 BASE_DIR = Path(__file__).resolve().parent
 
 
-class HomeHandler(Usernado.Web):
+class HomeHandler(WebHandler):
     def get(self):
         self.render("sock.html")
 
 
-class EchoConnection(Usernado.WebSocket):
+class EchoConnection(WebSocketHandler):
     def on_message(self, message):
         self.send(message)
         # Use send.broadcast(msg) to send message to all participants

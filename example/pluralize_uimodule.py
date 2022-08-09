@@ -4,13 +4,13 @@ import secrets
 from tornado.ioloop import IOLoop
 from tornado.web import Application, url
 
-from usernado import Usernado
+from usernado import WebHandler
 from usernado.helpers import Pluralize
 
 BASE_DIR = Path(__file__).resolve().parent
 
 
-class ReplyController(Usernado.Web):
+class ReplyController(WebHandler):
     def get(self):
         reply_counter = 2
         self.render("pluralize_uimodule.html", reply_counter=reply_counter)

@@ -5,7 +5,7 @@ import peewee
 from tornado.ioloop import IOLoop
 from tornado.web import Application, authenticated, url
 
-from usernado import Usernado
+from usernado import WebHandler
 
 BASE_DIR = Path(__file__).resolve().parent
 
@@ -35,7 +35,7 @@ DB.create_tables(
 )
 
 
-class RegisterHandler(Usernado.Web):
+class RegisterHandler(WebHandler):
     def get(self):
         self.render("register.html")
 
@@ -54,7 +54,7 @@ class RegisterHandler(Usernado.Web):
         pass
 
 
-class LoginHandler(Usernado.Web):
+class LoginHandler(WebHandler):
     def get(self):
         self.render("login.html")
 
@@ -73,14 +73,14 @@ class LoginHandler(Usernado.Web):
         pass
 
 
-class LogoutHandler(Usernado.Web):
+class LogoutHandler(WebHandler):
     def get(self):
         if self.authenticate():
             self.logout()
         self.redirect_to_route("login")
 
 
-class DashboardHandler(Usernado.Web):
+class DashboardHandler(WebHandler):
     @authenticated
     def get(self):
         self.write("Dashborad")
