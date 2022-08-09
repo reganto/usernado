@@ -1,6 +1,5 @@
-from tornado.testing import AsyncHTTPSTestCase
-
 from example.pluralize_uimodule import App
+from tornado.testing import AsyncHTTPSTestCase
 
 
 class PluralizeTestCase(AsyncHTTPSTestCase):

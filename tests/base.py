@@ -1,6 +1,5 @@
-from tornado.testing import AsyncHTTPSTestCase
-
 from example.authentication import App
+from tornado.testing import AsyncHTTPSTestCase
 
 
 class BaseTestCase(AsyncHTTPSTestCase):
