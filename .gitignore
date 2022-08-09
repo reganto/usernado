@@ -140,6 +140,10 @@ cython_debug/
 # VScode stuff
 .vscode/
 
+node_modules/*
+package.json
+package-lock.json
+
 favicon_io.zip
 
 node_modules/*
