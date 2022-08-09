@@ -1,5 +1,5 @@
-import secrets
 from pathlib import Path
+import secrets
 
 from tornado.ioloop import IOLoop
 from tornado.web import Application, url

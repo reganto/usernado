@@ -1,5 +1,5 @@
-import secrets
 from datetime import datetime
+import secrets
 
 import peewee
 from tornado.ioloop import IOLoop

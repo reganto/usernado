@@ -1,5 +1,5 @@
-import secrets
 from pathlib import Path
+import secrets
 
 import peewee
 from tornado.ioloop import IOLoop
