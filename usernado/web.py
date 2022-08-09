@@ -13,7 +13,7 @@ from typing import Optional, Union
 
 from tornado.escape import xhtml_escape
 
-from usernado.torntriplets.base import BaseHandler
+from .base import BaseHandler
 
 
 class BaseValidationError(ValueError):

@@ -3,23 +3,19 @@ from typing import Any, Dict, Optional
 import tornado.escape
 import tornado.web
 
-from usernado.torntriplets.base import BaseHandler
+from .base import BaseHandler
 
 
-class BaseValidationError(ValueError):
-    pass
-
-
-class DataMalformedOrNotProvidedError(BaseValidationError):
+class DataMalformedOrNotProvidedError(ValueError):
     pass
 
 
 class APIHandler(BaseHandler):
     def _get_json_data(self) -> Dict[Any, Any]:
-        """Get JSON data from current request
+        """Get JSON data from incoming request
 
         :raises DataMalformedOrNotProvidedError:
-        :return: JSON data that comes with current request
+        :return: JSON data from incoming request.
         :rtype: Dict[Any, Any]
         """
         try:
@@ -27,7 +23,7 @@ class APIHandler(BaseHandler):
         except Exception:
             raise DataMalformedOrNotProvidedError
         else:
-            json_data = tornado.escape.json_decode(raw_data)
+            json_data = tornado.escape.json_decode(raw_data)  # type: Dict[Any, Any]
             return json_data
 
     def get_json_argument(

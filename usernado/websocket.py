@@ -1,6 +1,6 @@
 from typing import Any, Dict, Union
 
-from usernado.torntriplets.base import BaseSocket
+from .base import BaseSocket
 
 
 class WebSocketHandler(BaseSocket):

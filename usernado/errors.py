@@ -6,8 +6,8 @@ __all__ = [
     "DataMalformedOrNotProvidedError",
 ]
 
-from torntriplets.api import DataMalformedOrNotProvidedError
-from torntriplets.web import (
+from .api import DataMalformedOrNotProvidedError
+from .web import (
     PermissionDeniedError,
     UnsupportedUserModelError,
     UserAlreadyExistError,
