@@ -6,9 +6,9 @@
  and login methods.
 """
 
+from abc import ABCMeta, abstractmethod
 import hashlib
 import secrets
-from abc import ABCMeta, abstractmethod
 from typing import Optional, Union
 
 from tornado.escape import xhtml_escape
@@ -60,10 +60,9 @@ def _sqlalchemy_session_maker():
 
     There seems to be a better implementation to do this!"""
 
+    import database
     from sqlalchemy import create_engine
     from sqlalchemy.orm import sessionmaker
-
-    import database
 
     engine = create_engine(database.models.DB)
     Session = sessionmaker(bind=engine)

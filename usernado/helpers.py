@@ -70,9 +70,7 @@ class Pluralize(tornado.web.UIModule):
                 return self.SAME_FORMS.get(word)
             elif word.endswith(("s", "x", "z", "ch", "sh")):
                 return f"{word}es"
-            elif word[-2] not in ["o", "u", "e", "i", "a"] and word.endswith(
-                "y"
-            ):  # noqa E501
+            elif word[-2] not in ["o", "u", "e", "i", "a"] and word.endswith("y"):  # noqa E501
                 return f"{word[:len(word)-1]}ies"
             else:
                 return f"{word}s"
@@ -111,9 +109,7 @@ class Route(object):
     def __call__(self, url: str, name: str = None):
         def wrapper(cls):
             self.urls.append(
-                tornado.web.URLSpec(
-                    url, cls, name=name if name else cls.__name__.lower()
-                )
+                tornado.web.URLSpec(url, cls, name=name if name else cls.__name__.lower())
             )
             return cls
 
