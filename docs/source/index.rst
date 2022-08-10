@@ -12,7 +12,7 @@ Usernado
 Quick links
 ===========
 
-- Current version: 0.3 (`download from PyPI <pypi.org/project/usernado/>`_, `Change Log <https://github.com/reganto/usernado/blob/master/CHANGELOG.md>`_)
+- Current version: 0.3 (`download from PyPI <https://pypi.org/project/usernado//>`_, `Change Log <https://github.com/reganto/usernado/blob/master/CHANGELOG.md>`_)
 
 - Source `Github <https://github.com/reganto/usernado/>`_
 
