@@ -21,4 +21,4 @@ Features
 
 - `Humanize datetime in templates <https://github.com/reganto/usernado/blob/master/example/authentication.py>`_ |:zap:|
 
-- Better exception printer thanks to `tornado-debugger <https://github.com/bhch/tornado-debugger>`_ |:zap:|
+- `Better exception printer thanks to tornado-debugger <https://github.com/bhch/tornado-debugger>`_ |:zap:|
