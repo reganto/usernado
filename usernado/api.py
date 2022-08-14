@@ -1,9 +1,12 @@
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Union
 
 import tornado.escape
 import tornado.web
 
 from .base import BaseHandler
+
+
+_Message = Dict[str, Union[str, bytes]]
 
 
 class DataMalformedOrNotProvidedError(ValueError):
@@ -59,3 +62,23 @@ class APIHandler(BaseHandler):
         :rtype: Dict[Any, Any]
         """
         return self._get_json_data()
+
+    def response(
+        self,
+        message: _Message,
+        headers: Dict[str, str],
+        status_code: int,
+    ) -> None:
+        """send JSON response to the client.
+
+        :param message: Response body.
+        :type message: Dict[str, Union[str, bytes]]
+        :param headers: Response headers.
+        :type headers: Dict[str, str]
+        :param status_code: Response status code
+        :type status_code: int
+        """
+        self.write(message)
+        self.set_status(status_code)
+        for key, value in headers.items():
+            self.set_header(key, value)
