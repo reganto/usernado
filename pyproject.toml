@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "usernado"
-version = "0.3"
+version = "0.3.1"
 description = "Makes it Easy to Manage Tornado Applications"
 authors = ["Reganto <tell.reganto@gmail.com>"]
 license = "Apache-2.0"
