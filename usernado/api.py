@@ -66,19 +66,20 @@ class APIHandler(BaseHandler):
     def response(
         self,
         message: _Message,
-        headers: Dict[str, str],
-        status_code: int,
+        headers: Optional[Dict[str, str]] = None,
+        status_code: int = 200,
     ) -> None:
-        """send JSON response to the client.
+        """Send JSON response to the client.
 
         :param message: Response body.
-        :type message: Dict[str, Union[str, bytes]]
-        :param headers: Response headers.
-        :type headers: Dict[str, str]
-        :param status_code: Response status code
-        :type status_code: int
+        :type message: _Message
+        :param headers: Response headers, defaults to None
+        :type headers: Optional[Dict[str, str]], optional
+        :param status_code: Response status code, defaults to 200
+        :type status_code: int, optional
         """
         self.write(message)
         self.set_status(status_code)
-        for key, value in headers.items():
-            self.set_header(key, value)
+        if headers is not None:
+            for key, value in headers.items():
+                self.set_header(key, value)
