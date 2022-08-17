@@ -78,7 +78,8 @@ class APIHandler(BaseHandler):
         :param status_code: Response status code, defaults to 200
         :type status_code: int, optional
         """
-        self.write(message)
+        if message is not None:
+            self.write(message)
         self.set_status(status_code)
         if headers is not None:
             for key, value in headers.items():
