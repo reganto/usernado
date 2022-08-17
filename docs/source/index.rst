@@ -21,42 +21,38 @@ Quick links
 Hello, world
 ============
 
-Here is a simple "Hello, world" example web app for Usernado:
+Here is a simple "Hello, world" example for Usernado:
 
 .. code-block:: python
 
-      from tornado.ioloop import IOLoop
-      from tornado.web import Application
-
-      from usernado import APIHandler
       from usernado.helpers import api_route
+      from usernado import APIHandler
+      from tornado import web, ioloop
 
 
-      @api_route("/api/v1.3/echo/")
-      class EchoHandler(APIHandler):
-          def post(self):
-              message = self.get_json_argument("message")
-              self.write(message)
+      @api_route("/hello", name="hello")
+      class Hello(APIHandler):
+          def get(self):
+              self.response({"message": "Hello, world"})
 
+      def make_app():
+          return web.Application(api_route.urls, autoreload=True)
 
-      class App(Application):
-          def __init__(self):
-              super().__init__(api_route.urls, debug=True)
+      
+      def main():
+          app = make_app()
+          app.listen(8000)
+          ioloop.IOLoop.current().start()
 
 
       if __name__ == "__main__":
-          App().listen(8000)
-          IOLoop.current().start()
-
+          main()
 
 Then you can test it via `Curl <https://curl.se/>`_ or other HTTP Clients.
 
 .. code-block:: bash
 
-   $ curl -X POST \
-     -i http:/localhost:8000/api/v1.3/echo/ \
-     -H "Content-Type:application/json" \
-     -d "{'message': 'Hello'}"
+   $ curl localhost:8000/hello
 
 
 
