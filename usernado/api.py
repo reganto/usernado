@@ -6,7 +6,7 @@ import tornado.web
 from .base import BaseHandler
 
 
-_Message = Dict[str, Union[str, bytes]]
+_Message = Optional[Dict[str, Union[str, bytes]]]
 
 
 class DataMalformedOrNotProvidedError(ValueError):
@@ -65,7 +65,7 @@ class APIHandler(BaseHandler):
 
     def response(
         self,
-        message: _Message,
+        message: _Message = None,
         headers: Optional[Dict[str, str]] = None,
         status_code: int = 200,
     ) -> None:
