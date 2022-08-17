@@ -58,15 +58,31 @@ pip install git+https://github.com/reganto/usernado
 
 ## Usage
 
-### Example
+### Hello Usernado
 
 ```python
-from usernado import Usernado
+from usernado.helpers import api_route
+from usernado import APIHandler
+from tornado import web, ioloop
 
 
-class HelloHandler(Usernado.Web):
+@api_route("/hello", name="hello")
+class Hello(APIHandler):
     def get(self):
-        self.write("Hello, World!")
+        self.response({"message": "Hello, Usernado"})
+
+def make_app():
+    return web.Application(api_route.urls, autoreload=True)
+
+
+def main():
+    app = make_app()
+    app.listen(8000)
+    ioloop.IOLoop.current().start()
+
+
+if __name__ == "__main__":
+    main()
 ```
 
 For more examples please Check out [examples](https://github.com/reganto/Usernado/tree/master/example).
@@ -88,6 +104,6 @@ For more examples please Check out [examples](https://github.com/reganto/Usernad
 
 ## Contact
 
-Email: tell.reganto[at]gmail[dot]com
+Email: tell.reganto[at]gmail.com
 
 <p align="right"><a href="#top"><img src="https://raw.githubusercontent.com/DjangoEx/python-engineer-roadmap/main/statics/top.png" width=50 height=50 /></a></p>
