@@ -12,8 +12,6 @@ import hashlib
 import secrets
 from typing import Optional, Union, Any
 
-import sqlalchemy
-import peewee
 import tornado
 from tornado.escape import xhtml_escape
 
@@ -84,7 +82,7 @@ class IAuth(metaclass=ABCMeta):
     @abstractmethod
     def register(
         request: tornado.httpclient.HTTPRequest,
-        model: Union[peewee.Model, "sqlalchemy.orm.declarative_base"],
+        model: Union["peewee.Model", "sqlalchemy.orm.declarative_base"],
         username: str,
         password: str,
     ) -> bool:
@@ -107,7 +105,7 @@ class IAuth(metaclass=ABCMeta):
     @abstractmethod
     def login(
         request: tornado.httpclient.HTTPRequest,
-        model: Union[peewee.Model, "sqlalchemy.orm.declarative_base"],
+        model: Union["peewee.Model", "sqlalchemy.orm.declarative_base"],
         username: str,
         password: str,
     ) -> bool:
@@ -133,7 +131,7 @@ class _PeeweeAuth(IAuth):
     @staticmethod
     def register(
         request: tornado.httpclient.HTTPRequest,
-        model: Union[peewee.Model, "sqlalchemy.orm.declarative_base"],
+        model: Union["peewee.Model", "sqlalchemy.orm.declarative_base"],
         username: str,
         password: str,
     ) -> bool:
@@ -157,7 +155,7 @@ class _PeeweeAuth(IAuth):
     @staticmethod
     def login(
         request: tornado.httpclient.HTTPRequest,
-        model: Union[peewee.Model, "sqlalchemy.orm.declarative_base"],
+        model: Union["peewee.Model", "sqlalchemy.orm.declarative_base"],
         username: str,
         password: str,
     ) -> bool:
@@ -186,7 +184,7 @@ class _SQLAlchemy(IAuth):
     @staticmethod
     def register(
         request: tornado.httpclient.HTTPRequest,
-        model: Union[peewee.Model, "sqlalchemy.orm.declarative_base"],
+        model: Union["peewee.Model", "sqlalchemy.orm.declarative_base"],
         username: str,
         password: str,
     ) -> bool:
@@ -212,7 +210,7 @@ class _SQLAlchemy(IAuth):
     @staticmethod
     def login(
         request: tornado.httpclient.HTTPRequest,
-        model: Union[peewee.Model, "sqlalchemy.orm.declarative_base"],
+        model: Union["peewee.Model", "sqlalchemy.orm.declarative_base"],
         username: str,
         password: str,
     ) -> bool:
@@ -241,7 +239,7 @@ class WebHandler(BaseHandler):
 
     def register(
         self,
-        model: Union[peewee.Model, "sqlalchemy.orm.declarative_base"],
+        model: Union["peewee.Model", "sqlalchemy.orm.declarative_base"],
         username: str,
         password: str,
     ) -> bool:
@@ -290,7 +288,7 @@ class WebHandler(BaseHandler):
 
     def login(
         self,
-        model: Union[peewee.Model, "sqlalchemy.orm.declarative_base"],
+        model: Union["peewee.Model", "sqlalchemy.orm.declarative_base"],
         username: str,
         password: str,
     ) -> bool:
