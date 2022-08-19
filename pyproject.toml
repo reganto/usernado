@@ -66,7 +66,7 @@ strict = true
 
 [tool.flake8]
 max-line-length = 99
-extend-ignore = ["E203", "F401"]
+extend-ignore = ["E203", "F401", "E501"]
 extend-exclude = [".nox", ".lock", ".toml"]
 
 [tool.black]
