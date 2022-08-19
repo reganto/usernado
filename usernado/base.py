@@ -1,5 +1,5 @@
-from tornado_debugger import DebuggerMixin
 from tornado import web, websocket
+from tornado_debugger import DebuggerMixin
 
 
 class BaseHandler(DebuggerMixin, web.RequestHandler):

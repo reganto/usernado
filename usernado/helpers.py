@@ -4,11 +4,12 @@ __all__ = [
     "api_route",
 ]
 
-from typing import Optional, Dict, Any, Callable, List
 import functools
+from typing import Any, Callable, Dict, List, Optional
 
 import pendulum
 import tornado.web
+
 import usernado
 
 
@@ -117,8 +118,7 @@ def humanize(func: Callable[..., Any]) -> Callable[..., Any]:
         for word in result:
             if word == "after":
                 result.remove(word)
-        # TODO: Needs attention
-        return " ".join([w for w in result])
+        return " ".join(list(result))
 
     return wrapper
 
@@ -128,7 +128,8 @@ class _Route(object):
 
     You can decorate :ref:`apihandler` inherited classes with ``api_route`` decorator.
 
-    .. seealso:: For further information take a look at `examples <https://github.com/reganto/usernado/tree/master/example>`_
+    .. seealso:: For further information take a look at
+    `examples <https://github.com/reganto/usernado/tree/master/example>`_
     """
 
     urls: List[tornado.web.URLSpec] = []

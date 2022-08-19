@@ -1,4 +1,4 @@
-from typing import Any, Dict, Union, Set
+from typing import Any, Dict, Set, Union
 
 import usernado
 

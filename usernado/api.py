@@ -5,7 +5,6 @@ import tornado.web
 
 from .base import BaseHandler
 
-
 _Message = Optional[Dict[str, Union[str, bytes]]]
 
 
@@ -17,7 +16,8 @@ class APIHandler(BaseHandler):
     """Every API handler MUST inherit from ``APIHandler``.
 
     Actually ``APIHandler`` is a :ref:`webhandler` with extra two methods.
-    To use API functionalities you can decorate ``APIHandler`` inherited classes with :ref:`api_route`.
+    To use API functionalities you can decorate ``APIHandler`` inherited
+    classes with :ref:`api_route`.
     """
 
     def _get_json_data(self) -> Dict[Any, Any]:

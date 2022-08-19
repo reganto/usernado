@@ -1,16 +1,18 @@
 """If you want to add support for other ORM:
 
-1. Create a class which implement :class:`IAuth` interface with name convention like  ``_OrmNameAuth``.
+1. Create a class which implement :class:`IAuth`
+interface with name convention like  ``_OrmNameAuth``.
 
 2. Override :class:`~IAuth.register` and :class:`~IAuth.login` methods
 
-3. Add model check logic in :class:`WebHandler`'s :class:`~WebHandler.register` and :class:`~WebHandler.login` methods.
+3. Add model check logic in :class:`WebHandler`'s :class:`~WebHandler.register`
+and :class:`~WebHandler.login` methods.
 """
 
 from abc import ABCMeta, abstractmethod
 import hashlib
 import secrets
-from typing import Optional, Union, Any
+from typing import Any, Optional, Union
 
 import tornado
 from tornado.escape import xhtml_escape
@@ -36,6 +38,8 @@ class UnsupportedUserModelError(ValueError):
 
 _SALT = secrets.token_hex()
 
+_Model = Union["peewee.Model", "sqlalchemy.orm.declarative_base"]  # noqa: F821
+
 
 def _hash_password(password: str, salt: str = _SALT) -> str:
     """Generate hashed password.
@@ -53,7 +57,7 @@ def _hash_password(password: str, salt: str = _SALT) -> str:
     return hashed_password
 
 
-def _sqlalchemy_session_maker() -> "sqlalchemy.orm.sessionmaker":
+def _sqlalchemy_session_maker() -> "sqlalchemy.orm.sessionmaker":  # noqa: F821
     """Generate a session for SQLAlchemy.
 
     .. note:: I'm not sure this is a good implementiation for
@@ -68,9 +72,9 @@ def _sqlalchemy_session_maker() -> "sqlalchemy.orm.sessionmaker":
     from sqlalchemy.orm import sessionmaker
 
     engine = create_engine(database.models.DB)
-    Session = sessionmaker(bind=engine)
-    session = Session()
-    return session
+    session = sessionmaker(bind=engine)
+    session_instance = session()
+    return session_instance
 
 
 class IAuth(metaclass=ABCMeta):
@@ -82,7 +86,7 @@ class IAuth(metaclass=ABCMeta):
     @abstractmethod
     def register(
         request: tornado.httpclient.HTTPRequest,
-        model: Union["peewee.Model", "sqlalchemy.orm.declarative_base"],
+        model: _Model,
         username: str,
         password: str,
     ) -> bool:
@@ -105,7 +109,7 @@ class IAuth(metaclass=ABCMeta):
     @abstractmethod
     def login(
         request: tornado.httpclient.HTTPRequest,
-        model: Union["peewee.Model", "sqlalchemy.orm.declarative_base"],
+        model: _Model,
         username: str,
         password: str,
     ) -> bool:
@@ -131,7 +135,7 @@ class _PeeweeAuth(IAuth):
     @staticmethod
     def register(
         request: tornado.httpclient.HTTPRequest,
-        model: Union["peewee.Model", "sqlalchemy.orm.declarative_base"],
+        model: _Model,
         username: str,
         password: str,
     ) -> bool:
@@ -155,7 +159,7 @@ class _PeeweeAuth(IAuth):
     @staticmethod
     def login(
         request: tornado.httpclient.HTTPRequest,
-        model: Union["peewee.Model", "sqlalchemy.orm.declarative_base"],
+        model: _Model,
         username: str,
         password: str,
     ) -> bool:
@@ -184,7 +188,7 @@ class _SQLAlchemy(IAuth):
     @staticmethod
     def register(
         request: tornado.httpclient.HTTPRequest,
-        model: Union["peewee.Model", "sqlalchemy.orm.declarative_base"],
+        model: _Model,
         username: str,
         password: str,
     ) -> bool:
@@ -210,7 +214,7 @@ class _SQLAlchemy(IAuth):
     @staticmethod
     def login(
         request: tornado.httpclient.HTTPRequest,
-        model: Union["peewee.Model", "sqlalchemy.orm.declarative_base"],
+        model: _Model,
         username: str,
         password: str,
     ) -> bool:
@@ -239,7 +243,7 @@ class WebHandler(BaseHandler):
 
     def register(
         self,
-        model: Union["peewee.Model", "sqlalchemy.orm.declarative_base"],
+        model: _Model,
         username: str,
         password: str,
     ) -> bool:
@@ -251,7 +255,8 @@ class WebHandler(BaseHandler):
         :type username: str
         :param password: Password.
         :type password: str
-        :raises UnsupportedUserModelError: Raised when auth operation for ``model`` was not provided.
+        :raises UnsupportedUserModelError: Raised when auth operation
+        for ``model`` was not provided.
         :return: True if user registration done successfully otherwise False.
         :rtype: bool
         """
@@ -288,7 +293,7 @@ class WebHandler(BaseHandler):
 
     def login(
         self,
-        model: Union["peewee.Model", "sqlalchemy.orm.declarative_base"],
+        model: Union["peewee.Model", "sqlalchemy.orm.declarative_base"],  # noqa F821
         username: str,
         password: str,
     ) -> bool:
@@ -300,7 +305,8 @@ class WebHandler(BaseHandler):
         :type username: str
         :param password: Password.
         :type password: str
-        :raises UnsupportedUserModelError: Raised when auth operation for ``model`` was not provided.
+        :raises UnsupportedUserModelError: Raised when auth operation
+        for ``model`` was not provided.
         :return: True if user login done successfully otherwise False.
         :rtype: bool
         """
@@ -352,7 +358,8 @@ class WebHandler(BaseHandler):
     def get_current_user(self) -> Optional[bytes]:
         """To implement user authentication we need to override this method.
 
-        for more information, take a look at `Tornado documentation <https://www.tornadoweb.org/en/stable/guide/security.html?highlight=get_current_user#user-authentication>`_.
+        for more information, take a look at
+        `Tornado documentation <https://www.tornadoweb.org/en/stable/guide/security.html?highlight=get_current_user#user-authentication>`_.
 
         :return: A secure cookie.
         :rtype: Optional[bytes]
