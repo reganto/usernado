@@ -1,0 +1,42 @@
+name: build
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ "3.8", "3.9", "3.10" ]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install poetry
+        run: pipx install poetry
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+          # https://github.com/actions/setup-python#caching-packages-dependencies
+          cache: poetry
+      - name: Install all dependencies, including Nox
+        run: poetry install
+      - name: Test with Nox
+        run: poetry run nox -s test-${{ matrix.python-version }}
+  quality:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        nox-session: [ "fmt", "fmt_check", "lint", "test" ]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install poetry
+        run: pipx install poetry
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+          cache: poetry
+      - name: Install all dependencies, including Nox
+        run: poetry install
+      - name: Test with Nox
+        run: poetry run nox -s ${{ matrix.nox-session }}
