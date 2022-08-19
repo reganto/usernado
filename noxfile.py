@@ -27,7 +27,7 @@ def fmt_check(s: Session) -> None:
     s.run("black", "--check", ".")
 
 
-@session(python=["3.8", "3.9", "3.10"])
+@session(python=["3.8", "3.9"])
 def test(s: Session) -> None:
     s.install(".", "pytest", "pytest-cov", "peewee")
     s.run(
