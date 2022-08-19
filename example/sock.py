@@ -26,11 +26,11 @@ class App(Application):
             url("/", HomeHandler),
             url("/echo", EchoConnection),
         ]
-        settings = dict(
-            debug=True,
-            template_path=BASE_DIR / "templates",
-            cookie_secret=secrets.token_bytes(),
-        )
+        settings = {
+            "debug": True,
+            "template_path": BASE_DIR / "templates",
+            "cookie_secret": secrets.token_bytes(),
+        }
         super().__init__(handlers, **settings)
 
 

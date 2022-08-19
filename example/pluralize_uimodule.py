@@ -19,12 +19,12 @@ class ReplyController(WebHandler):
 class App(Application):
     def __init__(self):
         handlers = [url("/", ReplyController)]
-        settings = dict(
-            debug=True,
-            ui_modules=dict(pluralize=Pluralize),
-            cookie_secret=secrets.token_bytes(),
-            template_path=BASE_DIR / "templates",
-        )
+        settings = {
+            "debug": True,
+            "ui_modules": {"pluralize": Pluralize},
+            "cookie_secret": secrets.token_bytes(),
+            "template_path": BASE_DIR / "templates",
+        }
         super().__init__(handlers, **settings)
 
 

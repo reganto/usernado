@@ -94,13 +94,13 @@ class App(Application):
             url("/auth/login/", LoginHandler, name="login"),
             url("/auth/logout/", LogoutHandler, name="logout"),
         ]
-        settings = dict(
-            debug=True,
-            cookie_secret=secrets.token_bytes(),
-            xsrf_cookies=True,
-            login_url="/login/",
-            template_path=BASE_DIR / "templates",
-        )
+        settings = {
+            "debug": True,
+            "cookie_secret": secrets.token_bytes(),
+            "xsrf_cookies": True,
+            "login_url": "/login/",
+            "template_path": BASE_DIR / "templates",
+        }
         super().__init__(handlers, **settings)
 
 
