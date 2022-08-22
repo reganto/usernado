@@ -25,8 +25,7 @@ Here is a simple "Hello, world" example for Usernado:
 
 .. code-block:: python
 
-      from usernado.helpers import api_route
-      from usernado import APIHandler
+      from usernado import APIHandler, api_route
       from tornado import web, ioloop
 
 
