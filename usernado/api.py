@@ -15,7 +15,7 @@ class DataMalformedOrNotProvidedError(ValueError):
 class APIHandler(BaseHandler):
     """Every API handler MUST inherit from ``APIHandler``.
 
-    Actually ``APIHandler`` is a :ref:`webhandler` with extra two methods.
+    Actually ``APIHandler`` is a :ref:`webhandler` with extra methods.
     To use API functionalities you can decorate ``APIHandler`` inherited
     classes with :ref:`api_route`.
     """

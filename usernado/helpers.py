@@ -128,8 +128,7 @@ class _Route(object):
 
     You can decorate :ref:`apihandler` inherited classes with ``api_route`` decorator.
 
-    .. seealso:: For further information take a look at
-    `examples <https://github.com/reganto/usernado/tree/master/example>`_
+    .. seealso:: For further information take a look at `examples <https://github.com/reganto/usernado/tree/master/example>`_
     """
 
     urls: List[tornado.web.URLSpec] = []

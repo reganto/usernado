@@ -256,7 +256,7 @@ class WebHandler(BaseHandler):
         :param password: Password.
         :type password: str
         :raises UnsupportedUserModelError: Raised when auth operation
-        for ``model`` was not provided.
+         for ``model`` was not provided.
         :return: True if user registration done successfully otherwise False.
         :rtype: bool
         """
@@ -306,7 +306,7 @@ class WebHandler(BaseHandler):
         :param password: Password.
         :type password: str
         :raises UnsupportedUserModelError: Raised when auth operation
-        for ``model`` was not provided.
+         for ``model`` was not provided.
         :return: True if user login done successfully otherwise False.
         :rtype: bool
         """
