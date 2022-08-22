@@ -4,9 +4,7 @@ import secrets
 import peewee
 from tornado.ioloop import IOLoop
 from tornado.web import Application
-
-from usernado import Usernado
-from usernado.helpers import humanize
+from usernado import humanize, WebHandler
 
 DB = peewee.SqliteDatabase("db.sqlite3")
 
@@ -31,7 +29,7 @@ DB.create_tables(
 )
 
 
-class Home(Usernado.Web):
+class Home(WebHandler):
     def get(self):
         posts = Post.select()
         self.render("humanize.html", posts=posts)

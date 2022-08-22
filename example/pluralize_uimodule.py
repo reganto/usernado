@@ -3,9 +3,7 @@ import secrets
 
 from tornado.ioloop import IOLoop
 from tornado.web import Application, url
-
-from usernado import WebHandler
-from usernado.helpers import Pluralize
+from usernado import WebHandler, Pluralize
 
 BASE_DIR = Path(__file__).resolve().parent
 
