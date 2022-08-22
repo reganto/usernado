@@ -4,7 +4,8 @@ import secrets
 import peewee
 from tornado.ioloop import IOLoop
 from tornado.web import Application
-from usernado import humanize, WebHandler
+
+from usernado import WebHandler, humanize
 
 DB = peewee.SqliteDatabase("db.sqlite3")
 

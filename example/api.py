@@ -1,5 +1,6 @@
+from tornado import ioloop, web
+
 from usernado import APIHandler, api_route
-from tornado import web, ioloop
 
 
 @api_route("/api/v1.3/echo/")
