@@ -1,10 +1,10 @@
-from example.api import App
+from example.api import make_app
 from tornado.testing import AsyncHTTPSTestCase
 
 
 class TestApi(AsyncHTTPSTestCase):
     def get_app(self):
-        return App()
+        return make_app()
 
     def test_api_router(self):
         response = self.fetch(
