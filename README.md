@@ -20,7 +20,11 @@
 
 ## Why Usernado
 
-I'm using 🌪️ every day. I really like it 😍 . Besides of all advantages of Tornado, it's not a full-stack framework, and I had to put all the pieces of the puzzle together every day 😩! So this is my attempt to follow DRY(Don't Repeat Yourself) principle. This is how the Usernado was born.
+- Why not?
+
+- I like :tornado:
+
+- For every project I wrote with Tornado, I had to repeat the code for some parts. For example, to authenticate users, I had to write repeated code every time. So I decided to write an extension to solve my need.
 
 <!-- Features -->
 
