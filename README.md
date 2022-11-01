@@ -102,8 +102,9 @@ For more examples please Check out [examples](https://github.com/reganto/Usernad
 
 <!-- CONTACT -->
 
-## Contact
+## Open your mailbox and 
+tell.reganto[at]gmail.com
 
-Email: tell.reganto[at]gmail.com
+Hello!
 
 <p align="right"><a href="#top"><img src="https://raw.githubusercontent.com/DjangoEx/python-engineer-roadmap/main/statics/top.png" width=50 height=50 /></a></p>
